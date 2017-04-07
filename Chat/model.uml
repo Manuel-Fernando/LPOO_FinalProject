@@ -4,26 +4,106 @@
     <importedPackage xmi:type="uml:Profile" href="pathmap://PapyrusJava_PROFILES/PapyrusJava.profile.uml#_j9REUByGEduN1bTiWJ0lyw"/>
   </packageImport>
   <packagedElement xmi:type="uml:Package" xmi:id="_nIcFoBtpEeej0dzdLLof3A" name="Server">
-    <packagedElement xmi:type="uml:Class" xmi:id="_eUGFsBtqEeej0dzdLLof3A" name="AcceptClients"/>
-    <packagedElement xmi:type="uml:Class" xmi:id="_hQYQoBtqEeej0dzdLLof3A" name="ReceiveMessageRequest"/>
-    <packagedElement xmi:type="uml:Class" xmi:id="_ppZxEBtqEeej0dzdLLof3A" name="SendMessageRequest"/>
-    <packagedElement xmi:type="uml:Class" xmi:id="_sfUOQBtqEeej0dzdLLof3A" name="RegisterRequest"/>
-    <packagedElement xmi:type="uml:Class" xmi:id="_zg1wQBtqEeej0dzdLLof3A" name="LogInRequest"/>
-    <packagedElement xmi:type="uml:Class" xmi:id="_-cSxMBtqEeej0dzdLLof3A" name="SQLInformations"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_eUGFsBtqEeej0dzdLLof3A" name="AcceptClients">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_wAhNsBt2EeeTQLjAYkQ2PQ" name="client" visibility="private" type="_2js1kBtwEeex28_ICY84iQ"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_2dIr0Bt2EeeTQLjAYkQ2PQ" name="accepted">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_6LqMABt2EeeTQLjAYkQ2PQ" name="success" direction="return">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+        </ownedParameter>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_hQYQoBtqEeej0dzdLLof3A" name="ReceiveMessageRequest">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_9zhDgBt2EeeTQLjAYkQ2PQ" name="message" visibility="private" type="_IFWLkBtqEeej0dzdLLof3A"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_BGiTcBt3EeeTQLjAYkQ2PQ" name="client" visibility="private" type="_2js1kBtwEeex28_ICY84iQ"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_bf2JgBt3EeeTQLjAYkQ2PQ" name="received" visibility="package">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_fED3IBt3EeeTQLjAYkQ2PQ" name="success" direction="return">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+        </ownedParameter>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ppZxEBtqEeej0dzdLLof3A" name="SendMessageRequest">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_W3L8UBt3EeeTQLjAYkQ2PQ" name="message" visibility="private" type="_IFWLkBtqEeej0dzdLLof3A"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_ZJQsoBt3EeeTQLjAYkQ2PQ" name="client" visibility="private" type="_2js1kBtwEeex28_ICY84iQ"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_fkXu4Bt3EeeTQLjAYkQ2PQ" name="sent">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_i_M3ABt3EeeTQLjAYkQ2PQ" name="success">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+        </ownedParameter>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_sfUOQBtqEeej0dzdLLof3A" name="RegisterRequest">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_u_VBABt3EeeTQLjAYkQ2PQ" name="client" visibility="private" type="_46cHoBtpEeej0dzdLLof3A"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_7LQLUBt3EeeTQLjAYkQ2PQ" name="regist" visibility="public">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_-nlvUBt3EeeTQLjAYkQ2PQ" name="success" direction="return">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+        </ownedParameter>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_zg1wQBtqEeej0dzdLLof3A" name="LogInRequest">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_kfQ7kBt3EeeTQLjAYkQ2PQ" name="client" visibility="private" type="_FxfSkBtqEeej0dzdLLof3A"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_nU99YBt3EeeTQLjAYkQ2PQ" name="logInAccepted">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_sq9KoBt3EeeTQLjAYkQ2PQ" name="success" direction="return">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+        </ownedParameter>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_-cSxMBtqEeej0dzdLLof3A" name="SQLInformations">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_DtGQkBt4EeeTQLjAYkQ2PQ" name="onlineUsers" visibility="private" type="_2js1kBtwEeex28_ICY84iQ">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_MvPmgBt4EeeTQLjAYkQ2PQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_MvPmgRt4EeeTQLjAYkQ2PQ" value="*"/>
+      </ownedAttribute>
+    </packagedElement>
   </packagedElement>
   <packagedElement xmi:type="uml:Package" xmi:id="_okyH0BtpEeej0dzdLLof3A" name="Client">
     <packagedElement xmi:type="uml:Class" xmi:id="_46cHoBtpEeej0dzdLLof3A" name="Register">
-      <ownedOperation xmi:type="uml:Operation" xmi:id="_8gOo8BtxEeectNZenItbJw" name="RegisterRequest"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_FxfSkBtqEeej0dzdLLof3A" name="LogIn">
-      <ownedOperation xmi:type="uml:Operation" xmi:id="_uyvIwBtyEeectNZenItbJw" name="LogInRequest">
-        <ownedParameter xmi:type="uml:Parameter" xmi:id="_1FSE4BtyEeectNZenItbJw" name="UserData" type="_2js1kBtwEeex28_ICY84iQ"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_bONjwBtzEeeTQLjAYkQ2PQ" name="user" visibility="private" type="_2js1kBtwEeex28_ICY84iQ"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_8gOo8BtxEeectNZenItbJw" name="RegisterRequest">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_KZHO4BtzEeeTQLjAYkQ2PQ" name="accepted" direction="return">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+        </ownedParameter>
       </ownedOperation>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_IFWLkBtqEeej0dzdLLof3A" name="SendMessage"/>
-    <packagedElement xmi:type="uml:Class" xmi:id="_KyXLcBtqEeej0dzdLLof3A" name="ReceiveMessage"/>
-    <packagedElement xmi:type="uml:Class" xmi:id="_O-PWABtqEeej0dzdLLof3A" name="LogOut"/>
-    <packagedElement xmi:type="uml:Class" xmi:id="_XC2FoBtqEeej0dzdLLof3A" name="Friends"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_FxfSkBtqEeej0dzdLLof3A" name="LogIn">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_jn1hIBtzEeeTQLjAYkQ2PQ" name="user" visibility="private" type="_2js1kBtwEeex28_ICY84iQ"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_uyvIwBtyEeectNZenItbJw" name="LogInRequest" visibility="protected">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_Wf4MYBtzEeeTQLjAYkQ2PQ" name="accepted" direction="return">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+        </ownedParameter>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_IFWLkBtqEeej0dzdLLof3A" name="SendMessage">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_2fyzsBt1EeeTQLjAYkQ2PQ" name="message" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_5qZHcBt1EeeTQLjAYkQ2PQ" name="friend" type="_Yn2TkBt1EeeTQLjAYkQ2PQ"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_ROg5EBt2EeeTQLjAYkQ2PQ" name="send">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_aeyxoBt2EeeTQLjAYkQ2PQ" name="success" direction="return">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+        </ownedParameter>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_KyXLcBtqEeej0dzdLLof3A" name="ReceiveMessage">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_LNRIUBt2EeeTQLjAYkQ2PQ" name="message">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_NideEBt2EeeTQLjAYkQ2PQ" name="friend" type="_Yn2TkBt1EeeTQLjAYkQ2PQ"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_cCLP8Bt2EeeTQLjAYkQ2PQ" name="receive">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_fPlnIBt2EeeTQLjAYkQ2PQ" name="success" direction="return">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+        </ownedParameter>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_XC2FoBtqEeej0dzdLLof3A" name="Friends">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_hq8hMBt0EeeTQLjAYkQ2PQ" name="friendsList" visibility="private" type="_Yn2TkBt1EeeTQLjAYkQ2PQ">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_kpL-gBt1EeeTQLjAYkQ2PQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_kphVsBt1EeeTQLjAYkQ2PQ" value="*"/>
+      </ownedAttribute>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_rPXBQBt1EeeTQLjAYkQ2PQ" name="addFriend">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_uqN-kBt1EeeTQLjAYkQ2PQ" name="friend" type="_Yn2TkBt1EeeTQLjAYkQ2PQ"/>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_vSccMBt1EeeTQLjAYkQ2PQ" name="removeFriend">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_yHpuwBt1EeeTQLjAYkQ2PQ" name="friend" type="_Yn2TkBt1EeeTQLjAYkQ2PQ"/>
+      </ownedOperation>
+    </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_2js1kBtwEeex28_ICY84iQ" name="UserData">
       <ownedAttribute xmi:type="uml:Property" xmi:id="_6-rzIBtwEeex28_ICY84iQ" name="email" visibility="private">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
@@ -33,6 +113,23 @@
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="_IdHHIBtxEeex28_ICY84iQ" name="password" visibility="private">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_O-PWABtqEeej0dzdLLof3A" name="LogOut">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_plqxgBtzEeeTQLjAYkQ2PQ" name="user" visibility="private" type="_2js1kBtwEeex28_ICY84iQ"/>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_suPsABtzEeeTQLjAYkQ2PQ" name="logOutRequest">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_xTqX8BtzEeeTQLjAYkQ2PQ" name="accepted" direction="return">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+        </ownedParameter>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_o_8OQBtzEeeTQLjAYkQ2PQ" name="Class1"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_Yn2TkBt1EeeTQLjAYkQ2PQ" name="FriendData">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_a80m4Bt1EeeTQLjAYkQ2PQ" name="name" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_e41JcBt1EeeTQLjAYkQ2PQ" name="email" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
       </ownedAttribute>
     </packagedElement>
   </packagedElement>
