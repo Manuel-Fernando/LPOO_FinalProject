@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_dkg4UBtpEeej0dzdLLof3A" name="RootElement">
+  <packageImport xmi:type="uml:PackageImport" xmi:id="_AiNGEBtxEeex28_ICY84iQ">
+    <importedPackage xmi:type="uml:Profile" href="pathmap://PapyrusJava_PROFILES/PapyrusJava.profile.uml#_j9REUByGEduN1bTiWJ0lyw"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Package" xmi:id="_nIcFoBtpEeej0dzdLLof3A" name="Server">
+    <packagedElement xmi:type="uml:Class" xmi:id="_eUGFsBtqEeej0dzdLLof3A" name="AcceptClients"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_hQYQoBtqEeej0dzdLLof3A" name="ReceiveMessageRequest"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ppZxEBtqEeej0dzdLLof3A" name="SendMessageRequest"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_sfUOQBtqEeej0dzdLLof3A" name="RegisterRequest"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_zg1wQBtqEeej0dzdLLof3A" name="LogInRequest"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_-cSxMBtqEeej0dzdLLof3A" name="SQLInformations"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_okyH0BtpEeej0dzdLLof3A" name="Client">
+    <packagedElement xmi:type="uml:Class" xmi:id="_46cHoBtpEeej0dzdLLof3A" name="Register">
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_8gOo8BtxEeectNZenItbJw" name="RegisterRequest"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_FxfSkBtqEeej0dzdLLof3A" name="LogIn">
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_uyvIwBtyEeectNZenItbJw" name="LogInRequest">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_1FSE4BtyEeectNZenItbJw" name="UserData" type="_2js1kBtwEeex28_ICY84iQ"/>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_IFWLkBtqEeej0dzdLLof3A" name="SendMessage"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_KyXLcBtqEeej0dzdLLof3A" name="ReceiveMessage"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_O-PWABtqEeej0dzdLLof3A" name="LogOut"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_XC2FoBtqEeej0dzdLLof3A" name="Friends"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_2js1kBtwEeex28_ICY84iQ" name="UserData">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_6-rzIBtwEeex28_ICY84iQ" name="email" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_FbEScBtxEeex28_ICY84iQ" name="userName" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_IdHHIBtxEeex28_ICY84iQ" name="password" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_pcOtMBtpEeej0dzdLLof3A" name="GUI"/>
+</uml:Model>
