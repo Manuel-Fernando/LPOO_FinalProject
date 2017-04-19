@@ -1,0 +1,14 @@
+CREATE TABLE utilizador(
+    email VARCHAR(30) NOT NULL PRIMARY KEY,
+    nome VARCHAR(50) NOT NULL,
+    password VARCHAR(30) NOT NULL,
+    conectado VARCHAR(10) NOT NULL DEFAULT "offline",
+    socket VARCHAR(50) NULL,
+    num_amigos INTEGER NOT NULL DEFAULT 0
+    );
+     
+CREATE TABLE amizade ( 
+    uti1 VARCHAR(50) REFERENCES utilizador ON DELETE CASCADE, 
+    uti2 VARCHAR(50) REFERENCES utilizador ON DELETE CASCADE,
+    PRIMARY KEY (uti1,uti2) 
+    );
