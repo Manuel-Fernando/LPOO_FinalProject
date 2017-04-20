@@ -1,21 +1,21 @@
-package Server;
+package server;
 
-import Client.LogIn;
+import client.LogIn;
 
 /**
- * Classe que guarda a informação sobre o pedido de logIn
+ * Classe que guarda a informaï¿½ï¿½o sobre o pedido de logIn
  * @author Utilizador
  */
 public class LogInRequest {
 	
 	/**
-	 * Atributo que guarda informação acerca do logIn
+	 * Atributo que guarda informaï¿½ï¿½o acerca do logIn
 	 */
 	public LogIn login;
 
 	/**
 	 * Contrutor da classe
-	 * @param login LogIn com a informação de logIn
+	 * @param login LogIn com a informaï¿½ï¿½o de logIn
 	 */
 	public LogInRequest(LogIn login) {
 		super();
@@ -23,23 +23,23 @@ public class LogInRequest {
 	}
 
 	/**
-	 * Método para obter a informação sobre o logIn
-	 * @return LogIn com a informação sobre o logIn
+	 * Mï¿½todo para obter a informaï¿½ï¿½o sobre o logIn
+	 * @return LogIn com a informaï¿½ï¿½o sobre o logIn
 	 */
 	public LogIn getLogin() {
 		return login;
 	}
 
 	/**
-	 * Método para atribuir a informação sobre o logIn
-	 * @param login LogIn com a informação sobre o login
+	 * Mï¿½todo para atribuir a informaï¿½ï¿½o sobre o logIn
+	 * @param login LogIn com a informaï¿½ï¿½o sobre o login
 	 */
 	public void setLogin(LogIn login) {
 		this.login = login;
 	}
 
 	/**
-	 * Método para verificar se o login foi efetuado com sucesso
+	 * Mï¿½todo para verificar se o login foi efetuado com sucesso
 	 * @return success true caje o login tenha sido feito com sucesso
 	 */
 	public Boolean logInAccepted() {

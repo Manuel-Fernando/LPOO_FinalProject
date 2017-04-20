@@ -1,21 +1,21 @@
-package Server;
+package server;
 
-import Client.UserData;
+import client.UserData;
 
 /**
- * Classe que guarda a informação sobre o cliente a registar no servidor
+ * Classe que guarda a informaï¿½ï¿½o sobre o cliente a registar no servidor
  * @author Utilizador
  */
 public class AcceptClients {
 	
 	/**
-	 * Atributo que guarda informação sobre o cliente
+	 * Atributo que guarda informaï¿½ï¿½o sobre o cliente
 	 */
 	private UserData client;
 	
 	/**
 	 * Construtor da classe
-	 * @param client UserData com a informação do cliente a registar
+	 * @param client UserData com a informaï¿½ï¿½o do cliente a registar
 	 */
 	public AcceptClients(UserData client) {
 		super();
@@ -23,23 +23,23 @@ public class AcceptClients {
 	}
 
 	/**
-	 * Método para obter a informação sobre o cliente
-	 * @return UserData com a informação sobre o cliente
+	 * Mï¿½todo para obter a informaï¿½ï¿½o sobre o cliente
+	 * @return UserData com a informaï¿½ï¿½o sobre o cliente
 	 */
 	public UserData getClient() {
 		return client;
 	}
 
 	/**
-	 * Método que atribui informação ao cliente
-	 * @param client UserData com a informação do cliente
+	 * Mï¿½todo que atribui informaï¿½ï¿½o ao cliente
+	 * @param client UserData com a informaï¿½ï¿½o do cliente
 	 */
 	public void setClient(UserData client) {
 		this.client = client;
 	}
 
 	/**
-	 * Método que verifica se o registo foi efetuado com sucesso
+	 * Mï¿½todo que verifica se o registo foi efetuado com sucesso
 	 * @return success true caso o registo tenha sido feito com sucesso
 	 */
 	public Boolean accepted() {

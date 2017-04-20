@@ -1,9 +1,9 @@
-package Client;
+package client;
 
-import Client.FriendData;
+import client.FriendData;
 
 /**
- * Classe que guarda a informação acerca da mensagem recebida
+ * Classe que guarda a informaï¿½ï¿½o acerca da mensagem recebida
  * @author Utilizador
  */
 public class ReceiveMessage {
@@ -14,14 +14,14 @@ public class ReceiveMessage {
 	public String message;
 	
 	/**
-	 * Atributo que guarda a informação sobre o amigo que envia a mensagem
+	 * Atributo que guarda a informaï¿½ï¿½o sobre o amigo que envia a mensagem
 	 */
 	public FriendData friend;
 
 	/**
 	 * Construtor da classe
 	 * @param message String com a mensagem recebida
-	 * @param friend FriendData com informação sobre o amigo
+	 * @param friend FriendData com informaï¿½ï¿½o sobre o amigo
 	 */
 	public ReceiveMessage(String message, FriendData friend) {
 		super();
@@ -30,7 +30,7 @@ public class ReceiveMessage {
 	}
 
 	/**
-	 * Método para obter a mensagem recebida
+	 * Mï¿½todo para obter a mensagem recebida
 	 * @return String com a mensagem
 	 */
 	public String getMessage() {
@@ -38,7 +38,7 @@ public class ReceiveMessage {
 	}
 
 	/**
-	 * Método para atribuir a mensagem recebida
+	 * Mï¿½todo para atribuir a mensagem recebida
 	 * @param message String com a mensagem 
 	 */
 	public void setMessage(String message) {
@@ -46,23 +46,23 @@ public class ReceiveMessage {
 	}
 
 	/**
-	 * Método para obter o amigo 
-	 * @return FriendData com a informação do amigo
+	 * Mï¿½todo para obter o amigo 
+	 * @return FriendData com a informaï¿½ï¿½o do amigo
 	 */
 	public FriendData getFriend() {
 		return friend;
 	}
 
 	/**
-	 * Método para atribuir um amigo à mensagem
-	 * @param friend FriendData com a informação do amigo
+	 * Mï¿½todo para atribuir um amigo ï¿½ mensagem
+	 * @param friend FriendData com a informaï¿½ï¿½o do amigo
 	 */
 	public void setFriend(FriendData friend) {
 		this.friend = friend;
 	}
 
 	/**
-	 * Método que verificar se a mensagem foi recebida com sucesso
+	 * Mï¿½todo que verificar se a mensagem foi recebida com sucesso
 	 * @return success true caso seja recebi com sucesso
 	 */
 	public Boolean receive() {

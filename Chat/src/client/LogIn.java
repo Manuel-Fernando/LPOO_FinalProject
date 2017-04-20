@@ -1,21 +1,21 @@
-package Client;
+package client;
 
-import Client.UserData;
+import client.UserData;
 
 /**
- * Classe que guarda guarda a informação para LogIn
+ * Classe que guarda guarda a informaï¿½ï¿½o para LogIn
  * @author Utilizador
  */
 public class LogIn {
 	
 	/**
-	 * Atributo que guarda a informação do cliente
+	 * Atributo que guarda a informaï¿½ï¿½o do cliente
 	 */
 	private UserData user;
 
 	/**
 	 * Construtor da classe
-	 * @param user UserData com a informação do cliente
+	 * @param user UserData com a informaï¿½ï¿½o do cliente
 	 */
 	public LogIn(UserData user) {
 		super();
@@ -23,7 +23,7 @@ public class LogIn {
 	}
 
 	/**
-	 * Método para requisitar uma permissão de login ao servidor
+	 * Mï¿½todo para requisitar uma permissï¿½o de login ao servidor
 	 * @return accepted true caso seja permitido
 	 */
 	protected Boolean LogInRequest() {

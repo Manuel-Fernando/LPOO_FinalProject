@@ -1,7 +1,7 @@
-package Client;
+package client;
 
 /**
- * Classe que guarda a informação de cada cliente
+ * Classe que guarda a informaï¿½ï¿½o de cada cliente
  * @author Utilizador
  */
 public class UserData {
@@ -35,7 +35,7 @@ public class UserData {
 	}
 
 	/**
-	 * Método para obter o email do cliente
+	 * Mï¿½todo para obter o email do cliente
 	 * @return String com o email
 	 */
 	public String getEmail() {
@@ -43,7 +43,7 @@ public class UserData {
 	}
 	
 	/**
-	 * Método para atribuir um email ao cliente
+	 * Mï¿½todo para atribuir um email ao cliente
 	 * @param email String com o email
 	 */
 	public void setEmail(String email) {
@@ -51,7 +51,7 @@ public class UserData {
 	}
 	
 	/**
-	 * Método para obter o nome de utilizador do cliente
+	 * Mï¿½todo para obter o nome de utilizador do cliente
 	 * @return String com o nome do cliente
 	 */
 	public String getUserName() {
@@ -59,7 +59,7 @@ public class UserData {
 	}
 	
 	/**
-	 * Método para atribuir um nome ao cliente
+	 * Mï¿½todo para atribuir um nome ao cliente
 	 * @param userName
 	 */
 	public void setUserName(String userName) {
@@ -67,7 +67,7 @@ public class UserData {
 	}
 	
 	/**
-	 * Método para obter a password do cliente
+	 * Mï¿½todo para obter a password do cliente
 	 * @return String com a password do cliente
 	 */
 	public String getPassword() {
@@ -75,7 +75,7 @@ public class UserData {
 	}
 	
 	/**
-	 * Método para atribuir uma password ao cliente
+	 * Mï¿½todo para atribuir uma password ao cliente
 	 * @param password String com a nova password
 	 */
 	public void setPassword(String password) {

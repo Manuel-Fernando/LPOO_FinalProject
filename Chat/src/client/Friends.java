@@ -1,8 +1,8 @@
-package Client;
+package client;
 
 import java.util.ArrayList;
 
-import Client.FriendData;
+import client.FriendData;
 
 /**
  * Classe que guarda uma lista de todos os amigos de um cliente
@@ -25,7 +25,7 @@ public class Friends {
 	}
 
 	/**
-	 * Método para obter a lista de amigos
+	 * Mï¿½todo para obter a lista de amigos
 	 * @return ArrayList<FriendData> com a lista de amigos
 	 */
 	public ArrayList<FriendData> getFriendsList() {
@@ -33,7 +33,7 @@ public class Friends {
 	}
 
 	/**
-	 * Método para atribuir uma lista de amigos
+	 * Mï¿½todo para atribuir uma lista de amigos
 	 * @param friendsList FriendData[] com a lista de amigos
 	 */
 	public void setFriendsList(ArrayList<FriendData> friendsList) {
@@ -41,7 +41,7 @@ public class Friends {
 	}
 
 	/**
-	 * Método para adicionar um novo amigo à lista
+	 * Mï¿½todo para adicionar um novo amigo ï¿½ lista
 	 * @param friend FriendData com o amigo a adicionar 
 	 */
 	public void addFriend(FriendData friend) {
@@ -49,7 +49,7 @@ public class Friends {
 	}
 
 	/**
-	 * Método que remove um amigo da lista de amigos
+	 * Mï¿½todo que remove um amigo da lista de amigos
 	 * @param friend FriendData com o amigo a remover
 	 */
 	public void removeFriend(FriendData friend) {

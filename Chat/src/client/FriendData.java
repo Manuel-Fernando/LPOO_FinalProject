@@ -1,7 +1,7 @@
-package Client;
+package client;
 
 /**
- * Classe que guarda informações sobre um amigo do cliente
+ * Classe que guarda informaï¿½ï¿½es sobre um amigo do cliente
  * @author Utilizador
  */
 public class FriendData {
@@ -28,7 +28,7 @@ public class FriendData {
 	}
 
 	/**
-	 * Método para obter o nome do amigo
+	 * Mï¿½todo para obter o nome do amigo
 	 * @return String com o nome do amigo
 	 */
 	public String getName() {
@@ -36,7 +36,7 @@ public class FriendData {
 	}
 
 	/**
-	 * Método que atribui um nome ao amigo
+	 * Mï¿½todo que atribui um nome ao amigo
 	 * @param name String com o nome do amigo
 	 */
 	public void setName(String name) {
@@ -44,7 +44,7 @@ public class FriendData {
 	}
 
 	/**
-	 * Método para obter o email do amigo
+	 * Mï¿½todo para obter o email do amigo
 	 * @return String com o email
 	 */
 	public String getEmail() {
@@ -52,7 +52,7 @@ public class FriendData {
 	}
 
 	/**
-	 * Método que atribui um email ao amigo
+	 * Mï¿½todo que atribui um email ao amigo
 	 * @param email String com o email
 	 */
 	public void setEmail(String email) {

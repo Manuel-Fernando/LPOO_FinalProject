@@ -1,9 +1,9 @@
-package Client;
+package client;
 
-import Client.FriendData;
+import client.FriendData;
 
 /**
- * Classe que guarda informação sobre a mensagem a enviar
+ * Classe que guarda informaï¿½ï¿½o sobre a mensagem a enviar
  * @author Utilizador
  */
 public class SendMessage {
@@ -14,14 +14,14 @@ public class SendMessage {
 	private String message;
 	
 	/**
-	 * Atributo para guarda a informação acerca do amigo 
+	 * Atributo para guarda a informaï¿½ï¿½o acerca do amigo 
 	 */
 	public FriendData friend;
 	
 	/**
 	 * Construtor da classe
 	 * @param message String com a mensagem
-	 * @param friend FriendData com a informação acerca do amigo
+	 * @param friend FriendData com a informaï¿½ï¿½o acerca do amigo
 	 */
 	public SendMessage(String message, FriendData friend) {
 		super();
@@ -30,7 +30,7 @@ public class SendMessage {
 	}
 
 	/**
-	 * Método para obter a mensagem 
+	 * Mï¿½todo para obter a mensagem 
 	 * @return String com a mensagem
 	 */
 	public String getMessage() {
@@ -38,7 +38,7 @@ public class SendMessage {
 	}
 
 	/**
-	 * Método para atribuir a mensagem a enviar
+	 * Mï¿½todo para atribuir a mensagem a enviar
 	 * @param message String com a mensagem
 	 */
 	public void setMessage(String message) {
@@ -46,23 +46,23 @@ public class SendMessage {
 	}
 
 	/**
-	 * Método para obter a informação sobre o amigo
-	 * @return FriendData com a informação sobre o amigo
+	 * Mï¿½todo para obter a informaï¿½ï¿½o sobre o amigo
+	 * @return FriendData com a informaï¿½ï¿½o sobre o amigo
 	 */
 	public FriendData getFriend() {
 		return friend;
 	}
 
 	/**
-	 * Método que atribui informação acerca do amigo
-	 * @param friend FriendData com a informação acerca do amigo
+	 * Mï¿½todo que atribui informaï¿½ï¿½o acerca do amigo
+	 * @param friend FriendData com a informaï¿½ï¿½o acerca do amigo
 	 */
 	public void setFriend(FriendData friend) {
 		this.friend = friend;
 	}
 
 	/**
-	 * Método para verifica se a mensagem foi enviada com sucesso
+	 * Mï¿½todo para verifica se a mensagem foi enviada com sucesso
 	 * @return success true caso tenha sido enviada com sucesso
 	 */
 	public Boolean send() {

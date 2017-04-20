@@ -1,21 +1,21 @@
-package Client;
+package client;
 
-import Client.UserData;
+import client.UserData;
 
 /**
- * Classe que guarda a informação de LogOut do cliente
+ * Classe que guarda a informaï¿½ï¿½o de LogOut do cliente
  * @author Utilizador 
  */
 public class LogOut {
 	
 	/**
-	 * Atributo que guarda informação sobre o cliente
+	 * Atributo que guarda informaï¿½ï¿½o sobre o cliente
 	 */
 	private UserData user;
 
 	/**
 	 * Construtor da classe 
-	 * @param user UserData com a informação do cliente
+	 * @param user UserData com a informaï¿½ï¿½o do cliente
 	 */
 	public LogOut(UserData user) {
 		super();
@@ -23,23 +23,23 @@ public class LogOut {
 	}
 
 	/**
-	 * Método para obter a informação sobre o cliente
-	 * @return UserData com a informação do cliente
+	 * Mï¿½todo para obter a informaï¿½ï¿½o sobre o cliente
+	 * @return UserData com a informaï¿½ï¿½o do cliente
 	 */
 	public UserData getUser() {
 		return user;
 	}
 
 	/**
-	 * Método para atribuir informação sobre o cliente
-	 * @param user UserData com a informação do cliente
+	 * Mï¿½todo para atribuir informaï¿½ï¿½o sobre o cliente
+	 * @param user UserData com a informaï¿½ï¿½o do cliente
 	 */
 	public void setUser(UserData user) {
 		this.user = user;
 	}
 
 	/**
-	 * Método para requisitar permissão para logOut
+	 * Mï¿½todo para requisitar permissï¿½o para logOut
 	 * @return accepted true caso seja permitido
 	 */
 	public Boolean logOutRequest() {

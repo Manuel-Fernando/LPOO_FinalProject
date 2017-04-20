@@ -1,11 +1,11 @@
-package Server;
+package server;
 
 import java.util.ArrayList;
 
-import Client.UserData;
+import client.UserData;
 
 /**
- * Classe que guarda a informação a guarda na base de dados
+ * Classe que guarda a informaï¿½ï¿½o a guarda na base de dados
  */
 public class SQLInformations {
 	
@@ -15,8 +15,8 @@ public class SQLInformations {
 	private ArrayList<UserData> onlineUsers = new ArrayList<UserData>();
 	
 	/**
-	 * Método que adiciona um cliente à lista de clientes online
-	 * @param user UserData com a informação acerca do cliente
+	 * Mï¿½todo que adiciona um cliente ï¿½ lista de clientes online
+	 * @param user UserData com a informaï¿½ï¿½o acerca do cliente
 	 */
 	public void addUser(UserData user){
 		onlineUsers.add(user);
