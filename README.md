@@ -5,6 +5,9 @@ Carolina da Ponte Rocha 201304026 up201304026@fe.up.pt
 Manuel Fernando Sequeira Pereira 201205052 ee12314@fe.up.pt
 
 ## Architecture Design
+### Design Patterns
+#### Singleton Pattern
+É usada na package "mySQLConnection" para as classes da package server não criarem várias instâncias de modo a fazerem vários logIns no MySQL e evitar colisões de acesso à  base de dados.
 
 ## GUI Design
 
