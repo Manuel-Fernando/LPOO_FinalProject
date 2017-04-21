@@ -10,15 +10,15 @@ Manuel Fernando Sequeira Pereira 201205052 ee12314@fe.up.pt
 É usada na package "mySQLConnection" para as classes da package server não criarem várias instâncias de modo a fazerem vários logIns no MySQL e evitar colisões de acesso à  base de dados.
 
 ## GUI Design
-![Screenshot](New Mockup 1.png)
+![Screenshot](NewMockup1.png)
 
-![Screenshot](New Mockup 2.png)
+![Screenshot](NewMockup2.png)
 
-![Screenshot](New Mockup 3.png)
+![Screenshot](NewMockup3.png)
 
-![Screenshot](New Mockup 4.png)
+![Screenshot](NewMockup4.png)
 
-![Screenshot](New Mockup 5.png)
+![Screenshot](NewMockup5.png)
 
 ## Test Design
 #### Registo de cliente 
