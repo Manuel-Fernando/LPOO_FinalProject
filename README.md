@@ -20,6 +20,8 @@ Manuel Fernando Sequeira Pereira 201205052 ee12314@fe.up.pt
 
 ![Screenshot](NewMockup5.png)
 
+No pdf ChatPrototype encontra-se o protótipo com os links entre as páginas.
+
 ## Test Design
 #### Registo de cliente 
 Fazer um registo e ir procurar à base de dados se foi registado com sucesso;
