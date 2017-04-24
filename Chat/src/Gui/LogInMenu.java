@@ -207,8 +207,11 @@ public class LogInMenu extends JFrame {
 					Connection connection = connectorFile.ConnectToMySQL();
 					userdata = getInformationFromDB(connection);
 					
-//					ChatMenu CM = new ChatMenu();
-//					CM.setVisible(true);
+					if (userdata!=null){
+						ChatMenu CM = new ChatMenu();
+						CM.setVisible(true);
+					}
+
 
 				} catch (Exception e1) {
 					e1.printStackTrace();
@@ -266,10 +269,17 @@ public class LogInMenu extends JFrame {
 			}
 		}
 		
-		System.out.println("Email: " + exists);
-		System.out.println("Password: " + validPassword);
+		if (exists==false){
+			lblEmailDontExist.setVisible(true);
+		} else {
+			lblEmailDontExist.setVisible(false);
+		}
 		
-		//WARNING CASO NA EXISTA NA BASE DE DADOS
+		if (validPassword==false){
+			lblPasswordWarning.setVisible(true);
+		} else {
+			lblPasswordWarning.setVisible(false);
+		}
 		
 		return user;
 	}
@@ -281,7 +291,13 @@ public class LogInMenu extends JFrame {
 	private String getEmail(){
 		String email = txtEmail.getText();
 		
-		//VERIFICAR SE O UTILIZADOR INTRODUZ EMAIL
+		if (email.isEmpty()){
+			lblEmailWarning.setVisible(true);
+		} else {
+			lblEmailWarning.setVisible(false);
+		}
+		
+		//VERIFICAR SE O UTILIZADOR INTRODUZ FORMATO DE EMAIL
 		
 		return email;
 	}
@@ -293,8 +309,12 @@ public class LogInMenu extends JFrame {
 	private String getPassword(){
 		String password = passwordField.getText();
 		
-		//VERIFICAR SE O UTILIZADOR INTRODUZ PASSWORD
+		if (!password.isEmpty()){
+			lblPasswordWarning.setVisible(false);
+		} else {
+			lblPasswordWarning.setVisible(true);
+		}
 		
-		return password;
+		return password;		
 	}
 }
