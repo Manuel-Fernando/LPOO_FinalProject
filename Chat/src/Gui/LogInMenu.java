@@ -196,13 +196,14 @@ public class LogInMenu extends JFrame {
 								
 				try {
 					Connection connection = ConnectorFile.ConnectToMySQL();
+					
 					userdata = getInformationFromDB(connection);
 					
-					userdata.setIpAddress(InetAddress.getLocalHost().getHostAddress());
-					
-					ServerSocket s = new ServerSocket(0);
-					userdata.setPortNumber(s.getLocalPort());
-					s.close();
+//					userdata.setIpAddress(InetAddress.getLocalHost().getHostAddress());
+//					
+//					ServerSocket s = new ServerSocket(0);
+//					userdata.setPortNumber(s.getLocalPort());
+//					s.close();
 		
 					if (userdata!=null){
 						ChatMenu CM = new ChatMenu();
@@ -247,7 +248,7 @@ public class LogInMenu extends JFrame {
 	 */
 	private UserData getInformationFromDB(Connection con) throws SQLException{
 		
-		ResultSet rs = ConnectorFile.SearchMySQLData(con, "SELECT email, nome, password FROM utilizador");		
+		ResultSet rs = ConnectorFile.SearchMySQLData(con, "SELECT email, nome, password FROM utilizador WHERE email = '" + getEmail() + "' ");		
 		boolean exists = false, validPassword = false;
 		UserData user = null;
 
@@ -255,7 +256,7 @@ public class LogInMenu extends JFrame {
 			String email  = rs.getString("email");
 			String nome = rs.getString("nome");
 			String password = rs.getString("password");
-
+			
 			if (email.equals(getEmail())){
 				exists = true;
 				if (password.equals(getPassword())){
