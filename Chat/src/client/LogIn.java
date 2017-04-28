@@ -1,10 +1,8 @@
 package client;
 
-import java.net.InetAddress;
-import java.net.ServerSocket;
 import java.sql.Connection;
+import java.sql.ResultSet;
 
-import Gui.ChatMenu;
 import client.UserData;
 import mySQLConnection.ConnectorFile;
 
@@ -13,32 +11,29 @@ import mySQLConnection.ConnectorFile;
  * @author Utilizador
  */
 public class LogIn {
-	
-	/**
-	 * Atributo que guarda a informa��o do cliente
-	 */
-	private UserData user;
 
-	/**
-	 * Construtor da classe
-	 * @param user UserData com a informa��o do cliente
-	 */
-	public LogIn(UserData user) {
-		super();
-		
-		try {
-			Connection connection = ConnectorFile.ConnectToMySQL();
-
-		} catch (Exception e1) {
-			e1.printStackTrace();
-		}
-	}
 
 	/**
 	 * M�todo para requisitar uma permiss�o de login ao servidor
 	 * @return accepted true caso seja permitido
 	 */
-	public Boolean LogInRequest() {
-		return true; //******************************************
+	public int LogInRequest(UserData user) {
+		try{
+			Connection conector = ConnectorFile.ConnectToMySQL();
+			ResultSet rs = ConnectorFile.SearchMySQLData(conector, "SELECT `password`, `nome`, `num_amigos` FROM utilizador WHERE email = '" + user.getEmail() + "'");
+			
+			if (!rs.isBeforeFirst()){return -1;}
+			else {
+				rs.next();
+				if(rs.getString("password")!=user.getPassword()){return 0;}
+				user.setUserName(rs.getString("nome"));
+				user.setNum_amigos(rs.getInt("num_amigos"));
+				}
+
+		}catch (Exception e1){
+			e1.printStackTrace();
+		}	
+		return 1; 
 	}
-};
+	
+}

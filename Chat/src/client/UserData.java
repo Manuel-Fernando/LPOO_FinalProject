@@ -16,6 +16,10 @@ public class UserData {
 	 */
 	private String userName;
 	
+	private int num_amigos;
+	
+
+
 	/**
 	 * Atributo que guarda a password do cliente
 	 */
@@ -37,10 +41,18 @@ public class UserData {
 	 * @param userName String com o nome do cliente
 	 * @param password String com a password do cliente
 	 */
-	public UserData(String email, String userName, String password) {
-		super();		this.email = email;
-		this.userName = userName;
+	public UserData(String email, String password) {
+		super();
+		this.email = email;
 		this.password = password;
+	}
+	
+	public int getNum_amigos() {
+		return num_amigos;
+	}
+
+	public void setNum_amigos(int num_amigos) {
+		this.num_amigos = num_amigos;
 	}
 
 	/**
@@ -92,7 +104,7 @@ public class UserData {
 	}
 
 	/**
-	 * Método para obter o ip do cliente
+	 * Mï¿½todo para obter o ip do cliente
 	 * @return String com o ip
 	 */
 	public String getIpAddress() {
@@ -100,7 +112,7 @@ public class UserData {
 	}
 
 	/**
-	 * Método para atribuir um ip ao cliente
+	 * Mï¿½todo para atribuir um ip ao cliente
 	 * @param ipAddress com o ip
 	 */
 	public void setIpAddress(String ipAddress) {
@@ -108,7 +120,7 @@ public class UserData {
 	}
 
 	/**
-	 * Método para obter a porta
+	 * Mï¿½todo para obter a porta
 	 * @return int com a porta
 	 */
 	public int getPortNumber() {
@@ -116,7 +128,7 @@ public class UserData {
 	}
 	
 	/**
-	 * Método para atribuir a porta ao cliente
+	 * Mï¿½todo para atribuir a porta ao cliente
 	 * @param portNumber inteiro com a porta
 	 */
 	public void setPortNumber(int portNumber) {
