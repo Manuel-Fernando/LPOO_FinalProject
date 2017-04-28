@@ -1,6 +1,12 @@
 package client;
 
+import java.net.InetAddress;
+import java.net.ServerSocket;
+import java.sql.Connection;
+
+import Gui.ChatMenu;
 import client.UserData;
+import mySQLConnection.ConnectorFile;
 
 /**
  * Classe que guarda guarda a informa��o para LogIn
@@ -19,14 +25,20 @@ public class LogIn {
 	 */
 	public LogIn(UserData user) {
 		super();
-		this.user = user;
+		
+		try {
+			Connection connection = ConnectorFile.ConnectToMySQL();
+
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
 	}
 
 	/**
 	 * M�todo para requisitar uma permiss�o de login ao servidor
 	 * @return accepted true caso seja permitido
 	 */
-	protected Boolean LogInRequest() {
+	public Boolean LogInRequest() {
 		return true; //******************************************
 	}
 };

@@ -205,6 +205,7 @@ public class LogInMenu extends JFrame {
 						ServerSocket s = new ServerSocket(0);
 						userdata.setPortNumber(s.getLocalPort());
 						s.close();
+						
 						ChatMenu CM = new ChatMenu();
 						CM.setVisible(true);
 					}
@@ -251,20 +252,22 @@ public class LogInMenu extends JFrame {
 		boolean exists = false, validPassword = false;
 		UserData user = null;
 
-		while(rs.next()){
+//		while(rs.next()){
+			rs.next();
 			String email  = rs.getString("email");
 			String nome = rs.getString("nome");
 			String password = rs.getString("password");
+			System.out.println(email);
 			
 			if (email.equals(getEmail())){
 				exists = true;
 				if (password.equals(getPassword())){
 					validPassword=true;
 					user = new UserData(email, nome, password);
-					break;
+//					break;
 				}				        	 
 			}
-		}
+//		}
 		
 		if (exists==false){
 			lblEmailDontExist.setVisible(true);

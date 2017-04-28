@@ -9,6 +9,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
+import client.Register;
+import client.UserData;
 import mySQLConnection.ConnectorFile;
 
 import javax.swing.JLabel;
@@ -211,37 +213,21 @@ public class SignInMenu extends JFrame {
 		btnSignIn.setForeground(Color.WHITE);
 		btnSignIn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-						
-				try {
-					Connection connection = ConnectorFile.ConnectToMySQL();
-					Boolean exists = checkIfEmailExists(connection);
-					
-					if (exists==true){
-						lblEmailAlreadyTaken.setVisible(true);
-					} else{
-						lblEmailAlreadyTaken.setVisible(false);
-						email = getEmail();
-						password = getPassword();
-						username = getUsername();
-						
-						if (email!=null && password!=null && username!=null){
-							if (!email.isEmpty() && !password.isEmpty() && !username.isEmpty()){
-								String sql = "INSERT INTO utilizador (email, nome, password)" + "VALUES (?, ?, ?)";
-
-								PreparedStatement preparedStatement = connection.prepareStatement(sql);
-								preparedStatement.setString(1, email);
-								preparedStatement.setString(2, username);
-								preparedStatement.setString(3, password);
-								preparedStatement.executeUpdate();
-
-								ChatMenu CM = new ChatMenu();
-								CM.setVisible(true);
-							}
-						}
-					}
-					
-				} catch (Exception e1) {
-					e1.printStackTrace();
+				
+				Register r = new Register(new UserData(getEmail(), getUsername(), getPassword()));
+				int result = r.RegisterRequest();
+				
+				if (result == 1) {
+					lblEmailAlreadyTaken.setVisible(true);
+					lblAllFieldsAre.setVisible(false);
+				} else if (result == 2){
+					lblEmailAlreadyTaken.setVisible(false);	
+					lblAllFieldsAre.setVisible(false);
+					ChatMenu CM = new ChatMenu();
+					CM.setVisible(true);
+				} else if (result == 4){
+					lblAllFieldsAre.setVisible(true);
+					lblEmailAlreadyTaken.setVisible(false);
 				}
 
 			}
@@ -267,30 +253,8 @@ public class SignInMenu extends JFrame {
 		contentPane.add(btnBack);
 	}
 	
-	private Boolean checkIfEmailExists(Connection con) throws SQLException{		
-		ResultSet rs = ConnectorFile.SearchMySQLData(con, "SELECT email FROM utilizador");
-		Boolean exists = false;
-		
-		while(rs.next()){
-			String email  = rs.getString("email");
-			
-			if(email.equals(getEmail())){
-				exists = true;
-				break;
-			}
-			
-		}
-		return exists;
-	}
-	
 	private String getEmail(){
 		email = emailTxtField.getText();
-		
-		if (email.isEmpty()){
-			lblAllFieldsAre.setVisible(true);
-		} else {
-			lblAllFieldsAre.setVisible(false);
-		}
 		
 		//VERIFICAR SE O UTILIZADOR INTRODUZ EMAIL
 		
@@ -303,15 +267,11 @@ public class SignInMenu extends JFrame {
 		
 		if (!password1.isEmpty() && !password2.isEmpty()){
 			if (!password1.equals(password2)){
-				lblAllFieldsAre.setVisible(false);
 				lblPasswordsMustBe.setVisible(true);
 			} else {
-				lblAllFieldsAre.setVisible(false);
 				lblPasswordsMustBe.setVisible(false);
 				password = password1;
 			}
-		} else {
-			lblAllFieldsAre.setVisible(true);
 		}
 		
 		return password;		
@@ -319,12 +279,6 @@ public class SignInMenu extends JFrame {
 	
 	private String getUsername(){
 		String user = usernameTxtField.getText();
-		
-		if(user.isEmpty()){
-			lblAllFieldsAre.setVisible(true);
-		} else {
-			lblAllFieldsAre.setVisible(false);
-		}
 		
 		return user;
 	}

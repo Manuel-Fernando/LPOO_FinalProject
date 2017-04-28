@@ -38,8 +38,7 @@ public class UserData {
 	 * @param password String com a password do cliente
 	 */
 	public UserData(String email, String userName, String password) {
-		super();
-		this.email = email;
+		super();		this.email = email;
 		this.userName = userName;
 		this.password = password;
 	}
