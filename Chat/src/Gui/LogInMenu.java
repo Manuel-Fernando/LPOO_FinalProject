@@ -199,13 +199,12 @@ public class LogInMenu extends JFrame {
 					
 					userdata = getInformationFromDB(connection);
 					
-//					userdata.setIpAddress(InetAddress.getLocalHost().getHostAddress());
-//					
-//					ServerSocket s = new ServerSocket(0);
-//					userdata.setPortNumber(s.getLocalPort());
-//					s.close();
-		
 					if (userdata!=null){
+						userdata.setIpAddress(InetAddress.getLocalHost().getHostAddress());
+						
+						ServerSocket s = new ServerSocket(0);
+						userdata.setPortNumber(s.getLocalPort());
+						s.close();
 						ChatMenu CM = new ChatMenu();
 						CM.setVisible(true);
 					}
