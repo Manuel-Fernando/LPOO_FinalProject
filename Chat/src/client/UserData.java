@@ -22,6 +22,16 @@ public class UserData {
 	private String password;
 	
 	/**
+	 * Atributo que guarda o ip do cliente
+	 */
+	private String ipAddress;
+	
+	/**
+	 * Atributo que guarda a porta
+	 */
+	private int portNumber;
+	
+	/**
 	 * Construtor da classe
 	 * @param email String com o email do cliente
 	 * @param userName String com o nome do cliente
@@ -80,6 +90,38 @@ public class UserData {
 	 */
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	/**
+	 * Método para obter o ip do cliente
+	 * @return String com o ip
+	 */
+	public String getIpAddress() {
+		return ipAddress;
+	}
+
+	/**
+	 * Método para atribuir um ip ao cliente
+	 * @param ipAddress com o ip
+	 */
+	public void setIpAddress(String ipAddress) {
+		this.ipAddress = ipAddress;
+	}
+
+	/**
+	 * Método para obter a porta
+	 * @return int com a porta
+	 */
+	public int getPortNumber() {
+		return portNumber;
+	}
+	
+	/**
+	 * Método para atribuir a porta ao cliente
+	 * @param portNumber inteiro com a porta
+	 */
+	public void setPortNumber(int portNumber) {
+		this.portNumber = portNumber;
 	}
 
 };

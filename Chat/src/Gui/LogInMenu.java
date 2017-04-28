@@ -1,6 +1,5 @@
 package Gui;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 
@@ -9,25 +8,21 @@ import java.sql.SQLException;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.SoftBevelBorder;
 
 import client.UserData;
 import mySQLConnection.ConnectorFile;
 
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.net.InetAddress;
+import java.net.ServerSocket;
 import java.sql.Connection;
 import java.awt.event.ActionEvent;
-import javax.swing.JList;
-import javax.swing.JTextPane;
 import javax.swing.JPasswordField;
 import javax.swing.border.LineBorder;
 
@@ -36,9 +31,6 @@ public class LogInMenu extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtEmail;
 	private JButton btnLogIn;
-	private String userEmail;
-	private String userPassword;
-	private ConnectorFile connectorFile;
 	private JLabel lblEmailWarning;
 	private JLabel lblPasswordWarning;
 	private UserData userdata = null;
@@ -201,12 +193,17 @@ public class LogInMenu extends JFrame {
 		btnLogIn.setForeground(Color.WHITE);
 		btnLogIn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				connectorFile = new ConnectorFile();				
+								
 				try {
-					Connection connection = connectorFile.ConnectToMySQL();
+					Connection connection = ConnectorFile.ConnectToMySQL();
 					userdata = getInformationFromDB(connection);
 					
+					userdata.setIpAddress(InetAddress.getLocalHost().getHostAddress());
+					
+					ServerSocket s = new ServerSocket(0);
+					userdata.setPortNumber(s.getLocalPort());
+					s.close();
+		
 					if (userdata!=null){
 						ChatMenu CM = new ChatMenu();
 						CM.setVisible(true);
@@ -250,7 +247,7 @@ public class LogInMenu extends JFrame {
 	 */
 	private UserData getInformationFromDB(Connection con) throws SQLException{
 		
-		ResultSet rs = connectorFile.SearchMySQLData(con, "SELECT email, nome, password FROM utilizador");		
+		ResultSet rs = ConnectorFile.SearchMySQLData(con, "SELECT email, nome, password FROM utilizador");		
 		boolean exists = false, validPassword = false;
 		UserData user = null;
 

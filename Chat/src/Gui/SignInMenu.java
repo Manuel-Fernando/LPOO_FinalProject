@@ -1,6 +1,5 @@
 package Gui;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -212,10 +211,9 @@ public class SignInMenu extends JFrame {
 		btnSignIn.setForeground(Color.WHITE);
 		btnSignIn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
-				connectorFile = new ConnectorFile();				
+						
 				try {
-					Connection connection = connectorFile.ConnectToMySQL();
+					Connection connection = ConnectorFile.ConnectToMySQL();
 					Boolean exists = checkIfEmailExists(connection);
 					
 					if (exists==true){
@@ -270,7 +268,7 @@ public class SignInMenu extends JFrame {
 	}
 	
 	private Boolean checkIfEmailExists(Connection con) throws SQLException{		
-		ResultSet rs = connectorFile.SearchMySQLData(con, "SELECT email FROM utilizador");
+		ResultSet rs = ConnectorFile.SearchMySQLData(con, "SELECT email FROM utilizador");
 		Boolean exists = false;
 		
 		while(rs.next()){
