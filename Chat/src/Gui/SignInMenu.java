@@ -214,7 +214,7 @@ public class SignInMenu extends JFrame {
 		btnSignIn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				Register r = new Register(new UserData(getEmail(), getUsername(), getPassword()));
+				Register r = new Register(new UserData(getEmail(), getPassword()));
 				int result = r.RegisterRequest();
 				
 				if (result == 1) {

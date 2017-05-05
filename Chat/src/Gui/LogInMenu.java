@@ -248,26 +248,24 @@ public class LogInMenu extends JFrame {
 	 */
 	private UserData getInformationFromDB(Connection con) throws SQLException{
 		
-		ResultSet rs = ConnectorFile.SearchMySQLData(con, "SELECT email, nome, password FROM utilizador WHERE email = '" + getEmail() + "' ");		
+		ResultSet rs = ConnectorFile.SearchMySQLData(con, "SELECT email, nome, password FROM utilizador WHERE email = '" + getEmail() + "' ");
 		boolean exists = false, validPassword = false;
 		UserData user = null;
+		
+		rs.next();
+		String email  = rs.getString("email");
+		String nome = rs.getString("nome");
+		String password = rs.getString("password");
 
-//		while(rs.next()){
-			rs.next();
-			String email  = rs.getString("email");
-			String nome = rs.getString("nome");
-			String password = rs.getString("password");
-			System.out.println(email);
-			
+		if(!getEmail().isEmpty()){
 			if (email.equals(getEmail())){
 				exists = true;
 				if (password.equals(getPassword())){
 					validPassword=true;
-					user = new UserData(email, nome, password);
-//					break;
+					user = new UserData(email, password);
 				}				        	 
 			}
-//		}
+		}
 		
 		if (exists==false){
 			lblEmailDontExist.setVisible(true);
