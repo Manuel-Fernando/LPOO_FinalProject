@@ -11,6 +11,7 @@ public class SendMessage extends Thread{
 	String serverAddress;
 	UserData user;
 	String message;
+	Boolean newmessage;
 
 	public void setServerAddress(String serverAddress) {
 		this.serverAddress=serverAddress;
@@ -23,19 +24,30 @@ public class SendMessage extends Thread{
 	public void setMessage(String m){
 		message = m;
 	}
+	
+	public void newMessages(Boolean b){
+		newmessage = b;
+	}
 
 	public void run() {
 
 		Socket socket = null;
 		try {
 			socket = new Socket(serverAddress, 9001);
+			
 		} catch (IOException e) {e.printStackTrace();}	
 		try {
 			out = new PrintWriter(socket.getOutputStream(), true);
 		} catch (IOException e) {e.printStackTrace();}
 
 		while (true) {
-			out.println(user.getEmail() + " " + message);
+			
+			if (newmessage){
+				out.println(user.getEmail() + " " + message);
+				newmessage = false;
+			}
+			
 		}
+
 	}
 }

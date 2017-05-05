@@ -28,6 +28,8 @@ public class UserData {
 	 */
 	private String ipAddress;
 	
+	private Friends friendsList;
+	
 	
 	/**
 	 * Construtor da classe
@@ -112,4 +114,14 @@ public class UserData {
 	public void setIpAddress(String ipAddress) {
 		this.ipAddress = ipAddress;
 	}
+
+	public Friends getFriendsList() {
+		return friendsList;
+	}
+
+	public void setFriendsList(Friends friendsList) {
+		this.friendsList = friendsList;
+	}
+	
+	
 }

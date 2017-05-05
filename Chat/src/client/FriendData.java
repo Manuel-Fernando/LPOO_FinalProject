@@ -15,16 +15,22 @@ public class FriendData {
 	 * Atributo que guarda o email do amigo
 	 */
 	private String email;
+	
+	private String ip;
+	
+	private String conectado;
 
 	/**
 	 * Construtor da classe
 	 * @param name String com o nome do cliente
 	 * @param email String com o email do cliente
 	 */
-	public FriendData(String name, String email) {
+	public FriendData(String name, String email, String ip, String conectado) {
 		super();
 		this.name = name;
 		this.email = email;
+		this.ip = ip;
+		this.conectado = conectado;
 	}
 
 	/**

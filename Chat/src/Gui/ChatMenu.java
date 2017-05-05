@@ -10,6 +10,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
 import client.LogOut;
+import client.ReceiveMessage;
 import client.SendMessage;
 import client.UserData;
 
@@ -39,6 +40,7 @@ public class ChatMenu extends JFrame {
 	private JPanel backgroundFriends;
 	private JList friendsList;
 	private static UserData userdata;
+	private SendMessage sendmessage;
 
 	/**
 	 * Launch the application.
@@ -69,6 +71,8 @@ public class ChatMenu extends JFrame {
 		createTxtFields();
 		createSendButton();	
 		this.userdata = userdata;
+		sendMessage();
+		new ReceiveMessage().start();
 	}
 	
 	private void createTxtFields(){
@@ -118,6 +122,7 @@ public class ChatMenu extends JFrame {
 		btnSearch.setForeground(Color.WHITE);
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				//VERIFICAR SE O NOME EXISTE NA BASE DE DADOS E MOSTRAR
 			}
 		});
@@ -196,7 +201,10 @@ public class ChatMenu extends JFrame {
 		btnSend.setForeground(Color.WHITE);
 		btnSend.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//ENVIAR MENSAGEM
+				String message = messageTextField.getText();				
+				sendmessage.setMessage(message);
+				sendmessage.newMessages(true);
+				messageTextField.setText("");
 			}
 		});
 		btnSend.setBounds(405, 297, 64, 23);
@@ -204,14 +212,11 @@ public class ChatMenu extends JFrame {
 	}
 	
 	private void sendMessage(){
-		
-		SendMessage sendmessage = new SendMessage();
+		sendmessage = new SendMessage();
 		sendmessage.setUserData(userdata);
-		sendmessage.setServerAddress("172.30.15.134"); //-----------------------------------
-		
-		String message = messageTextField.getText();
-		
-		sendmessage.setMessage(message);		
+		sendmessage.setServerAddress("172.30.15.134"); //-----------------------------------			
+		sendmessage.start();
+		sendmessage.newMessages(false);
 		
 	}
 }
