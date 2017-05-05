@@ -10,6 +10,7 @@ public class SendMessage extends Thread{
 	PrintWriter out;
 	String serverAddress;
 	UserData user;
+	String message;
 
 	public void setServerAddress(String serverAddress) {
 		this.serverAddress=serverAddress;
@@ -17,6 +18,10 @@ public class SendMessage extends Thread{
 	
 	public void setUserData(UserData user) {
 		this.user=user;
+	}
+	
+	public void setMessage(String m){
+		message = m;
 	}
 
 	public void run() {
@@ -29,12 +34,8 @@ public class SendMessage extends Thread{
 			out = new PrintWriter(socket.getOutputStream(), true);
 		} catch (IOException e) {e.printStackTrace();}
 
-		String line;
-
 		while (true) {
-			Scanner scanner = new Scanner(System.in);
-			line=scanner.nextLine();
-			out.println(user.getEmail() + " " + line);
+			out.println(user.getEmail() + " " + message);
 		}
 	}
 }

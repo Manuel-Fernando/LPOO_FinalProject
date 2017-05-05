@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
+import client.LogIn;
 import client.Register;
 import client.UserData;
 import mySQLConnection.ConnectorFile;
@@ -214,18 +215,19 @@ public class SignInMenu extends JFrame {
 		btnSignIn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				Register r = new Register(new UserData(getEmail(), getPassword()));
-				int result = r.RegisterRequest();
-				
-				if (result == 1) {
+				UserData meu = new UserData(getEmail(), getPassword());
+				meu.setUserName(getName());
+				int x = Register.RegisterRequest(meu);
+
+				if (x == 1) {
 					lblEmailAlreadyTaken.setVisible(true);
 					lblAllFieldsAre.setVisible(false);
-				} else if (result == 2){
+				} else if (x == 2){
 					lblEmailAlreadyTaken.setVisible(false);	
 					lblAllFieldsAre.setVisible(false);
-					ChatMenu CM = new ChatMenu();
-					CM.setVisible(true);
-				} else if (result == 4){
+					LogInMenu login = new LogInMenu();
+					login.setVisible(true);
+				} else if (x == 4){
 					lblAllFieldsAre.setVisible(true);
 					lblEmailAlreadyTaken.setVisible(false);
 				}

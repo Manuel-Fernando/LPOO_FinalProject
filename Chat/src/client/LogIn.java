@@ -33,6 +33,7 @@ public class LogIn {
 				}
 		}catch (Exception e1){
 			e1.printStackTrace();
+			return 2;
 		}	
 		return 1; 
 	}

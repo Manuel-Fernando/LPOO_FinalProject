@@ -9,6 +9,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
+import client.LogOut;
+import client.SendMessage;
 import client.UserData;
 
 import javax.swing.JTextField;
@@ -36,7 +38,7 @@ public class ChatMenu extends JFrame {
 	private JPanel lineMessages;
 	private JPanel backgroundFriends;
 	private JList friendsList;
-	private UserData userdata;
+	private static UserData userdata;
 
 	/**
 	 * Launch the application.
@@ -45,7 +47,7 @@ public class ChatMenu extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ChatMenu frame = new ChatMenu();
+					ChatMenu frame = new ChatMenu(userdata);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -57,7 +59,7 @@ public class ChatMenu extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ChatMenu() {
+	public ChatMenu(UserData userdata) {
 		createJFrame();
 		createTextAreas();
 		createSearchButton();
@@ -66,6 +68,7 @@ public class ChatMenu extends JFrame {
 		createBackgrounds();
 		createTxtFields();
 		createSendButton();	
+		this.userdata = userdata;
 	}
 	
 	private void createTxtFields(){
@@ -136,7 +139,13 @@ public class ChatMenu extends JFrame {
 					SettingsMenu settings = new SettingsMenu();
 					settings.setVisible(true);
 				} else if (comboBox.getSelectedItem().equals("Log Out")){
-					//LOG OUT
+					LogOut logout = new LogOut();
+					logout.logOutRequest(userdata);
+					
+					LogInMenu login = new LogInMenu();
+					login.setVisible(true);
+					
+					//Fecha janela - logout
 				}
 			}
 		});
@@ -192,5 +201,17 @@ public class ChatMenu extends JFrame {
 		});
 		btnSend.setBounds(405, 297, 64, 23);
 		contentPane.add(btnSend);
+	}
+	
+	private void sendMessage(){
+		
+		SendMessage sendmessage = new SendMessage();
+		sendmessage.setUserData(userdata);
+		sendmessage.setServerAddress("172.30.15.134"); //-----------------------------------
+		
+		String message = messageTextField.getText();
+		
+		sendmessage.setMessage(message);		
+		
 	}
 }

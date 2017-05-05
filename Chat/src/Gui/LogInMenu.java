@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import client.LogIn;
 import client.UserData;
 import mySQLConnection.ConnectorFile;
 
@@ -193,22 +194,21 @@ public class LogInMenu extends JFrame {
 		btnLogIn.setForeground(Color.WHITE);
 		btnLogIn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-								
+
 				try {
-					Connection connection = ConnectorFile.ConnectToMySQL();
-					
-					userdata = getInformationFromDB(connection);
-					
-					if (userdata!=null){
-						userdata.setIpAddress(InetAddress.getLocalHost().getHostAddress());
-						
-						ServerSocket s = new ServerSocket(0);
-						userdata.setPortNumber(s.getLocalPort());
-						s.close();
-						
-						ChatMenu CM = new ChatMenu();
-						CM.setVisible(true);
+					UserData meu = new UserData(getEmail(), getPassword());
+					int x = LogIn.LogInRequest(meu);
+
+					if (x==-1){
+						lblEmailDontExist.setVisible(true);
+						lblEmailWarning.setVisible(true);
 					}
+					else if(x==0)
+						lblPasswordWarning.setVisible(true);
+					else if (x==1) {
+						ChatMenu CM = new ChatMenu(meu);
+						CM.setVisible(true);
+					}					
 
 
 				} catch (Exception e1) {
@@ -237,49 +237,6 @@ public class LogInMenu extends JFrame {
 			}
 		});
 		contentPane.add(btnSignIn);
-	}
-	
-	
-	/**
-	 * Método para obter a informação presente na base de dados e compará-la com a informação inserida pelo utilizador
-	 * @param con Connection com a coneção à base de dados
-	 * @return UserData com a informação do utilizador
-	 * @throws SQLException
-	 */
-	private UserData getInformationFromDB(Connection con) throws SQLException{
-		
-		ResultSet rs = ConnectorFile.SearchMySQLData(con, "SELECT email, nome, password FROM utilizador WHERE email = '" + getEmail() + "' ");
-		boolean exists = false, validPassword = false;
-		UserData user = null;
-		
-		rs.next();
-		String email  = rs.getString("email");
-		String nome = rs.getString("nome");
-		String password = rs.getString("password");
-
-		if(!getEmail().isEmpty()){
-			if (email.equals(getEmail())){
-				exists = true;
-				if (password.equals(getPassword())){
-					validPassword=true;
-					user = new UserData(email, password);
-				}				        	 
-			}
-		}
-		
-		if (exists==false){
-			lblEmailDontExist.setVisible(true);
-		} else {
-			lblEmailDontExist.setVisible(false);
-		}
-		
-		if (validPassword==false){
-			lblPasswordWarning.setVisible(true);
-		} else {
-			lblPasswordWarning.setVisible(false);
-		}
-		
-		return user;
 	}
 	
 	/**
