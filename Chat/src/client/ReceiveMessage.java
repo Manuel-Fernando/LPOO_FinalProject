@@ -1,71 +1,68 @@
 package client;
 
-import client.FriendData;
+////////////  new ReceiveMessage().start(); ////////////////
 
-/**
- * Classe que guarda a informa��o acerca da mensagem recebida
- * @author Utilizador
- */
-public class ReceiveMessage {
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.ServerSocket;
+import java.net.Socket;
+
+public class ReceiveMessage extends Thread {
+
+	private static final int PORT = 9001;
 	
-	/**
-	 * Atributo que guarda a mensagem recebida 
-	 */
-	public String message;
+	public void run(){
+		ServerSocket listener = null;
+		try {
+			listener = new ServerSocket(PORT);
+		} catch (IOException e) {e.printStackTrace();}
+		try {
+			while(true){
+				try {
+					new Handler(listener.accept()).start();
+				} catch (IOException e) {e.printStackTrace();}
+			}
+		} finally {
+			try {
+				listener.close();
+			} catch (IOException e) {e.printStackTrace();}
+		}
+	}
+}
+class Handler extends Thread {
 	
-	/**
-	 * Atributo que guarda a informa��o sobre o amigo que envia a mensagem
-	 */
-	public FriendData friend;
+	private Socket socket;
+	private BufferedReader in;
 
-	/**
-	 * Construtor da classe
-	 * @param message String com a mensagem recebida
-	 * @param friend FriendData com informa��o sobre o amigo
-	 */
-	public ReceiveMessage(String message, FriendData friend) {
-		super();
-		this.message = message;
-		this.friend = friend;
-	}
+	public Handler(Socket socket) {this.socket = socket;}
 
-	/**
-	 * M�todo para obter a mensagem recebida
-	 * @return String com a mensagem
-	 */
-	public String getMessage() {
-		return message;
-	}
+	public void run() {
+		WriteToFile escrever = new WriteToFile();
+	
+		try {
+			in = new BufferedReader(new InputStreamReader(
+					socket.getInputStream()));
 
-	/**
-	 * M�todo para atribuir a mensagem recebida
-	 * @param message String com a mensagem 
-	 */
-	public void setMessage(String message) {
-		this.message = message;
-	}
+			while (true) {
+				String input = in.readLine();
+				if (input == null) {
+					return;
+				}
+				String data[] = input.split(" ", 2);
 
-	/**
-	 * M�todo para obter o amigo 
-	 * @return FriendData com a informa��o do amigo
-	 */
-	public FriendData getFriend() {
-		return friend;
+				escrever.setFILENAME(data[0]);
+				escrever.setMessage(data[1]);
+				escrever.Write();	
+//////////////////////////////////////////////////////////Avisar que há msg nova!
+			}
+		} catch (IOException e) {
+			System.out.println(e);
+		} finally {
+			try {
+				socket.close();
+			} catch (IOException e) {}
+		}
 	}
-
-	/**
-	 * M�todo para atribuir um amigo � mensagem
-	 * @param friend FriendData com a informa��o do amigo
-	 */
-	public void setFriend(FriendData friend) {
-		this.friend = friend;
-	}
-
-	/**
-	 * M�todo que verificar se a mensagem foi recebida com sucesso
-	 * @return success true caso seja recebi com sucesso
-	 */
-	public Boolean receive() {
-		return true; //**********************************************
-	}
-};
+}

@@ -7,27 +7,33 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ConnectorFile {
+	
+	static Connection con = null;
  
-	public static Connection ConnectToMySQL() throws Exception{
-		Class.forName("com.mysql.jdbc.Driver");
+	public ConnectorFile() {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {e.printStackTrace();}
 
 		String url = "jdbc:mysql://db.fe.up.pt/ee12314";
 		String user = "ee12314";
 		String password = "UmcPYB4Nr";
 
-		Connection con = DriverManager.getConnection(url, user, password);
+		
+		try {
+			con = DriverManager.getConnection(url, user, password);
+		} catch (SQLException e) {e.printStackTrace();}
 		if (con == null) {
 			System.out.println("NOT connected to the database test1");
 		}
-		return con;
 	}
 	
-	public static void AddMySQLData(Connection con, String command) throws SQLException {
+	public void AddMySQLData( String command) throws SQLException {
 		PreparedStatement statement = con.prepareStatement(command);
 		statement.execute();
 	}
 	
-	public static ResultSet SearchMySQLData(Connection con, String command) throws SQLException{
+	public ResultSet SearchMySQLData(String command) throws SQLException{
 		PreparedStatement statement = con.prepareStatement(command);
 		ResultSet result = statement.executeQuery();
 		

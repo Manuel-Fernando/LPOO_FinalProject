@@ -1,71 +1,40 @@
 package client;
 
-import client.FriendData;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.Socket;
+import java.util.Scanner;
 
-/**
- * Classe que guarda informa��o sobre a mensagem a enviar
- * @author Utilizador
- */
-public class SendMessage {
+public class SendMessage extends Thread{
+
+	PrintWriter out;
+	String serverAddress;
+	UserData user;
+
+	public void setServerAddress(String serverAddress) {
+		this.serverAddress=serverAddress;
+	}
 	
-	/**
-	 * Atributo para guarda a mensagem a enviar
-	 */
-	private String message;
-	
-	/**
-	 * Atributo para guarda a informa��o acerca do amigo 
-	 */
-	public FriendData friend;
-	
-	/**
-	 * Construtor da classe
-	 * @param message String com a mensagem
-	 * @param friend FriendData com a informa��o acerca do amigo
-	 */
-	public SendMessage(String message, FriendData friend) {
-		super();
-		this.message = message;
-		this.friend = friend;
+	public void setUserData(UserData user) {
+		this.user=user;
 	}
 
-	/**
-	 * M�todo para obter a mensagem 
-	 * @return String com a mensagem
-	 */
-	public String getMessage() {
-		return message;
-	}
+	public void run() {
 
-	/**
-	 * M�todo para atribuir a mensagem a enviar
-	 * @param message String com a mensagem
-	 */
-	public void setMessage(String message) {
-		this.message = message;
-	}
+		Socket socket = null;
+		try {
+			socket = new Socket(serverAddress, 9001);
+		} catch (IOException e) {e.printStackTrace();}	
+		try {
+			out = new PrintWriter(socket.getOutputStream(), true);
+		} catch (IOException e) {e.printStackTrace();}
 
-	/**
-	 * M�todo para obter a informa��o sobre o amigo
-	 * @return FriendData com a informa��o sobre o amigo
-	 */
-	public FriendData getFriend() {
-		return friend;
-	}
+		String line;
 
-	/**
-	 * M�todo que atribui informa��o acerca do amigo
-	 * @param friend FriendData com a informa��o acerca do amigo
-	 */
-	public void setFriend(FriendData friend) {
-		this.friend = friend;
+		while (true) {
+			Scanner scanner = new Scanner(System.in);
+			line=scanner.nextLine();
+			out.println(user.getEmail() + " " + line);
+		}
 	}
-
-	/**
-	 * M�todo para verifica se a mensagem foi enviada com sucesso
-	 * @return success true caso tenha sido enviada com sucesso
-	 */
-	public Boolean send() {
-		return true; //******************************************************
-	}
-};
+}

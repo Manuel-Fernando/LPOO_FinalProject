@@ -17,8 +17,6 @@ public class UserData {
 	private String userName;
 	
 	private int num_amigos;
-	
-
 
 	/**
 	 * Atributo que guarda a password do cliente
@@ -30,10 +28,6 @@ public class UserData {
 	 */
 	private String ipAddress;
 	
-	/**
-	 * Atributo que guarda a porta
-	 */
-	private int portNumber;
 	
 	/**
 	 * Construtor da classe
@@ -118,21 +112,4 @@ public class UserData {
 	public void setIpAddress(String ipAddress) {
 		this.ipAddress = ipAddress;
 	}
-
-	/**
-	 * M�todo para obter a porta
-	 * @return int com a porta
-	 */
-	public int getPortNumber() {
-		return portNumber;
-	}
-	
-	/**
-	 * M�todo para atribuir a porta ao cliente
-	 * @param portNumber inteiro com a porta
-	 */
-	public void setPortNumber(int portNumber) {
-		this.portNumber = portNumber;
-	}
-
-};
+}
