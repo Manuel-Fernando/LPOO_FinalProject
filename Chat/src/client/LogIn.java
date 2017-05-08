@@ -4,6 +4,8 @@ import java.net.InetAddress;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import mySQLConnection.ConnectorFile;
 
@@ -36,7 +38,10 @@ public class LogIn {
 				
 				getFriends(conector, user);
 				
-				MonitorFriends monitor = new MonitorFriends(user);
+				TimerTask timerTask = new MonitorFriends(user);
+		        Timer timer = new Timer(true);
+		        timer.scheduleAtFixedRate(timerTask, 0, 10*1000);
+				
 			}
 
 		}catch (Exception e1){
@@ -54,21 +59,15 @@ public class LogIn {
 		ResultSet rs1 = conector.SearchMySQLData("SELECT `uti2` FROM `amizade` WHERE `uti1` = '" + user.getEmail() + "'");
 
 		while (rs1.next()){					
-			ResultSet rs3 = conector.SearchMySQLData("SELECT `nome`, `conectado`, `IP` FROM `utilizador` WHERE `email` = '" + rs1.getString("uti2") + "'");
-
-			rs3.next();
-			friend = new FriendData(rs3.getString("nome"), rs1.getString("uti2") , rs3.getString("IP"), rs3.getString("conectado"));
+			friend = new FriendData(null, rs1.getString("uti2") , null, null);
 			friends.add(friend);
 
 		}
 
 		ResultSet rs2 = conector.SearchMySQLData("SELECT `uti1` FROM `amizade` WHERE `uti2` = '" + user.getEmail() + "'");
-
 		while (rs2.next()){
-			ResultSet rs3 = conector.SearchMySQLData("SELECT `nome`, `conectado`, `IP` FROM `utilizador` WHERE `email` = '" + rs2.getString("uti1") + "'");
-			rs3.next();
-			friend = new FriendData(rs3.getString("nome"), rs2.getString("uti1") , rs3.getString("IP"), rs3.getString("conectado"));
 
+			friend = new FriendData(null, rs2.getString("uti1") , null, null);
 			friends.add(friend);
 		}
 

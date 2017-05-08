@@ -20,6 +20,22 @@ public class FriendData {
 	
 	private String conectado;
 
+	public String getIp() {
+		return ip;
+	}
+
+	public void setIp(String ip) {
+		this.ip = ip;
+	}
+
+	public String getConectado() {
+		return conectado;
+	}
+
+	public void setConectado(String conectado) {
+		this.conectado = conectado;
+	}
+
 	/**
 	 * Construtor da classe
 	 * @param name String com o nome do cliente
