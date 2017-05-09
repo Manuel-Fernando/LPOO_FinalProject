@@ -14,7 +14,7 @@ public class LogOut {
 	 * M�todo para requisitar permiss�o para logOut
 	 * @return accepted true caso seja permitido
 	 */
-	public void logOutRequest(UserData user) {
+	public static void logOutRequest(UserData user) {
 		ConnectorFile conector = new ConnectorFile();
 		try {
 			conector.AddMySQLData("UPDATE `utilizador` SET `conectado`='offline', `IP`='NULL' WHERE email = '"+user.getEmail()+"'");
