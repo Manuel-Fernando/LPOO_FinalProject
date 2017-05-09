@@ -120,6 +120,7 @@ public class UserData {
 	}
 
 	public void setFriendsList(Friends friendsList) {
+		this.friendsList=null;
 		this.friendsList = friendsList;
 	}
 	

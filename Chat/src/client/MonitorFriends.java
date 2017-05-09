@@ -25,7 +25,7 @@ public class MonitorFriends extends TimerTask{
 			FriendData friend;
 			ArrayList<FriendData> friends = new ArrayList<FriendData>();
 
-			for(FriendData temp : amigos){
+			for(FriendData temp : amigos){ 
 				sql=sql + " or `email` = '" + temp.getEmail() + "'";
 			}
 			try {
@@ -37,7 +37,7 @@ public class MonitorFriends extends TimerTask{
 			} catch (SQLException e) {e.printStackTrace();}
 
 			Friends friendsList = new Friends(friends);
-			user.setFriendsList(friendsList);
+			user.setFriendsList(friendsList);				
 		}
 	}
 }
