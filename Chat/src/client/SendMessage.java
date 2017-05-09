@@ -11,6 +11,7 @@ public class SendMessage extends Thread{
 	UserData user;
 	String message;
 	Boolean newmessage;
+	String destinationEmail;
 
 	public void setServerAddress(String serverAddress) {
 		this.serverAddress=serverAddress;
@@ -18,6 +19,10 @@ public class SendMessage extends Thread{
 	
 	public void setUserData(UserData user) {
 		this.user=user;
+	}
+	
+	public void setDestinationEmail(String destinationEmail) {
+		this.destinationEmail=destinationEmail;
 	}
 	
 	public void setMessage(String m){
@@ -29,7 +34,8 @@ public class SendMessage extends Thread{
 	}
 
 	public void run() {
-
+		
+		WriteToFile escrever = new WriteToFile();
 		Socket socket = null;
 		try {
 			socket = new Socket(serverAddress, 9001);
@@ -39,11 +45,17 @@ public class SendMessage extends Thread{
 			out = new PrintWriter(socket.getOutputStream(), true);
 		} catch (IOException e) {e.printStackTrace();}
 
+		String message_out;
 		while (true) {
 			
 			if (newmessage){
-				out.println(user.getEmail() + " " + message);
+				message_out=user.getEmail() + " " + message;
+				out.println(message_out);
 				newmessage = false;
+				
+				escrever.setFILENAME(destinationEmail);
+				escrever.setMessage(message_out);
+				escrever.Write();
 			}
 			
 		}

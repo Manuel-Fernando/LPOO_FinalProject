@@ -53,7 +53,7 @@ class Handler extends Thread {
 				String data[] = input.split(" ", 2);
 
 				escrever.setFILENAME(data[0]);
-				escrever.setMessage(data[1]);
+				escrever.setMessage(input);
 				escrever.Write();	
 //////////////////////////////////////////////////////////Avisar que há msg nova!
 			}
