@@ -9,8 +9,10 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
+import client.FriendData;
 import client.LogOut;
 import client.ReceiveMessage;
+import client.SearchFriend;
 import client.SendMessage;
 import client.UserData;
 
@@ -18,12 +20,14 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JList;
 import java.awt.Color;
+import javax.swing.JLabel;
 
 public class ChatMenu extends JFrame {
 
@@ -41,6 +45,7 @@ public class ChatMenu extends JFrame {
 	private JList friendsList;
 	private static UserData userdata;
 	private SendMessage sendmessage;
+	private JLabel lblWarning;
 
 	/**
 	 * Launch the application.
@@ -66,6 +71,7 @@ public class ChatMenu extends JFrame {
 		createTextAreas();
 		createSearchButton();
 		createComboBox();
+		createWarnings();
 		createHorizontalSeparator();
 		createBackgrounds();
 		createTxtFields();
@@ -123,7 +129,21 @@ public class ChatMenu extends JFrame {
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				//VERIFICAR SE O NOME EXISTE NA BASE DE DADOS E MOSTRAR
+				String friend = searchTextField.getText();
+				
+				if (friend!=""){
+					ArrayList<FriendData> possibleFriends = SearchFriend.Search(friend, userdata);
+
+					if (possibleFriends!=null){
+						PossibleFriends pFriends = new PossibleFriends(possibleFriends, userdata);
+						pFriends.setVisible(true);
+					} else{
+						lblWarning.setVisible(true);
+					}
+				} else {
+					lblWarning.setVisible(true);
+				}
+
 			}
 		});
 		btnSearch.setBounds(167, 12, 64, 20);
@@ -209,6 +229,7 @@ public class ChatMenu extends JFrame {
 		});
 		btnSend.setBounds(405, 297, 64, 23);
 		contentPane.add(btnSend);
+		
 	}
 	
 	private void sendMessage(){
@@ -218,5 +239,14 @@ public class ChatMenu extends JFrame {
 		sendmessage.start();
 		sendmessage.newMessages(false);
 		
+	}
+	
+	private void createWarnings(){
+		lblWarning = new JLabel("User not found.");
+		lblWarning.setBounds(241, 15, 80, 14);
+		lblWarning.setFont(new Font("Kristen ITC", Font.PLAIN, 9));
+		lblWarning.setForeground(new Color (8, 83, 148));
+		lblWarning.setVisible(false);
+		contentPane.add(lblWarning);
 	}
 }
