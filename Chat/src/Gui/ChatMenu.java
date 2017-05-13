@@ -161,7 +161,7 @@ public class ChatMenu extends JFrame {
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (comboBox.getSelectedItem().equals("Settings")){
-					SettingsMenu settings = new SettingsMenu();
+					SettingsMenu settings = new SettingsMenu(userdata);
 					settings.setVisible(true);
 				} else if (comboBox.getSelectedItem().equals("Log Out")){
 					LogOut logout = new LogOut();
