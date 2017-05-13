@@ -10,11 +10,13 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
 import client.FriendData;
+import client.GetFriends;
 import client.LogOut;
 import client.ReceiveMessage;
 import client.SearchFriend;
 import client.SendMessage;
 import client.UserData;
+import mySQLConnection.ConnectorFile;
 
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -25,6 +27,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import java.awt.Color;
 import javax.swing.JLabel;
@@ -46,6 +49,7 @@ public class ChatMenu extends JFrame {
 	private static UserData userdata;
 	private SendMessage sendmessage;
 	private JLabel lblWarning;
+	private DefaultListModel model;
 
 	/**
 	 * Launch the application.
@@ -67,6 +71,7 @@ public class ChatMenu extends JFrame {
 	 * Create the frame.
 	 */
 	public ChatMenu(UserData userdata) {
+		this.userdata = userdata;
 		createJFrame();
 		createTextAreas();
 		createSearchButton();
@@ -76,7 +81,6 @@ public class ChatMenu extends JFrame {
 		createBackgrounds();
 		createTxtFields();
 		createSendButton();	
-		this.userdata = userdata;
 		sendMessage();
 		new ReceiveMessage().start();
 	}
@@ -107,12 +111,22 @@ public class ChatMenu extends JFrame {
 		contentPane.setLayout(null);
 	}
 	
-	private void createTextAreas(){
-		
-		friendsList = new JList();
+	private void createFriendsList(){
+		model = new DefaultListModel();
+		friendsList = new JList(model);
 		friendsList.setBounds(405, 74, 120, 193);
-		contentPane.add(friendsList);	
+
+		ArrayList<FriendData> userFriends = userdata.getFriendsList().getFriendsList();
 		
+		for (int i=0; i<userFriends.size(); i++){
+			model.addElement(userFriends.get(i).getEmail());
+		}
+		
+		contentPane.add(friendsList);	
+	}
+	
+	private void createTextAreas(){		
+		createFriendsList();
 		messagesTextArea = new JTextArea();
 		messagesTextArea.setBounds(25, 74, 350, 193);
 		messagesTextArea.setEditable(false);

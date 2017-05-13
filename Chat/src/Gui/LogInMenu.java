@@ -5,11 +5,13 @@ import java.awt.EventQueue;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import client.FriendData;
 import client.LogIn;
 import client.UserData;
 import mySQLConnection.ConnectorFile;
@@ -197,8 +199,8 @@ public class LogInMenu extends JFrame {
 
 				try {
 					UserData meu = new UserData(getEmail(), getPassword());
-					int x = LogIn.LogInRequest(meu);
-
+					int x = LogIn.LogInRequest(meu);					
+					
 					if (x==-1){
 						lblEmailDontExist.setVisible(true);
 						lblEmailWarning.setVisible(true);
