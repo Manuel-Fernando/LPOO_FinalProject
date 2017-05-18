@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
+import client.Change;
 import client.UserData;
 import mySQLConnection.ConnectorFile;
 
@@ -405,27 +406,19 @@ public class SettingsMenu extends JFrame {
 	private void changePassword(String password1, String password2){
 		
 		if (password1.equals(password2)){
-//			ConnectorFile conector = new ConnectorFile();
-//			try {
-//				conector.AddMySQLData("INSERT INTO `utilizador`(`Password`) VALUES ('"+ password1 +"')");
-//			} catch (SQLException e) {e.printStackTrace();}
+			Change.password(password1, userdata);
 		} else {
 			lblError.setVisible(true);
 		}
 	}
 	
 	private void changeEmail(String email){
-//		ConnectorFile conector = new ConnectorFile();
-//		try {
-//			conector.AddMySQLData("INSERT INTO `utilizador`(`email`) VALUES ('"+ email +"')");
-//		} catch (SQLException e) {e.printStackTrace();}
+		//VERIFICAR FORMATO DE EMAIL
+		Change.email(email, userdata);
 	}
 	
 	private void changeUsername(String name){
-//		ConnectorFile conector = new ConnectorFile();
-//		try {
-//			conector.AddMySQLData("INSERT INTO `utilizador`(`nome`) VALUES ('"+ name +"')");
-//		} catch (SQLException e) {e.printStackTrace();}
+		Change.userName(name, userdata);
 	}
 
 }

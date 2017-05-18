@@ -40,16 +40,16 @@ public class ChatMenu extends JFrame {
 	private JTextArea messagesTextArea;
 	private JButton btnSend;
 	private JButton btnSearch;
-	private JComboBox comboBox;
+	private JComboBox <String> comboBox;
 	private JPanel horizontalSeparator;
 	private JPanel backgroundMessages;
 	private JPanel lineMessages;
 	private JPanel backgroundFriends;
-	private JList friendsList;
+	private JList <String> friendsList;
 	private static UserData userdata;
 	private SendMessage sendmessage;
 	private JLabel lblWarning;
-	private DefaultListModel model;
+	private DefaultListModel <String> model;
 
 	/**
 	 * Launch the application.
@@ -112,8 +112,8 @@ public class ChatMenu extends JFrame {
 	}
 	
 	private void createFriendsList(){
-		model = new DefaultListModel();
-		friendsList = new JList(model);
+		model = new DefaultListModel <String>();
+		friendsList = new JList <String>(model);
 		friendsList.setBounds(405, 74, 120, 193);
 
 		ArrayList<FriendData> userFriends = userdata.getFriendsList().getFriendsList();
@@ -166,8 +166,8 @@ public class ChatMenu extends JFrame {
 	
 	private void createComboBox(){
 		
-		comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"", "Settings", "Log Out"}));
+		comboBox = new JComboBox <String>();
+		comboBox.setModel(new DefaultComboBoxModel <String>(new String[] {userdata.getUserName(), "Settings", "Log Out"}));
 		comboBox.setFont(new Font("Kristen ITC", Font.BOLD, 10));
 		comboBox.setBorder(new LineBorder(new Color(0, 0, 0))); 
 		comboBox.setBackground(new Color (8, 83, 148));
@@ -178,8 +178,7 @@ public class ChatMenu extends JFrame {
 					SettingsMenu settings = new SettingsMenu(userdata);
 					settings.setVisible(true);
 				} else if (comboBox.getSelectedItem().equals("Log Out")){
-					LogOut logout = new LogOut();
-					logout.logOutRequest(userdata);
+					LogOut.logOutRequest(userdata);
 					
 					LogInMenu login = new LogInMenu();
 					login.setVisible(true);
