@@ -138,7 +138,7 @@ public class ChatMenu extends JFrame {
 			friends.add(userFriends.get(i));
 		}
 		
-		System.out.println("list size chatmenu " + friendsList.getModel().getSize());
+//		System.out.println("list size chatmenu " + friendsList.getModel().getSize());
 		
 	}
 
@@ -223,7 +223,7 @@ public class ChatMenu extends JFrame {
 		contentPane.add(lineMessages);
 	}
 	
-	private static void createBackgrounds(String friendName){
+	static void createBackgrounds(String friendName){
 		
 		backgroundMessages = new JPanel();
 		backgroundMessages.setForeground(Color.WHITE);
@@ -236,7 +236,7 @@ public class ChatMenu extends JFrame {
 		backgroundFriends = new JPanel();
 		backgroundFriends.setForeground(Color.WHITE);
 		backgroundFriends.setBorder(new EmptyBorder(10,10,10,10));
-		backgroundFriends.setBorder(BorderFactory.createTitledBorder(null, "Online Friends", TitledBorder.LEFT, TitledBorder.TOP, new Font("Kristen ITC", Font.BOLD, 9), Color.WHITE));
+		backgroundFriends.setBorder(BorderFactory.createTitledBorder(null, friendName, TitledBorder.LEFT, TitledBorder.TOP, new Font("Kristen ITC", Font.BOLD, 9), Color.WHITE));
 		backgroundFriends.setBackground(new Color(8, 83, 148));
 		backgroundFriends.setBounds(394, 57, 140, 220);
 		contentPane.add(backgroundFriends);
@@ -282,6 +282,7 @@ public class ChatMenu extends JFrame {
 	
 	public static void changeFriend(FriendData friend){
 		friendtoSendMessage =  friend;
-		System.out.println("friendEmail " + friend.getEmail());
+//		System.out.println("friendEmail " + friend.getEmail());
 	}
+
 }
