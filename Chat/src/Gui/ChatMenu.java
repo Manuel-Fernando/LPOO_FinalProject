@@ -84,7 +84,9 @@ public class ChatMenu extends JFrame {
 		createTxtFields();
 		createSendButton();	
 		sendMessage();
-		new MonitorSelectedFriends(this.userdata).start();
+		MonitorSelectedFriends monitor = new MonitorSelectedFriends();
+		monitor.setUserdata(this.userdata);
+		monitor.start();
 		new ReceiveMessage().start();
 	}
 	

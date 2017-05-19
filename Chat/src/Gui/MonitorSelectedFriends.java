@@ -12,10 +12,6 @@ public class MonitorSelectedFriends extends Thread{
 	private UserData userdata;
 	private FriendData frienddata;
 	
-	public MonitorSelectedFriends(UserData userdata){
-		this.userdata = userdata;
-	}
-	
 	public void run(){		
 		friends=userdata.getFriendsList().getFriendsList();
 		int index = ChatMenu.friendsList.getSelectedIndex();
@@ -29,5 +25,8 @@ public class MonitorSelectedFriends extends Thread{
 		
 	}	
 	
+	public void setUserdata(UserData userdata){
+		this.userdata = userdata;
+	}
 
 }

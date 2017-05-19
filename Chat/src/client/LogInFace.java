@@ -41,7 +41,7 @@ public class LogInFace {
 		if(os.contains("mac")){
 			System.setProperty("webdirver.chrome.driver", System.getProperty("user.dir")+"/chromedriver");
 		}else{
-			System.setProperty("webdirver.chrome.driver", System.getProperty("user.dir")+"\\chromedriver.exe");
+			System.setProperty("webdirver.chrome.driver", System.getProperty("user.dir")+"/src/client/chromedriver.exe");
 		}
 		
 		driver.get(authUrl);
