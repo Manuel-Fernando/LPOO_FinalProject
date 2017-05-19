@@ -34,7 +34,7 @@ import javax.swing.JLabel;
 
 public class ChatMenu extends JFrame {
 
-	private JPanel contentPane;
+	private static JPanel contentPane;
 	private JTextField messageTextField;
 	private JTextField searchTextField;
 	private JTextArea messagesTextArea;
@@ -42,14 +42,16 @@ public class ChatMenu extends JFrame {
 	private JButton btnSearch;
 	private JComboBox <String> comboBox;
 	private JPanel horizontalSeparator;
-	private JPanel backgroundMessages;
+	private static JPanel backgroundMessages;
 	private JPanel lineMessages;
-	private JPanel backgroundFriends;
-	private JList <String> friendsList;
+	private static JPanel backgroundFriends;
+	static JList <String> friendsList;
 	private static UserData userdata;
 	private SendMessage sendmessage;
 	private JLabel lblWarning;
-	private DefaultListModel <String> model;
+	private static DefaultListModel <String> model;
+	private static ArrayList<FriendData> friends = new ArrayList<FriendData>();
+	private static FriendData friendtoSendMessage;
 
 	/**
 	 * Launch the application.
@@ -78,17 +80,18 @@ public class ChatMenu extends JFrame {
 		createComboBox();
 		createWarnings();
 		createHorizontalSeparator();
-		createBackgrounds();
+		createBackgrounds("");
 		createTxtFields();
 		createSendButton();	
 		sendMessage();
+		new MonitorSelectedFriends(this.userdata).start();
 		new ReceiveMessage().start();
 	}
 	
 	private void createTxtFields(){
 		
 		searchTextField = new JTextField();
-		searchTextField.setToolTipText("");
+		searchTextField.setToolTipText("Select a friend");
 		searchTextField.setBounds(31, 12, 126, 20);
 		contentPane.add(searchTextField);
 		searchTextField.setColumns(10);
@@ -115,16 +118,28 @@ public class ChatMenu extends JFrame {
 		model = new DefaultListModel <String>();
 		friendsList = new JList <String>(model);
 		friendsList.setBounds(405, 74, 120, 193);
-
-		ArrayList<FriendData> userFriends = userdata.getFriendsList().getFriendsList();
-		
-		for (int i=0; i<userFriends.size(); i++){
-			model.addElement(userFriends.get(i).getEmail());
-		}
 		
 		contentPane.add(friendsList);	
 	}
 	
+	public static void updateList(){
+		ArrayList<FriendData> userFriends = userdata.getFriendsList().getFriendsList();
+		model.clear();
+		
+		if (!friends.isEmpty()){
+			friends.clear();
+		}
+
+		for (int i=0; i<userFriends.size(); i++){			
+			String online = userFriends.get(i).getConectado();	
+			model.addElement(userFriends.get(i).getName() + " - " + online);
+			friends.add(userFriends.get(i));
+		}
+		
+		System.out.println("list size chatmenu " + friendsList.getModel().getSize());
+		
+	}
+
 	private void createTextAreas(){		
 		createFriendsList();
 		messagesTextArea = new JTextArea();
@@ -206,13 +221,13 @@ public class ChatMenu extends JFrame {
 		contentPane.add(lineMessages);
 	}
 	
-	private void createBackgrounds(){
+	private static void createBackgrounds(String friendName){
 		
 		backgroundMessages = new JPanel();
 		backgroundMessages.setForeground(Color.WHITE);
 		backgroundMessages.setBorder(new EmptyBorder(10,10,10,10));
 		backgroundMessages.setBackground(new Color(8, 83, 148));
-		backgroundMessages.setBorder(BorderFactory.createTitledBorder(null, "Friend Name (Online)", TitledBorder.LEFT, TitledBorder.TOP, new Font("Kristen ITC", Font.BOLD, 9), Color.WHITE));
+		backgroundMessages.setBorder(BorderFactory.createTitledBorder(null, friendName, TitledBorder.LEFT, TitledBorder.TOP, new Font("Kristen ITC", Font.BOLD, 9), Color.WHITE));
 		backgroundMessages.setBounds(15, 57, 370, 220);
 		contentPane.add(backgroundMessages);
 		
@@ -261,5 +276,10 @@ public class ChatMenu extends JFrame {
 		lblWarning.setForeground(new Color (8, 83, 148));
 		lblWarning.setVisible(false);
 		contentPane.add(lblWarning);
+	}
+	
+	public static void changeFriend(FriendData friend){
+		friendtoSendMessage =  friend;
+		System.out.println("friendEmail " + friend.getEmail());
 	}
 }

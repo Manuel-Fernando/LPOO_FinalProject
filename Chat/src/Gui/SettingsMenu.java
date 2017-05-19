@@ -116,6 +116,7 @@ public class SettingsMenu extends JFrame {
 	private void createTxtFields(){
 		UsernameTextField = new JTextField();
 		UsernameTextField.setEditable(false);
+		UsernameTextField.setText(userdata.getUserName());
 		UsernameTextField.setBounds(155, 64, 86, 20);
 		contentPane.add(UsernameTextField);
 		UsernameTextField.setBackground(Color.WHITE);
@@ -124,6 +125,7 @@ public class SettingsMenu extends JFrame {
 		
 		emailTextField = new JTextField();
 		emailTextField.setEditable(false);
+		emailTextField.setText(userdata.getEmail());
 		emailTextField.setBounds(155, 96, 86, 20);
 		emailTextField.setBackground(Color.WHITE);
 		emailTextField.setBorder(null);
@@ -355,6 +357,12 @@ public class SettingsMenu extends JFrame {
 				
 				String name = UsernameTextField.getText();
 				changeUsername(name);
+				
+				UsernameTextField.setEditable(false);
+				UsernameTextField.setText("");
+				btnSaveUsername.setVisible(false);
+				btnEditUsername.setVisible(true);
+				btnCancelUsername.setVisible(false);
 			}
 		});
 		btnSaveUsername.setVisible(false);
@@ -374,6 +382,15 @@ public class SettingsMenu extends JFrame {
 				String password1 = passwordField1.getText();
 				String password2 = passwordField2.getText();				
 				changePassword(password1, password2);
+				
+				passwordField1.setEditable(false);
+				passwordField1.setText("");
+				passwordField2.setVisible(false);
+				passwordField2.setText("");
+				lblPassword2.setVisible(false);
+				btnSavePassword.setVisible(false);
+				btnEditPassword.setVisible(true);
+				btnCancelPassword.setVisible(false);
 				}
 		});
 		btnSavePassword.setVisible(false);
@@ -392,6 +409,12 @@ public class SettingsMenu extends JFrame {
 				
 				String email = emailTextField.getText();
 				changeEmail(email);
+				
+				emailTextField.setEditable(false);
+				emailTextField.setText("");
+				btnSaveEmail.setVisible(false);
+				btnEditEmail.setVisible(true);
+				btnCancelEmail.setVisible(false);
 			}
 		});
 		btnSaveEmail.setVisible(false);

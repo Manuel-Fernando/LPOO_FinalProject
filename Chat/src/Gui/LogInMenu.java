@@ -13,6 +13,7 @@ import javax.swing.border.EmptyBorder;
 
 import client.FriendData;
 import client.LogIn;
+import client.LogInFace;
 import client.UserData;
 import mySQLConnection.ConnectorFile;
 
@@ -75,6 +76,7 @@ public class LogInMenu extends JFrame {
 		createTxtFields();
 		createLogInButton();
 		createSignInButton();
+		createLogInFacebookButton();
 	}
 	
 	/**
@@ -239,6 +241,23 @@ public class LogInMenu extends JFrame {
 			}
 		});
 		contentPane.add(btnSignIn);
+	}
+	
+	private void createLogInFacebookButton(){
+		JButton logInFacebookbtn = new JButton("Log In with Facebook");
+		logInFacebookbtn.setForeground(Color.WHITE);
+		logInFacebookbtn.setFont(new Font("Kristen ITC", Font.BOLD, 10));
+		logInFacebookbtn.setBorder(new LineBorder(new Color(0, 0, 0)));
+		logInFacebookbtn.setBackground(new Color(8, 83, 148));
+		logInFacebookbtn.setBounds(65, 297, 150, 23);
+		
+		logInFacebookbtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				UserData user = LogInFace.LogIn_Face();
+			}
+		});
+		
+		contentPane.add(logInFacebookbtn);
 	}
 	
 	/**

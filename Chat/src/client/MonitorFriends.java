@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.TimerTask;
 
+import Gui.ChatMenu;
 import mySQLConnection.ConnectorFile;
 
 public class MonitorFriends extends TimerTask{
@@ -37,7 +38,10 @@ public class MonitorFriends extends TimerTask{
 			} catch (SQLException e) {e.printStackTrace();}
 
 			Friends friendsList = new Friends(friends);
-			user.setFriendsList(friendsList);				
+			user.setFriendsList(friendsList);	
+			
 		}
+		
+		ChatMenu.updateList();
 	}
 }

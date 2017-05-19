@@ -34,9 +34,16 @@ public class LogInFace {
 
 		String authUrl ="https://graph.facebook.com/oauth/authorize?type=user_agent&client_id="+appId+"&display=popup&redirect_uri="+domain+"&scope=email,public_profile,user_friends";
 
-		System.setProperty("webdirver.chrome.driver", "chromedriver.exe");
-
+		
+		String os = System.getProperty("os.name").toLowerCase();
 		WebDriver driver = new ChromeDriver();
+
+		if(os.contains("mac")){
+			System.setProperty("webdirver.chrome.driver", System.getProperty("user.dir")+"/chromedriver");
+		}else{
+			System.setProperty("webdirver.chrome.driver", System.getProperty("user.dir")+"\\chromedriver.exe");
+		}
+		
 		driver.get(authUrl);
 		String accessToken;
 
