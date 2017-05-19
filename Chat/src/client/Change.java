@@ -4,16 +4,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import mySQLConnection.ConnectorFile;
-
+ 
 public class Change {
 
 	public static UserData userName(String newName, UserData user){
 		
 		ConnectorFile conector = new ConnectorFile();
 		String sql ="UPDATE `utilizador` SET `nome`='"+newName+"' WHERE `email` = '"+user.getEmail()+"'";
-		try {
-			conector.AddMySQLData(sql);
-		} catch (SQLException e) {return null;}
+		conector.AddMySQLData(sql);
 		user.setUserName(newName);
 		return user;
 	}
@@ -21,9 +19,7 @@ public class Change {
 	public static UserData password(String newPass, UserData user){
 		ConnectorFile conector = new ConnectorFile();
 		String sql ="UPDATE `utilizador` SET `password`='"+newPass+"' WHERE `email` = '"+user.getEmail()+"'";
-		try {
-			conector.AddMySQLData(sql);
-		} catch (SQLException e) {return null;}
+		conector.AddMySQLData(sql);
 		user.setPassword(newPass);
 		return user;
 	}

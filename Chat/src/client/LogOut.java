@@ -1,7 +1,5 @@
 package client;
 
-import java.sql.SQLException;
-
 import mySQLConnection.ConnectorFile;
 
 /**
@@ -16,9 +14,7 @@ public class LogOut {
 	 */
 	public static void logOutRequest(UserData user) {
 		ConnectorFile conector = new ConnectorFile();
-		try {
-			conector.AddMySQLData("UPDATE `utilizador` SET `conectado`='offline', `IP`='NULL' WHERE email = '"+user.getEmail()+"'");
-		} catch (SQLException e) {e.printStackTrace();}
+		conector.AddMySQLData("UPDATE `utilizador` SET `conectado`='offline', `IP`='NULL' WHERE email = '"+user.getEmail()+"'");
 	user=null;
 	}
 }

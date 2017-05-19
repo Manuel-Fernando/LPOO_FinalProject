@@ -26,6 +26,6 @@ public class WriteToFile {
 		{
 			out.println(message);
 
-		} catch (IOException e) {}
+		} catch (IOException e) {System.out.print("Erro ao escrever em ficheiro!");}
 	}
 }

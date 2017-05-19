@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 import org.junit.Test;
 
+import client.Change;
 import client.LogIn;
 import client.LogInFace;
 import client.LogOut;
@@ -63,5 +64,21 @@ public class TestLogs {
 		rs.next();
 		assertEquals("offline", rs.getString("conectado"));
 		conector.AddMySQLData("DELETE FROM `utilizador` WHERE `email` = 'test@fe.up.pt'");	
+	}
+	
+	@Test
+	public void testChange(){
+		UserData user = new UserData("test@fe.up.pt","test_password");
+		user.setUserName("test_name");
+		LogInFace.LogIn_Register(user);
+		String sql = "INSERT INTO utilizador (email, nome, password)" + "VALUES ('"+user.getEmail()+"', '"+user.getUserName()+"', '"+user.getPassword()+"')";
+		conector.AddMySQLData(sql);
+		Change.userName("test_new_name", user);
+		Change.password("test_new_password", user);
+		Change.email("newtest@fe.up.pt", user);
+		assertEquals(user.getUserName(), "test_new_name");
+		assertEquals(user.getPassword(), "test_new_password");
+		assertEquals(user.getEmail(), "newtest@fe.up.pt");
+		conector.AddMySQLData("DELETE FROM `utilizador` WHERE `email` = 'newtest@fe.up.pt'");	
 	}
 } 
