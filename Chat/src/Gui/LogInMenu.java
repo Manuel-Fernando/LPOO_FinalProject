@@ -71,7 +71,8 @@ public class LogInMenu extends JFrame {
 		
 		createJFrame();		
 		createtitles();
-		createWarnings();
+		createWarnings1();
+		createWarnings2();
 		createLineSeparators();
 		createTxtFields();
 		createLogInButton();
@@ -120,7 +121,7 @@ public class LogInMenu extends JFrame {
 	/**
 	 * Criar os labels com os warnings
 	 */
-	private void createWarnings(){
+	private void createWarnings1(){
 		
 		lblEmailWarning = new JLabel("Please insert a valid email");
 		lblEmailWarning.setFont(new Font("Kristen ITC", Font.PLAIN, 9));
@@ -136,6 +137,9 @@ public class LogInMenu extends JFrame {
 		lblPasswordWarning.setBounds(83, 178, 112, 14);
 		contentPane.add(lblPasswordWarning);
 		
+	}
+	
+	private void createWarnings2(){
 		lblEmailDontExist = new JLabel("Email don't exist");
 		lblEmailDontExist.setFont(new Font("Kristen ITC", Font.PLAIN, 9));
 		lblEmailDontExist.setForeground(new Color (8, 83, 148));
@@ -200,21 +204,7 @@ public class LogInMenu extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 
 				try {
-					UserData meu = new UserData(getEmail(), getPassword());
-					int x = LogIn.LogInRequest(meu);					
-					
-					if (x==-1){
-						lblEmailDontExist.setVisible(true);
-						lblEmailWarning.setVisible(true);
-					}
-					else if(x==0)
-						lblPasswordWarning.setVisible(true);
-					else if (x==1) {
-						ChatMenu CM = new ChatMenu(meu);
-						CM.setVisible(true);
-						dispose();
-					}					
-
+					logInAction();
 
 				} catch (Exception e1) {
 					e1.printStackTrace();
@@ -222,6 +212,24 @@ public class LogInMenu extends JFrame {
 			}
 		});
 		contentPane.add(btnLogIn);
+	}
+	
+	private void logInAction(){
+		
+		UserData meu = new UserData(getEmail(), getPassword());
+		int x = LogIn.LogInRequest(meu);					
+		
+		if (x==-1){
+			lblEmailDontExist.setVisible(true);
+			lblEmailWarning.setVisible(true);
+		}
+		else if(x==0)
+			lblPasswordWarning.setVisible(true);
+		else if (x==1) {
+			ChatMenu CM = new ChatMenu(meu);
+			CM.setVisible(true);
+			dispose();
+		}			
 	}
 	
 	/**

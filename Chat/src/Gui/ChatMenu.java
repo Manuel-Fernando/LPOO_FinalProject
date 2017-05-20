@@ -178,25 +178,31 @@ public class ChatMenu extends JFrame {
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				String friend = searchTextField.getText();
-				
-				if (friend!=""){
-					ArrayList<FriendData> possibleFriends = SearchFriend.Search(friend, userdata);
-
-					if (possibleFriends!=null){
-						PossibleFriends pFriends = new PossibleFriends(possibleFriends, userdata);
-						pFriends.setVisible(true);
-					} else{
-						lblWarning.setVisible(true);
-					}
-				} else {
-					lblWarning.setVisible(true);
-				}
+				searchAction();
 
 			}
 		});
 		btnSearch.setBounds(167, 12, 64, 20);
 		contentPane.add(btnSearch);
+	}
+	
+	private void searchAction(){
+		
+		String friend = searchTextField.getText();
+		
+		if (friend!=""){
+			ArrayList<FriendData> possibleFriends = SearchFriend.Search(friend, userdata);
+
+			if (possibleFriends!=null){
+				PossibleFriends pFriends = new PossibleFriends(possibleFriends, userdata);
+				pFriends.setVisible(true);
+			} else{
+				lblWarning.setVisible(true);
+			}
+		} else {
+			lblWarning.setVisible(true);
+		}
+		
 	}
 	
 	private void createComboBox(){
@@ -209,21 +215,26 @@ public class ChatMenu extends JFrame {
 		comboBox.setForeground(Color.WHITE);
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (comboBox.getSelectedItem().equals("Settings")){
-					SettingsMenu settings = new SettingsMenu(userdata);
-					settings.setVisible(true);
-				} else if (comboBox.getSelectedItem().equals("Log Out")){
-					LogOut.logOutRequest(userdata);
-					
-					LogInMenu login = new LogInMenu();
-					login.setVisible(true);
-					
-					dispose();
-				}
+				comboBoxAction();
 			}
 		});
 		comboBox.setBounds(384, 12, 126, 20);
 		contentPane.add(comboBox);	
+	}
+	
+	private void comboBoxAction(){
+		
+		if (comboBox.getSelectedItem().equals("Settings")){
+			SettingsMenu settings = new SettingsMenu(userdata);
+			settings.setVisible(true);
+		} else if (comboBox.getSelectedItem().equals("Log Out")){
+			LogOut.logOutRequest(userdata);
+			
+			LogInMenu login = new LogInMenu();
+			login.setVisible(true);
+			
+			dispose();
+		}
 	}
 	
 	private void createHorizontalSeparator(){
@@ -273,16 +284,20 @@ public class ChatMenu extends JFrame {
 		btnSend.setForeground(Color.WHITE);
 		btnSend.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String message = messageTextField.getText();				
-				sendmessage.setMessage(message);
-				sendmessage.newMessages(true);
-				messageTextField.setText("");
-				messagesTextArea.append(userdata.getUserName() + ": " + message + "\n");
+				sendButtonAction();
 			}
 		});
 		btnSend.setBounds(405, 297, 64, 23);
 		contentPane.add(btnSend);
 		
+	}
+	
+	private void sendButtonAction(){
+		String message = messageTextField.getText();				
+		sendmessage.setMessage(message);
+		sendmessage.newMessages(true);
+		messageTextField.setText("");
+		messagesTextArea.append(userdata.getUserName() + ": " + message + "\n");
 	}
 	
 	private void sendMessage(){

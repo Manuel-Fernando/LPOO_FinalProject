@@ -79,14 +79,17 @@ public class SettingsMenu extends JFrame {
 		createJFrame();
 		createTitle();
 		createSeparator();
-		createLabels();
+		createLabels1();
+		createLabels2();
 		createSaveButtons();
 		createWarnings();
-		createLines();
-		createTxtFields();
+		createLines1();
+		createLines2();
+		createTxtFields1();
+		createTxtFields2();
 	}
 	
-	private void createLines(){
+	private void createLines1(){
 		usernameLine = new JPanel();
 		usernameLine.setBorder(new EmptyBorder(10,10,10,10));
 		usernameLine.setBackground(Color.BLACK);
@@ -99,6 +102,9 @@ public class SettingsMenu extends JFrame {
 		passwordLine1.setBounds(155, 153, 86, 3);
 		contentPane.add(passwordLine1);
 		
+	}
+	
+	private void createLines2(){
 		passwordLine2 = new JPanel();
 		passwordLine2.setBorder(new EmptyBorder(10,10,10,10));
 		passwordLine2.setBackground(Color.BLACK);
@@ -113,7 +119,7 @@ public class SettingsMenu extends JFrame {
 		contentPane.add(emailLine);
 	}
 	
-	private void createTxtFields(){
+	private void createTxtFields1(){
 		UsernameTextField = new JTextField();
 		UsernameTextField.setEditable(false);
 		UsernameTextField.setText(userdata.getUserName());
@@ -123,6 +129,16 @@ public class SettingsMenu extends JFrame {
 		UsernameTextField.setBorder(null);
 		UsernameTextField.setColumns(10);
 		
+		passwordField1 = new JPasswordField();
+		passwordField1.setEditable(false);
+		passwordField1.setBackground(Color.WHITE);
+		passwordField1.setBounds(155, 134, 86, 20);
+		passwordField1.setBorder(null);
+		contentPane.add(passwordField1);
+		
+	}
+	
+	private void createTxtFields2(){
 		emailTextField = new JTextField();
 		emailTextField.setEditable(false);
 		emailTextField.setText(userdata.getEmail());
@@ -131,13 +147,6 @@ public class SettingsMenu extends JFrame {
 		emailTextField.setBorder(null);
 		contentPane.add(emailTextField);
 		emailTextField.setColumns(10);
-		
-		passwordField1 = new JPasswordField();
-		passwordField1.setEditable(false);
-		passwordField1.setBackground(Color.WHITE);
-		passwordField1.setBounds(155, 134, 86, 20);
-		passwordField1.setBorder(null);
-		contentPane.add(passwordField1);
 		
 		passwordField2 = new JPasswordField();
 		passwordField2.setVisible(false);
@@ -167,7 +176,7 @@ public class SettingsMenu extends JFrame {
 		contentPane.setLayout(null);
 	}
 	
-	private void createLabels(){
+	private void createLabels1(){
 		lblUsername = new JLabel("Username");
 		lblUsername.setBounds(33, 67, 60, 14);
 		lblUsername.setFont(new Font("Kristen ITC", Font.BOLD, 10));
@@ -180,6 +189,9 @@ public class SettingsMenu extends JFrame {
 		lblEmail.setForeground(new Color (8, 83, 148));
 		contentPane.add(lblEmail);
 		
+	}
+	
+	private void createLabels2(){
 		lblPassword1 = new JLabel("Password");
 		lblPassword1.setBounds(33, 137, 60, 14);
 		lblPassword1.setFont(new Font("Kristen ITC", Font.BOLD, 10));
@@ -226,11 +238,7 @@ public class SettingsMenu extends JFrame {
 		btnCancelUsername = new JButton("Cancel");
 		btnCancelUsername.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				UsernameTextField.setEditable(false);
-				UsernameTextField.setText("");
-				btnSaveUsername.setVisible(false);
-				btnEditUsername.setVisible(true);
-				btnCancelUsername.setVisible(false);
+				cancelUsernameAction();
 			}
 		});
 		btnCancelUsername.setVisible(false);
@@ -243,15 +251,19 @@ public class SettingsMenu extends JFrame {
 		
 	}
 	
+	private void cancelUsernameAction(){
+		UsernameTextField.setEditable(false);
+		UsernameTextField.setText("");
+		btnSaveUsername.setVisible(false);
+		btnEditUsername.setVisible(true);
+		btnCancelUsername.setVisible(false);
+	}
+	
 	private void createCancelEmailButton(){
 		btnCancelEmail = new JButton("Cancel");
 		btnCancelEmail.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				emailTextField.setEditable(false);
-				emailTextField.setText("");
-				btnSaveEmail.setVisible(false);
-				btnEditEmail.setVisible(true);
-				btnCancelEmail.setVisible(false);
+				cancelEmailAction();
 			}
 		});
 		btnCancelEmail.setVisible(false);
@@ -264,18 +276,19 @@ public class SettingsMenu extends JFrame {
 		
 	}
 	
+	private void cancelEmailAction(){
+		emailTextField.setEditable(false);
+		emailTextField.setText("");
+		btnSaveEmail.setVisible(false);
+		btnEditEmail.setVisible(true);
+		btnCancelEmail.setVisible(false);
+	}
+	
 	private void createCancelPasswordButton(){
 		btnCancelPassword = new JButton("Cancel");
 		btnCancelPassword.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				passwordField1.setEditable(false);
-				passwordField1.setText("");
-				passwordField2.setVisible(false);
-				passwordField2.setText("");
-				lblPassword2.setVisible(false);
-				btnSavePassword.setVisible(false);
-				btnEditPassword.setVisible(true);
-				btnCancelPassword.setVisible(false);
+				cancelPasswordAction();
 			}
 		});
 		btnCancelPassword.setVisible(false);
@@ -287,18 +300,22 @@ public class SettingsMenu extends JFrame {
 		contentPane.add(btnCancelPassword);
 	}
 	
+	private void cancelPasswordAction(){
+		passwordField1.setEditable(false);
+		passwordField1.setText("");
+		passwordField2.setVisible(false);
+		passwordField2.setText("");
+		lblPassword2.setVisible(false);
+		btnSavePassword.setVisible(false);
+		btnEditPassword.setVisible(true);
+		btnCancelPassword.setVisible(false);
+	}
+	
 	private void createEditPasswordButton(){
 		btnEditPassword = new JButton("Edit");
 		btnEditPassword.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				passwordField1.setText("");
-				passwordField1.setEditable(true);
-				passwordField2.setVisible(true);
-				lblPassword2.setVisible(true);
-				btnSavePassword.setVisible(true);
-				btnEditPassword.setVisible(false);
-				btnCancelPassword.setVisible(true);
-				passwordLine2.setVisible(true);
+				editPasswordAction();
 			}
 		});
 		btnEditPassword.setFont(new Font("Kristen ITC", Font.BOLD, 10));
@@ -310,15 +327,22 @@ public class SettingsMenu extends JFrame {
 		
 	}
 	
+	private void editPasswordAction(){
+		passwordField1.setText("");
+		passwordField1.setEditable(true);
+		passwordField2.setVisible(true);
+		lblPassword2.setVisible(true);
+		btnSavePassword.setVisible(true);
+		btnEditPassword.setVisible(false);
+		btnCancelPassword.setVisible(true);
+		passwordLine2.setVisible(true);
+	}
+	
 	private void createEditEmailButton(){
 		btnEditEmail = new JButton("Edit");
 		btnEditEmail.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				emailTextField.setText("");
-				emailTextField.setEditable(true);
-				btnSaveEmail.setVisible(true);
-				btnEditEmail.setVisible(false);
-				btnCancelEmail.setVisible(true);
+				editEmailAction();
 			}
 		});
 		btnEditEmail.setFont(new Font("Kristen ITC", Font.BOLD, 10));
@@ -330,15 +354,19 @@ public class SettingsMenu extends JFrame {
 		
 	}
 	
+	private void editEmailAction(){
+		emailTextField.setText("");
+		emailTextField.setEditable(true);
+		btnSaveEmail.setVisible(true);
+		btnEditEmail.setVisible(false);
+		btnCancelEmail.setVisible(true);
+	}
+	
 	private void createEditUsernameButton(){
 		btnEditUsername = new JButton("Edit");
 		btnEditUsername.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				UsernameTextField.setText("");
-				UsernameTextField.setEditable(true);
-				btnSaveUsername.setVisible(true);
-				btnEditUsername.setVisible(false);
-				btnCancelUsername.setVisible(true);
+				editUsernameAction();
 			}
 		});
 		btnEditUsername.setFont(new Font("Kristen ITC", Font.BOLD, 10));
@@ -350,19 +378,19 @@ public class SettingsMenu extends JFrame {
 		
 	}
 	
+	private void editUsernameAction(){
+		UsernameTextField.setText("");
+		UsernameTextField.setEditable(true);
+		btnSaveUsername.setVisible(true);
+		btnEditUsername.setVisible(false);
+		btnCancelUsername.setVisible(true);
+	}
+	
 	private void createSaveUsernameButton(){
 		btnSaveUsername = new JButton("Save");
 		btnSaveUsername.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				String name = UsernameTextField.getText();
-				changeUsername(name);
-				
-				UsernameTextField.setEditable(false);
-				UsernameTextField.setText("");
-				btnSaveUsername.setVisible(false);
-				btnEditUsername.setVisible(true);
-				btnCancelUsername.setVisible(false);
+				saveUsernameAction();
 			}
 		});
 		btnSaveUsername.setVisible(false);
@@ -374,23 +402,22 @@ public class SettingsMenu extends JFrame {
 		contentPane.add(btnSaveUsername);
 	}
 	
+	private void saveUsernameAction(){
+		String name = UsernameTextField.getText();
+		changeUsername(name);
+		
+		UsernameTextField.setEditable(false);
+		UsernameTextField.setText("");
+		btnSaveUsername.setVisible(false);
+		btnEditUsername.setVisible(true);
+		btnCancelUsername.setVisible(false);
+	}
+	
 	private void createSavePasswordButton(){
 		btnSavePassword = new JButton("Save");
 		btnSavePassword.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				String password1 = passwordField1.getText();
-				String password2 = passwordField2.getText();				
-				changePassword(password1, password2);
-				
-				passwordField1.setEditable(false);
-				passwordField1.setText("");
-				passwordField2.setVisible(false);
-				passwordField2.setText("");
-				lblPassword2.setVisible(false);
-				btnSavePassword.setVisible(false);
-				btnEditPassword.setVisible(true);
-				btnCancelPassword.setVisible(false);
+			public void actionPerformed(ActionEvent e) {				
+				savePasswordAction();
 				}
 		});
 		btnSavePassword.setVisible(false);
@@ -402,19 +429,26 @@ public class SettingsMenu extends JFrame {
 		contentPane.add(btnSavePassword);
 	}
 	
+	private void savePasswordAction(){		
+		String password1 = passwordField1.getText();
+		String password2 = passwordField2.getText();				
+		changePassword(password1, password2);
+		
+		passwordField1.setEditable(false);
+		passwordField1.setText("");
+		passwordField2.setVisible(false);
+		passwordField2.setText("");
+		lblPassword2.setVisible(false);
+		btnSavePassword.setVisible(false);
+		btnEditPassword.setVisible(true);
+		btnCancelPassword.setVisible(false);
+	}
+	
 	private void createSaveEmailButton(){
 		btnSaveEmail = new JButton("Save");
 		btnSaveEmail.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				String email = emailTextField.getText();
-				changeEmail(email);
-				
-				emailTextField.setEditable(false);
-				emailTextField.setText("");
-				btnSaveEmail.setVisible(false);
-				btnEditEmail.setVisible(true);
-				btnCancelEmail.setVisible(false);
+				saveEmailAction();
 			}
 		});
 		btnSaveEmail.setVisible(false);
@@ -424,6 +458,17 @@ public class SettingsMenu extends JFrame {
 		btnSaveEmail.setBackground(new Color (8, 83, 148));
 		btnSaveEmail.setForeground(Color.WHITE);
 		contentPane.add(btnSaveEmail);
+	}
+	
+	private void saveEmailAction(){
+		String email = emailTextField.getText();
+		changeEmail(email);
+		
+		emailTextField.setEditable(false);
+		emailTextField.setText("");
+		btnSaveEmail.setVisible(false);
+		btnEditEmail.setVisible(true);
+		btnCancelEmail.setVisible(false);
 	}
 	
 	private void changePassword(String password1, String password2){

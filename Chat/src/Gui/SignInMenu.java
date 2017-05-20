@@ -73,10 +73,14 @@ public class SignInMenu extends JFrame {
 	public SignInMenu(JFrame j) {
 		this.jframeLogIn = j;
 		createJFrame();
-		createLabels();
-		createWarnings();
-		createTextFields();
-		createSeparators();
+		createLabels1();
+		createLabels2();
+		createWarnings1();
+		createWarnings2();
+		createTextFields1();
+		createTextFields2();
+		createSeparators1();
+		createSeparators2();
 		createSignInButton();
 		createBackButton();
 	}
@@ -92,7 +96,7 @@ public class SignInMenu extends JFrame {
 		contentPane.setLayout(null);
 	}
 	
-	private void createLabels(){
+	private void createLabels1(){
 		
 		lblTitle = new JLabel("Chat");
 		lblTitle.setFont(new Font("Kristen ITC", Font.BOLD, 24));
@@ -112,6 +116,10 @@ public class SignInMenu extends JFrame {
 		lblEmail.setBounds(40, 117, 68, 14);
 		contentPane.add(lblEmail);
 		
+	}
+	
+	private void createLabels2(){
+		
 		lblEnterAPassword = new JLabel("Password");
 		lblEnterAPassword.setFont(new Font("Kristen ITC", Font.BOLD, 10));
 		lblEnterAPassword.setForeground(new Color (8, 83, 148));
@@ -125,7 +133,7 @@ public class SignInMenu extends JFrame {
 		contentPane.add(lblReWriteYour);
 	}
 	
-	private void createWarnings(){
+	private void createWarnings1(){
 		
 		lblEmailAlreadyTaken = new JLabel("Email already taken");
 		lblEmailAlreadyTaken.setFont(new Font("Kristen ITC", Font.PLAIN, 9));
@@ -141,6 +149,9 @@ public class SignInMenu extends JFrame {
 		lblAllFieldsAre.setBounds(145, 234, 113, 14);
 		contentPane.add(lblAllFieldsAre);
 		
+	}
+	
+	private void createWarnings2(){
 		lblPasswordsMustBe = new JLabel("Passwords must be the same");
 		lblPasswordsMustBe.setFont(new Font("Kristen ITC", Font.PLAIN, 9));
 		lblPasswordsMustBe.setVisible(false);
@@ -149,7 +160,7 @@ public class SignInMenu extends JFrame {
 		contentPane.add(lblPasswordsMustBe);
 	}
 	
-	private void createTextFields(){
+	private void createTextFields1(){
 		
 		usernameTxtField = new JTextField();
 		usernameTxtField.setBounds(227, 68, 128, 20);
@@ -162,7 +173,10 @@ public class SignInMenu extends JFrame {
 		emailTxtField.setBorder(null);
 		contentPane.add(emailTxtField);
 		emailTxtField.setColumns(10);
-		
+
+	}
+	
+	private void createTextFields2(){
 		passwordField1 = new JPasswordField();
 		passwordField1.setBounds(227, 160, 128, 20);
 		passwordField1.setBorder(null);
@@ -174,7 +188,7 @@ public class SignInMenu extends JFrame {
 		contentPane.add(passwordField2);
 	}
 	
-	private void createSeparators(){
+	private void createSeparators1(){
 		
 		horizontalSeparator = new JPanel();
 		horizontalSeparator.setBorder(new EmptyBorder(10,10,10,10));
@@ -194,6 +208,9 @@ public class SignInMenu extends JFrame {
 		lineEmail.setBounds(227, 133, 128, 3);
 		contentPane.add(lineEmail);
 		
+	}
+	
+	private void createSeparators2(){
 		linePassword = new JPanel();
 		linePassword.setBorder(new EmptyBorder(10,10,10,10));
 		linePassword.setBackground(Color.BLACK);
@@ -217,28 +234,33 @@ public class SignInMenu extends JFrame {
 		btnSignIn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				UserData meu = new UserData(getEmail(), getPassword());
-				meu.setUserName(getName());
-				int x = Register.RegisterRequest(meu);
-
-				if (x == 1) {
-					lblEmailAlreadyTaken.setVisible(true);
-					lblAllFieldsAre.setVisible(false);
-				} else if (x == 2){
-					lblEmailAlreadyTaken.setVisible(false);	
-					lblAllFieldsAre.setVisible(false);
-					LogInMenu login = new LogInMenu();
-					login.setVisible(true);
-				} else if (x == 4){
-					lblAllFieldsAre.setVisible(true);
-					lblEmailAlreadyTaken.setVisible(false);
-				}
+				signInAction();
 
 			}
 		});
 		btnSignIn.setBounds(151, 262, 89, 23);
 		contentPane.add(btnSignIn);
 		
+	}
+	
+	private void signInAction(){
+		
+		UserData meu = new UserData(getEmail(), getPassword());
+		meu.setUserName(getName());
+		int x = Register.RegisterRequest(meu);
+
+		if (x == 1) {
+			lblEmailAlreadyTaken.setVisible(true);
+			lblAllFieldsAre.setVisible(false);
+		} else if (x == 2){
+			lblEmailAlreadyTaken.setVisible(false);	
+			lblAllFieldsAre.setVisible(false);
+			LogInMenu login = new LogInMenu();
+			login.setVisible(true);
+		} else if (x == 4){
+			lblAllFieldsAre.setVisible(true);
+			lblEmailAlreadyTaken.setVisible(false);
+		}
 	}
 	
 	private void createBackButton(){

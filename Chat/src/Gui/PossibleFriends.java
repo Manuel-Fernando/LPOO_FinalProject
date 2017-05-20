@@ -141,18 +141,7 @@ public class PossibleFriends extends JFrame {
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				int index = friendsList.getSelectedIndex();
-				String friendEmail = friends.get(index).getEmail(); 
-				
-				Boolean add = canAdd(friendEmail);
-				
-				if (add){
-					AddFriend.add(friendEmail, userdata);
-				} else {
-					lblWarning.setVisible(true);
-				}
-
-				setVisible(false);
+				addButtonAction();
 			}
 		});
 		btnAdd.setBounds(170, 300, 60, 23);
@@ -161,6 +150,21 @@ public class PossibleFriends extends JFrame {
 		btnAdd.setBackground(new Color (8, 83, 148));
 		btnAdd.setForeground(Color.WHITE);
 		contentPane.add(btnAdd);
+	}
+	
+	private void addButtonAction(){
+		int index = friendsList.getSelectedIndex();
+		String friendEmail = friends.get(index).getEmail(); 
+		
+		Boolean add = canAdd(friendEmail);
+		
+		if (add){
+			AddFriend.add(friendEmail, userdata);
+		} else {
+			lblWarning.setVisible(true);
+		}
+
+		setVisible(false);
 	}
 	
 	public void createBackgrounds(){
