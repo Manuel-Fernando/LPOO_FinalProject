@@ -212,6 +212,7 @@ public class LogInMenu extends JFrame {
 					else if (x==1) {
 						ChatMenu CM = new ChatMenu(meu);
 						CM.setVisible(true);
+						dispose();
 					}					
 
 
@@ -227,6 +228,7 @@ public class LogInMenu extends JFrame {
 	 * Criar o botão de signin
 	 */
 	private void createSignInButton(){
+		LogInMenu j = this;
 		
 		btnSignIn = new JButton("Sign In");
 		btnSignIn.setFont(new Font("Kristen ITC", Font.BOLD, 10));
@@ -236,8 +238,9 @@ public class LogInMenu extends JFrame {
 		btnSignIn.setForeground(Color.WHITE);
 		btnSignIn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				SignInMenu signIn = new SignInMenu();
+				SignInMenu signIn = new SignInMenu(j);
 				signIn.setVisible(true);
+				setVisible(false);
 			}
 		});
 		contentPane.add(btnSignIn);
@@ -254,6 +257,7 @@ public class LogInMenu extends JFrame {
 		logInFacebookbtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				UserData user = LogInFace.LogIn_Face();
+				dispose();
 			}
 		});
 		

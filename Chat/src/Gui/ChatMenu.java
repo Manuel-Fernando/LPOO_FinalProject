@@ -22,6 +22,8 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
@@ -35,16 +37,16 @@ import javax.swing.JLabel;
 public class ChatMenu extends JFrame {
 
 	private static JPanel contentPane;
-	private JTextField messageTextField;
+	private static JTextField messageTextField;
 	private JTextField searchTextField;
-	private JTextArea messagesTextArea;
-	private JButton btnSend;
+	private static JTextArea messagesTextArea;
+	private static JButton btnSend;
 	private JButton btnSearch;
 	private JComboBox <String> comboBox;
 	private JPanel horizontalSeparator;
 	private static JPanel backgroundMessages;
 	private JPanel lineMessages;
-	private static JPanel backgroundFriends;
+	private JPanel backgroundFriends;
 	static JList <String> friendsList;
 	private static UserData userdata;
 	private SendMessage sendmessage;
@@ -52,6 +54,9 @@ public class ChatMenu extends JFrame {
 	private static DefaultListModel <String> model;
 	private static ArrayList<FriendData> friends = new ArrayList<FriendData>();
 	private static FriendData friendtoSendMessage;
+	private String friendIp;
+	private static TitledBorder titledBorder;
+	private static String friendStatus;
 
 	/**
 	 * Launch the application.
@@ -80,14 +85,19 @@ public class ChatMenu extends JFrame {
 		createComboBox();
 		createWarnings();
 		createHorizontalSeparator();
-		createBackgrounds("");
+		createBackgrounds();
 		createTxtFields();
 		createSendButton();	
+		createLabels();
 		sendMessage();
 		MonitorSelectedFriends monitor = new MonitorSelectedFriends();
 		monitor.setUserdata(this.userdata);
 		monitor.start();
 		new ReceiveMessage().start();
+	}
+	
+	private void createLabels(){
+		
 	}
 	
 	private void createTxtFields(){
@@ -108,6 +118,15 @@ public class ChatMenu extends JFrame {
 	private void createJFrame(){
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		addWindowListener(new WindowAdapter()
+		{
+			public void windowClosing(WindowEvent e)
+			{
+				LogOut.logOutRequest(userdata);
+			}
+		});
+		
 		setBounds(100, 100, 560, 370);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
@@ -136,16 +155,15 @@ public class ChatMenu extends JFrame {
 			String online = userFriends.get(i).getConectado();	
 			model.addElement(userFriends.get(i).getName() + " - " + online);
 			friends.add(userFriends.get(i));
-		}
-		
-//		System.out.println("list size chatmenu " + friendsList.getModel().getSize());
-		
+		}		
 	}
 
 	private void createTextAreas(){		
 		createFriendsList();
 		messagesTextArea = new JTextArea();
 		messagesTextArea.setBounds(25, 74, 350, 193);
+		messagesTextArea.setForeground(Color.BLACK);
+		messagesTextArea.setBackground(Color.WHITE);
 		messagesTextArea.setEditable(false);
 		contentPane.add(messagesTextArea);
 	}
@@ -200,7 +218,7 @@ public class ChatMenu extends JFrame {
 					LogInMenu login = new LogInMenu();
 					login.setVisible(true);
 					
-					//Fecha janela - logout
+					dispose();
 				}
 			}
 		});
@@ -223,20 +241,24 @@ public class ChatMenu extends JFrame {
 		contentPane.add(lineMessages);
 	}
 	
-	static void createBackgrounds(String friendName){
-		
+	static void updateBackground(String friendName){
+		backgroundMessages.setBorder(BorderFactory.createTitledBorder(null, friendName, TitledBorder.LEFT, TitledBorder.TOP, new Font("Kristen ITC", Font.BOLD, 9), Color.WHITE));
+	}
+	
+	private void createBackgrounds(){
 		backgroundMessages = new JPanel();
 		backgroundMessages.setForeground(Color.WHITE);
 		backgroundMessages.setBorder(new EmptyBorder(10,10,10,10));
 		backgroundMessages.setBackground(new Color(8, 83, 148));
-		backgroundMessages.setBorder(BorderFactory.createTitledBorder(null, friendName, TitledBorder.LEFT, TitledBorder.TOP, new Font("Kristen ITC", Font.BOLD, 9), Color.WHITE));
+		titledBorder = BorderFactory.createTitledBorder(null, "Select a friend", TitledBorder.LEFT, TitledBorder.TOP, new Font("Kristen ITC", Font.BOLD, 9), Color.WHITE);
+		backgroundMessages.setBorder(titledBorder);
 		backgroundMessages.setBounds(15, 57, 370, 220);
 		contentPane.add(backgroundMessages);
 		
 		backgroundFriends = new JPanel();
 		backgroundFriends.setForeground(Color.WHITE);
 		backgroundFriends.setBorder(new EmptyBorder(10,10,10,10));
-		backgroundFriends.setBorder(BorderFactory.createTitledBorder(null, friendName, TitledBorder.LEFT, TitledBorder.TOP, new Font("Kristen ITC", Font.BOLD, 9), Color.WHITE));
+		backgroundFriends.setBorder(BorderFactory.createTitledBorder(null, "Friends List", TitledBorder.LEFT, TitledBorder.TOP, new Font("Kristen ITC", Font.BOLD, 9), Color.WHITE));
 		backgroundFriends.setBackground(new Color(8, 83, 148));
 		backgroundFriends.setBounds(394, 57, 140, 220);
 		contentPane.add(backgroundFriends);
@@ -255,6 +277,7 @@ public class ChatMenu extends JFrame {
 				sendmessage.setMessage(message);
 				sendmessage.newMessages(true);
 				messageTextField.setText("");
+				messagesTextArea.append(userdata.getUserName() + ": " + message + "\n");
 			}
 		});
 		btnSend.setBounds(405, 297, 64, 23);
@@ -265,7 +288,7 @@ public class ChatMenu extends JFrame {
 	private void sendMessage(){
 		sendmessage = new SendMessage();
 		sendmessage.setUserData(userdata);
-		sendmessage.setServerAddress("172.30.15.134"); //-----------------------------------			
+		sendmessage.setServerAddress(friendIp); //---------------------------------------------------------		
 		sendmessage.start();
 		sendmessage.newMessages(false);
 		
@@ -280,9 +303,29 @@ public class ChatMenu extends JFrame {
 		contentPane.add(lblWarning);
 	}
 	
+	public static void changeTitle(FriendData friend){
+		titledBorder.setTitle(friend.getName());
+	}
+	
 	public static void changeFriend(FriendData friend){
 		friendtoSendMessage =  friend;
-//		System.out.println("friendEmail " + friend.getEmail());
+		friendStatus = friendtoSendMessage.getConectado();
+		
+		if (friendStatus.equals("offline")){
+			btnSend.setEnabled(false);
+			messageTextField.setText("");
+			messagesTextArea.setText("");
+			messagesTextArea.append(friendtoSendMessage.getName() + " is offline.");
+			messageTextField.setEditable(false);
+		} else if (friendStatus.equals("online")){
+			btnSend.setEnabled(true);
+			messagesTextArea.setText("");
+			messageTextField.setText("");
+			messageTextField.setEditable(true);
+		}
 	}
-
+	
+	public static void showReceivedMessages(String m){
+		messagesTextArea.append(friendtoSendMessage.getName() + ": " + m + "\n");
+	}
 }

@@ -9,6 +9,8 @@ import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import Gui.ChatMenu;
+
 public class ReceiveMessage extends Thread {
 
 	private static final int PORT = 9001;
@@ -55,6 +57,7 @@ class Handler extends Thread {
 				escrever.setFILENAME(data[0]);
 				escrever.setMessage(input);
 				escrever.Write();	
+				ChatMenu.showReceivedMessages(data[1]);
 //////////////////////////////////////////////////////////Avisar que há msg nova!
 			}
 		} catch (IOException e) {

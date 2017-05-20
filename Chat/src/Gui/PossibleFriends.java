@@ -71,7 +71,7 @@ public class PossibleFriends extends JFrame {
 	}
 
 	public void createJFrame(){
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 291, 381);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -110,6 +110,11 @@ public class PossibleFriends extends JFrame {
 	
 	public void createBackButton(){
 		btnBack = new JButton("Back");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+			}
+		});
 		btnBack.setBounds(40, 300, 60, 23);
 		btnBack.setFont(new Font("Kristen ITC", Font.BOLD, 10));
 		btnBack.setBorder(new LineBorder(new Color(0, 0, 0))); 

@@ -49,6 +49,7 @@ public class SignInMenu extends JFrame {
 	private String email, username, password;
 	private JLabel lblAllFieldsAre;
 	private JLabel lblPasswordsMustBe;
+	private static JFrame jframeLogIn;
 
 	/**
 	 * Launch the application.
@@ -57,7 +58,7 @@ public class SignInMenu extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					SignInMenu frame = new SignInMenu();
+					SignInMenu frame = new SignInMenu(jframeLogIn);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -69,7 +70,8 @@ public class SignInMenu extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public SignInMenu() {
+	public SignInMenu(JFrame j) {
+		this.jframeLogIn = j;
 		createJFrame();
 		createLabels();
 		createWarnings();
@@ -244,7 +246,8 @@ public class SignInMenu extends JFrame {
 		btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//VOLTAR AO LOGIN MENU
+				jframeLogIn.setVisible(true);
+				dispose();
 			}
 		});
 		btnBack.setFont(new Font("Kristen ITC", Font.BOLD, 9));
