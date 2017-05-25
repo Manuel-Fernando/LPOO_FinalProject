@@ -41,7 +41,7 @@ class Handler extends Thread {
 	public Handler(Socket socket) {this.socket = socket;}
 
 	public void run() {
-		WriteToFile escrever = new WriteToFile();
+//		WriteToFile escrever = new WriteToFile();
 	
 		try {
 			in = new BufferedReader(new InputStreamReader(
@@ -54,9 +54,9 @@ class Handler extends Thread {
 				}
 				String data[] = input.split(" ", 2);
 
-				escrever.setFILENAME(data[0]);
-				escrever.setMessage(input);
-				escrever.Write();	
+//				escrever.setFILENAME(data[0]);
+//				escrever.setMessage(input);
+//				escrever.Write();	
 				ChatMenu.showReceivedMessages(data[1]);
 //////////////////////////////////////////////////////////Avisar que há msg nova!
 			}

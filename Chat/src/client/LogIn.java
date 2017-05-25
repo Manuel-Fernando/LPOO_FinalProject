@@ -34,12 +34,12 @@ public class LogIn {
 				String c = InetAddress.getLocalHost().getHostAddress();
 				conector.AddMySQLData("UPDATE `utilizador` SET `conectado`='online', `IP`='"+ c +"' WHERE email = '"+user.getEmail()+"'");
 				
-				GetFriends.getFriends(conector, user);
+				GetFriends.getFriends(conector, user);				
 				
 				TimerTask timerTask = new MonitorFriends(user);
 		        Timer timer = new Timer(true);
 		        timer.scheduleAtFixedRate(timerTask, 0, 10*1000);
-				
+		        
 			}
 
 		}catch (Exception e1){

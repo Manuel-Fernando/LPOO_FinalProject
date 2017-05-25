@@ -1,5 +1,6 @@
 package Gui;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.TimerTask;
 
@@ -29,7 +30,12 @@ public class MonitorSelectedFriends extends Thread{
 					
 					frienddata = friends.get(index);
 					ChatMenu.changeTitle(frienddata);
-					ChatMenu.changeFriend(frienddata);
+					
+					try {
+						ChatMenu.changeFriend(frienddata);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 				}
 			}	
 		}

@@ -16,6 +16,7 @@ import client.ReceiveMessage;
 import client.SearchFriend;
 import client.SendMessage;
 import client.UserData;
+import client.WriteToFile;
 import mySQLConnection.ConnectorFile;
 
 import javax.swing.JTextField;
@@ -24,6 +25,7 @@ import javax.swing.JTextArea;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
@@ -56,6 +58,7 @@ public class ChatMenu extends JFrame {
 	private static FriendData friendtoSendMessage;
 	private String friendIp;
 	private static TitledBorder titledBorder;
+	private static WriteToFile escrever;
 	private static String friendStatus;
 
 	/**
@@ -79,6 +82,7 @@ public class ChatMenu extends JFrame {
 	 */
 	public ChatMenu(UserData userdata) {
 		this.userdata = userdata;
+		this.escrever = new WriteToFile();
 		createJFrame();
 		createTextAreas();
 		createSearchButton();
@@ -88,7 +92,6 @@ public class ChatMenu extends JFrame {
 		createBackgrounds();
 		createTxtFields();
 		createSendButton();	
-		createLabels();
 		sendMessage();
 		MonitorSelectedFriends monitor = new MonitorSelectedFriends();
 		monitor.setUserdata(this.userdata);
@@ -96,8 +99,9 @@ public class ChatMenu extends JFrame {
 		new ReceiveMessage().start();
 	}
 	
-	private void createLabels(){
-		
+	private static void updateFile(String username, String message){
+		escrever.setMessage(username + ": " + message);
+		escrever.Write();
 	}
 	
 	private void createTxtFields(){
@@ -296,6 +300,7 @@ public class ChatMenu extends JFrame {
 		String message = messageTextField.getText();				
 		sendmessage.setMessage(message);
 		sendmessage.newMessages(true);
+		updateFile(userdata.getUserName(), message);
 		messageTextField.setText("");
 		messagesTextArea.append(userdata.getUserName() + ": " + message + "\n");
 	}
@@ -322,7 +327,7 @@ public class ChatMenu extends JFrame {
 		titledBorder.setTitle(friend.getName());
 	}
 	
-	public static void changeFriend(FriendData friend){
+	public static void changeFriend(FriendData friend) throws IOException{
 		friendtoSendMessage =  friend;
 		friendStatus = friendtoSendMessage.getConectado();
 		
@@ -330,17 +335,43 @@ public class ChatMenu extends JFrame {
 			btnSend.setEnabled(false);
 			messageTextField.setText("");
 			messagesTextArea.setText("");
-			messagesTextArea.append(friendtoSendMessage.getName() + " is offline.");
+			
+			UpdataMessages updateMessages = new UpdataMessages(friendtoSendMessage.getEmail() + ".txt");
+			int result = updateMessages.readFile();
+			
+			if (result == 1){
+				ArrayList<String> messageList = new ArrayList<String>();
+				messageList = updateMessages.getMessages();
+				
+				for (int i=0; i<messageList.size(); i++){
+					messagesTextArea.append(messageList.get(i) + '\n');
+				}
+			}
+			
+			messagesTextArea.append('\n' + friendtoSendMessage.getName() + " is offline.");
 			messageTextField.setEditable(false);
 		} else if (friendStatus.equals("online")){
 			btnSend.setEnabled(true);
 			messagesTextArea.setText("");
 			messageTextField.setText("");
 			messageTextField.setEditable(true);
+			escrever.setFILENAME(friendtoSendMessage.getEmail());
+			UpdataMessages updateMessages = new UpdataMessages(friendtoSendMessage.getEmail() + ".txt");
+			int result = updateMessages.readFile();
+			
+			if (result == 1){
+				ArrayList<String> messageList = new ArrayList<String>();
+				messageList = updateMessages.getMessages();
+				
+				for (int i=0; i<messageList.size(); i++){
+					messagesTextArea.append(messageList.get(i) + '\n');
+				}
+			}
 		}
 	}
 	
 	public static void showReceivedMessages(String m){
 		messagesTextArea.append(friendtoSendMessage.getName() + ": " + m + "\n");
+		updateFile(friendtoSendMessage.getName(), m);
 	}
 }

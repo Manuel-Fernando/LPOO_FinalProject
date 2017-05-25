@@ -223,9 +223,10 @@ public class LogInMenu extends JFrame {
 			lblEmailDontExist.setVisible(true);
 			lblEmailWarning.setVisible(true);
 		}
-		else if(x==0)
+		else if(x==0){
 			lblPasswordWarning.setVisible(true);
-		else if (x==1) {
+			lblEmailDontExist.setVisible(false);
+		}else if (x==1) {
 			ChatMenu CM = new ChatMenu(meu);
 			CM.setVisible(true);
 			dispose();
@@ -279,7 +280,7 @@ public class LogInMenu extends JFrame {
 	private String getEmail(){
 		String email = txtEmail.getText();
 		
-		if (email.isEmpty()){
+		if (email.equals("")){
 			lblEmailWarning.setVisible(true);
 		} else {
 			lblEmailWarning.setVisible(false);
@@ -297,7 +298,7 @@ public class LogInMenu extends JFrame {
 	private String getPassword(){
 		String password = passwordField.getText();
 		
-		if (!password.isEmpty()){
+		if (!password.equals("")){
 			lblPasswordWarning.setVisible(false);
 		} else {
 			lblPasswordWarning.setVisible(true);

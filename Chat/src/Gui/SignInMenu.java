@@ -292,7 +292,7 @@ public class SignInMenu extends JFrame {
 		String password1 = passwordField1.getText();
 		String password2 = passwordField2.getText();
 		
-		if (!password1.isEmpty() && !password2.isEmpty()){
+		if (!password1.equals("") && !password2.equals("")){
 			if (!password1.equals(password2)){
 				lblPasswordsMustBe.setVisible(true);
 			} else {

@@ -35,7 +35,7 @@ public class SendMessage extends Thread{
 
 	public void run() {
 		
-		WriteToFile escrever = new WriteToFile();
+//		WriteToFile escrever = new WriteToFile();
 		Socket socket = null;
 		try {
 			socket = new Socket(serverAddress, 9001);
@@ -53,9 +53,9 @@ public class SendMessage extends Thread{
 				out.println(message_out);
 				newmessage = false;
 				
-				escrever.setFILENAME(destinationEmail);
-				escrever.setMessage(message_out);
-				escrever.Write();
+//				escrever.setFILENAME(destinationEmail);
+//				escrever.setMessage(message_out);
+//				escrever.Write();
 			}
 			
 		}
