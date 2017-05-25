@@ -350,6 +350,7 @@ public class ChatMenu extends JFrame {
 			
 			messagesTextArea.append('\n' + friendtoSendMessage.getName() + " is offline.");
 			messageTextField.setEditable(false);
+			
 		} else if (friendStatus.equals("online")){
 			btnSend.setEnabled(true);
 			messagesTextArea.setText("");
