@@ -12,6 +12,7 @@ import org.junit.Test;
 
 import client.AddFriend;
 import client.FriendData;
+import client.Friends;
 import client.GetFriends;
 import client.MonitorFriends;
 import client.SearchFriend;
@@ -73,6 +74,26 @@ public class TestFriend {
 		user.getFriendsList().getFriendsList().get(0).getConectado().equals("test_online");
 		conector.AddMySQLData("DELETE FROM `utilizador` WHERE `email` = 'hodor@fe.up.pt'");	
 		conector.AddMySQLData("DELETE FROM `amizade` WHERE `uti2` = 'hodor@fe.up.pt'");	
+	}
+	
+	@Test
+	public void testFriendsClass(){
+		
+		FriendData friend1 = new FriendData("friend1", "friend1Email", "1234", "online");
+		
+		ArrayList<FriendData> friends = new ArrayList<FriendData>();
+		friends.add(friend1);
+		
+		Friends friendList = new Friends(new ArrayList<FriendData>());
+		friendList.setFriendsList(friends);		
+		assertEquals("friend1", friendList.getFriendsList().get(0).getName());
+		
+		FriendData friend2 = new FriendData("friend2", "friend2Email", "5678", "online");
+		friendList.addFriend(friend2);
+		assertEquals("friend2", friendList.getFriendsList().get(1).getName());
+		
+		friendList.removeFriend(friend1);
+		assertEquals(1, friendList.getFriendsList().size());
 	}
 	
 	
