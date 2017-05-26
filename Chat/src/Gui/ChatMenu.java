@@ -297,7 +297,8 @@ public class ChatMenu extends JFrame {
 	}
 	
 	private void sendButtonAction(){
-		String message = messageTextField.getText();				
+		String message = messageTextField.getText();
+		sendmessage.setServerAddress(friendtoSendMessage.getIp());
 		sendmessage.setMessage(message);
 		sendmessage.newMessages(true);
 		updateFile(userdata.getUserName(), message);

@@ -38,6 +38,7 @@ public class SendMessage extends Thread{
 //		WriteToFile escrever = new WriteToFile();
 		Socket socket = null;
 		try {
+			System.out.println(serverAddress);
 			socket = new Socket(serverAddress, 9001);
 			
 		} catch (IOException e) {e.printStackTrace();}	

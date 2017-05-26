@@ -42,6 +42,12 @@ public class MonitorFriends extends TimerTask{
 			
 		}
 		
+//		
+//		for (int i=0;i<user.getFriendsList().getFriendsList().size();i++){
+//			System.out.println(user.getFriendsList().getFriendsList().get(i));
+//		}
+//		
+		
 		ChatMenu.updateList();
 	}
 }

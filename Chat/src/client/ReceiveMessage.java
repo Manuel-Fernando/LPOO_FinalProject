@@ -51,7 +51,7 @@ class Handler extends Thread {
 				String input = in.readLine();
 				if (input == null) {
 					return;
-				}
+				} 
 				String data[] = input.split(" ", 2);
 
 //				escrever.setFILENAME(data[0]);
