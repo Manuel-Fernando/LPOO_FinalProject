@@ -14,6 +14,7 @@ import java.net.UnknownHostException;
 
 import org.junit.Test;
 
+import client.FriendData;
 import client.ReceiveMessage;
 import client.SendMessage;
 import client.UserData;
@@ -25,18 +26,20 @@ public class TestMessage {
 	public void testWriteToFile() throws IOException{
 		WriteToFile escrever = new WriteToFile();
 		String text="Faculdade de Engenharia da Universidade do Porto";
-		escrever.setFILENAME("test0@fe.up.pt");
+		String email = "test0@fe.up.pt";
+		FriendData friend = new FriendData(null, email, null, null);
+		escrever.setFILENAME(friend);
 		escrever.setMessage(text);
 		escrever.Write();
 
-//		String fileName = "test0@fe.up.pt.txt";
-//		FileReader fileReader = new FileReader(fileName);
-//		BufferedReader bufferedReader = new BufferedReader(fileReader); 
-//		assertEquals(0, bufferedReader.readLine().compareTo(text));
-//		bufferedReader.close();
-//		
-//		File file = new File(fileName);
-//		file.delete();
+		String fileName = "test0@fe.up.pt.txt";
+		FileReader fileReader = new FileReader(fileName);
+		BufferedReader bufferedReader = new BufferedReader(fileReader); 
+		assertEquals(0, bufferedReader.readLine().compareTo(text));
+		bufferedReader.close();
+		
+		File file = new File(fileName);
+		file.delete();
 	}
 	
 	@Test
@@ -44,22 +47,22 @@ public class TestMessage {
 		new ReceiveMessage().start();
 		
         Thread.sleep(1000);
-
+        
 		Socket socket = new Socket(InetAddress.getLocalHost().getHostAddress(), 9001);
 		PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-		String mensagem = "test1@fe.up.pt Mensagem a enviar";
+		String mensagem = "test1@fe.up.pt Nome Mensagem a enviar";
 		out.println(mensagem);
 		
         Thread.sleep(1000);
         
-//		String fileName = "test1@fe.up.pt.txt";
-//		FileReader fileReader = new FileReader(fileName);
-//		BufferedReader bufferedReader = new BufferedReader(fileReader); 
-//		assertEquals(0, bufferedReader.readLine().compareTo(mensagem));
-//		bufferedReader.close();
-//		
-//		File file = new File(fileName);
-//		file.delete();	
+		String fileName = "test1@fe.up.pt.txt";
+		FileReader fileReader = new FileReader(fileName);
+		BufferedReader bufferedReader = new BufferedReader(fileReader); 
+		assertEquals(0, bufferedReader.readLine().compareTo("Nome: Mensagem a enviar"));
+		bufferedReader.close();
+		
+		File file = new File(fileName);
+		file.delete();	
 	}
 	
 	@Test
@@ -78,14 +81,14 @@ public class TestMessage {
 		Thread.sleep(1000);
 
 		String fileName = "test2@fe.up.pt.txt";
-//		FileReader fileReader = new FileReader(fileName);
-//		BufferedReader bufferedReader = new BufferedReader(fileReader); 
-//		assertEquals(0, bufferedReader.readLine().compareTo("test2@fe.up.pt Faculdade de Engenharia"));
-//		bufferedReader.close();
-//		
-//		File file = new File(fileName);
-//		file.delete();
-//		File file1 = new File("test3@fe.up.pt.txt");
-//		file1.delete();
+		FileReader fileReader = new FileReader(fileName);
+		BufferedReader bufferedReader = new BufferedReader(fileReader); 
+		assertEquals(0, bufferedReader.readLine().compareTo("null: Faculdade de Engenharia"));
+		bufferedReader.close();
+		
+		File file = new File(fileName);
+		file.delete();
+		File file1 = new File("test3@fe.up.pt.txt");
+		file1.delete();
 	}
 }

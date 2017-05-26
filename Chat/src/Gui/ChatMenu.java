@@ -303,7 +303,6 @@ public class ChatMenu extends JFrame {
 		sendmessage.setFriendData(friendtoSendMessage);
 		sendmessage.setMessage(message);
 		sendmessage.newMessages(true);
-//		updateFile(userdata.getUserName(), message);
 		messageTextField.setText("");
 		messagesTextArea.append(userdata.getUserName() + ": " + message + "\n");
 	}

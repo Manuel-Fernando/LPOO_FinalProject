@@ -20,20 +20,6 @@ public class UpdataMessages {
 	}
 	
 	public int readFile(){	
-//		FileReader fileReader;
-//		
-//		
-//		try(BufferedReader br = new BufferedReader(new FileReader("file.txt"))) {
-//		    StringBuilder sb = new StringBuilder();
-//		    String line = br.readLine();
-//
-//		    while (line != null) {
-//		        sb.append(line);
-//		        sb.append(System.lineSeparator());
-//		        line = br.readLine();
-//		    }
-//		    String everything = sb.toString();
-//		}
 		
 		String line = null;
 		
@@ -45,34 +31,22 @@ public class UpdataMessages {
 			try {
 				line = br.readLine();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				return -1;
 			}
 			
 			while (line != null) {
-		        sb.append(line);
-		        sb.append(System.lineSeparator());
+//		        sb.append(line);
+//		        sb.append(System.lineSeparator());
+				messages.add(line); 
 		        try {
 					line = br.readLine();
 				} catch (IOException e) {
-					e.printStackTrace();
+					return -1;
 				}
 		    }
 			
-		    String everything = sb.toString();
-		    messages.add(everything);    
-//			fileReader = new FileReader(fileName);
-//			InputStream in = Files.newInputStream(fileReader);
-//			BufferedReader bufferedReader = new BufferedReader(fileReader);
-
-//			try {
-//				while(bufferedReader.readLine()!=null){
-//					messages.add(bufferedReader.readLine());	
-//				}
-//				bufferedReader.close();
-//			} catch (IOException e) {
-//				return -1;
-//			}
+//		    String everything = sb.toString();
+//		    messages.add(everything);    
 			
 		} catch (FileNotFoundException e) {
 			return -1;
