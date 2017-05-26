@@ -20,7 +20,7 @@ public class WriteToFile {
 
 	public void Write() {
 
-		try(FileWriter fw = new FileWriter(FILENAME.getName() + ".txt", true);
+		try(FileWriter fw = new FileWriter(FILENAME.getEmail() + ".txt", true);
 				BufferedWriter bw = new BufferedWriter(fw);
 				PrintWriter out = new PrintWriter(bw))
 		{

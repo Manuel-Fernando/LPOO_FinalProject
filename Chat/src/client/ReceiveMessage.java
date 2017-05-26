@@ -58,7 +58,7 @@ class Handler extends Thread {
 				FriendData friend = new FriendData(data[1], data[0], null, null);
 				
 				escrever.setFILENAME(friend);
-				escrever.setMessage(input);
+				escrever.setMessage(data[1] + ": " + data[2]);
 				escrever.Write();	
 				
 				ChatMenu.showReceivedMessages(data[0], data[1]);

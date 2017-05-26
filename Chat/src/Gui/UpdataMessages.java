@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 public class UpdataMessages {
@@ -19,21 +20,59 @@ public class UpdataMessages {
 	}
 	
 	public int readFile(){	
-		FileReader fileReader;
+//		FileReader fileReader;
+//		
+//		
+//		try(BufferedReader br = new BufferedReader(new FileReader("file.txt"))) {
+//		    StringBuilder sb = new StringBuilder();
+//		    String line = br.readLine();
+//
+//		    while (line != null) {
+//		        sb.append(line);
+//		        sb.append(System.lineSeparator());
+//		        line = br.readLine();
+//		    }
+//		    String everything = sb.toString();
+//		}
+		
+		String line = null;
 		
 		try {
-			fileReader = new FileReader(fileName);
-			BufferedReader bufferedReader = new BufferedReader(fileReader);
-
+			
+			BufferedReader br = new BufferedReader(new FileReader(fileName));
+			StringBuilder sb = new StringBuilder();
+			
 			try {
-				while(bufferedReader.readLine()!=null){
-					messages.add(bufferedReader.readLine());	
-					System.out.println(bufferedReader.readLine());
-				}
-				bufferedReader.close();
+				line = br.readLine();
 			} catch (IOException e) {
-				return -1;
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
+			
+			while (line != null) {
+		        sb.append(line);
+		        sb.append(System.lineSeparator());
+		        try {
+					line = br.readLine();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+		    }
+			
+		    String everything = sb.toString();
+		    messages.add(everything);    
+//			fileReader = new FileReader(fileName);
+//			InputStream in = Files.newInputStream(fileReader);
+//			BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+//			try {
+//				while(bufferedReader.readLine()!=null){
+//					messages.add(bufferedReader.readLine());	
+//				}
+//				bufferedReader.close();
+//			} catch (IOException e) {
+//				return -1;
+//			}
 			
 		} catch (FileNotFoundException e) {
 			return -1;
