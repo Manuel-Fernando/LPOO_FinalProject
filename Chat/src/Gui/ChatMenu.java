@@ -60,6 +60,7 @@ public class ChatMenu extends JFrame {
 	private static TitledBorder titledBorder;
 	private static WriteToFile escrever;
 	private static String friendStatus;
+	private static MyListCellRenderer highlight;
 
 	/**
 	 * Launch the application.
@@ -82,7 +83,7 @@ public class ChatMenu extends JFrame {
 	 */
 	public ChatMenu(UserData userdata) {
 		this.userdata = userdata;
-//		this.escrever = new WriteToFile();
+		highlight = new MyListCellRenderer();
 		createJFrame();
 		createTextAreas();
 		createSearchButton();
@@ -97,11 +98,6 @@ public class ChatMenu extends JFrame {
 		monitor.setUserdata(this.userdata);
 		monitor.start();
 		new ReceiveMessage().start();
-	}
-	
-	private static void updateFile(String username, String message){
-		escrever.setMessage(username + ": " + message);
-		escrever.Write();
 	}
 	
 	private void createTxtFields(){
@@ -143,6 +139,7 @@ public class ChatMenu extends JFrame {
 		model = new DefaultListModel <String>();
 		friendsList = new JList <String>(model);
 		friendsList.setBounds(405, 74, 120, 193);
+		friendsList.setCellRenderer(highlight);
 		
 		contentPane.add(friendsList);	
 	}
@@ -332,6 +329,11 @@ public class ChatMenu extends JFrame {
 	public static void changeFriend(FriendData friend) throws IOException{
 		friendtoSendMessage =  friend;
 		friendStatus = friendtoSendMessage.getConectado();
+		
+		int index = findFriendIndex(friend.getEmail());
+		
+		highlight.removeInxex(index);
+		
 		if (friendStatus.equals("offline")){
 			btnSend.setEnabled(false);
 			messageTextField.setText("");
@@ -378,7 +380,24 @@ public class ChatMenu extends JFrame {
 			messagesTextArea.append(friendtoSendMessage.getName() + ": " + m + "\n");
 		} else {
 			System.out.println("Nova mensagem de " + email);
+			
+			int index = findFriendIndex(email);
+			
+			highlight.addIndex(index);
 		}
 
 	}
+	
+	private static int findFriendIndex(String e){
+		
+		for (int i=0;i<friends.size();i++){
+			
+			if (friends.get(i).getEmail().equals(e)){
+				return i;
+			}
+		}
+		
+		return -1;
+	}
+	
 }
