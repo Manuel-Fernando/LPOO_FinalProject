@@ -12,7 +12,12 @@ public class SendMessage extends Thread{
 	String message;
 	Boolean newmessage;
 	String destinationEmail;
+	FriendData friend;
 
+	public void setFriendData(FriendData f){
+		friend = f;
+	}
+	
 	public void setServerAddress(String serverAddress) {
 		this.serverAddress=serverAddress;
 	}
@@ -35,28 +40,35 @@ public class SendMessage extends Thread{
 
 	public void run() {
 		
-//		WriteToFile escrever = new WriteToFile();
+		WriteToFile escrever = new WriteToFile();
 		Socket socket = null;
-		try {
-			System.out.println(serverAddress);
-			socket = new Socket(serverAddress, 9001);
-			
-		} catch (IOException e) {e.printStackTrace();}	
-		try {
-			out = new PrintWriter(socket.getOutputStream(), true);
-		} catch (IOException e) {e.printStackTrace();}
 
 		String message_out;
 		while (true) {
 			
 			if (newmessage){
-				message_out=user.getEmail() + " " + message;
+				
+				try {
+					socket = new Socket(serverAddress, 9001);
+					
+				} catch (IOException e) {e.printStackTrace();}	
+				
+				try {
+					out = new PrintWriter(socket.getOutputStream(), true);
+				} catch (IOException e) {e.printStackTrace();}
+				
+				message_out=user.getEmail() + " " + user.getUserName() + " " + message;
 				out.println(message_out);
 				newmessage = false;
 				
-//				escrever.setFILENAME(destinationEmail);
-//				escrever.setMessage(message_out);
-//				escrever.Write();
+				escrever.setFILENAME(friend);
+				escrever.setMessage(message_out);
+				escrever.Write();
+			}
+			try {
+				Thread.sleep(10);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
 			}
 			
 		}

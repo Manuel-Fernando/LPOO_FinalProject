@@ -27,7 +27,8 @@ public class UpdataMessages {
 
 			try {
 				while(bufferedReader.readLine()!=null){
-					messages.add(bufferedReader.readLine());		
+					messages.add(bufferedReader.readLine());	
+					System.out.println(bufferedReader.readLine());
 				}
 				bufferedReader.close();
 			} catch (IOException e) {

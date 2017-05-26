@@ -41,23 +41,27 @@ class Handler extends Thread {
 	public Handler(Socket socket) {this.socket = socket;}
 
 	public void run() {
-//		WriteToFile escrever = new WriteToFile();
+		WriteToFile escrever = new WriteToFile();
 	
 		try {
 			in = new BufferedReader(new InputStreamReader(
 					socket.getInputStream()));
 
 			while (true) {
+
 				String input = in.readLine();
 				if (input == null) {
 					return;
 				} 
-				String data[] = input.split(" ", 2);
+				String data[] = input.split(" ", 3);
 
-//				escrever.setFILENAME(data[0]);
-//				escrever.setMessage(input);
-//				escrever.Write();	
-				ChatMenu.showReceivedMessages(data[1]);
+				FriendData friend = new FriendData(data[1], data[0], null, null);
+				
+				escrever.setFILENAME(friend);
+				escrever.setMessage(input);
+				escrever.Write();	
+				
+				ChatMenu.showReceivedMessages(data[0], data[1]);
 //////////////////////////////////////////////////////////Avisar que há msg nova!
 			}
 		} catch (IOException e) {

@@ -37,7 +37,12 @@ public class MonitorSelectedFriends extends Thread{
 						e.printStackTrace();
 					}
 				}
-			}	
+			}
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 		}
 
 	}	

@@ -82,7 +82,7 @@ public class ChatMenu extends JFrame {
 	 */
 	public ChatMenu(UserData userdata) {
 		this.userdata = userdata;
-		this.escrever = new WriteToFile();
+//		this.escrever = new WriteToFile();
 		createJFrame();
 		createTextAreas();
 		createSearchButton();
@@ -299,9 +299,11 @@ public class ChatMenu extends JFrame {
 	private void sendButtonAction(){
 		String message = messageTextField.getText();
 		sendmessage.setServerAddress(friendtoSendMessage.getIp());
+		sendmessage.setDestinationEmail(friendtoSendMessage.getEmail());
+		sendmessage.setFriendData(friendtoSendMessage);
 		sendmessage.setMessage(message);
 		sendmessage.newMessages(true);
-		updateFile(userdata.getUserName(), message);
+//		updateFile(userdata.getUserName(), message);
 		messageTextField.setText("");
 		messagesTextArea.append(userdata.getUserName() + ": " + message + "\n");
 	}
@@ -331,7 +333,6 @@ public class ChatMenu extends JFrame {
 	public static void changeFriend(FriendData friend) throws IOException{
 		friendtoSendMessage =  friend;
 		friendStatus = friendtoSendMessage.getConectado();
-		
 		if (friendStatus.equals("offline")){
 			btnSend.setEnabled(false);
 			messageTextField.setText("");
@@ -357,7 +358,7 @@ public class ChatMenu extends JFrame {
 			messagesTextArea.setText("");
 			messageTextField.setText("");
 			messageTextField.setEditable(true);
-			escrever.setFILENAME(friendtoSendMessage.getEmail());
+
 			UpdataMessages updateMessages = new UpdataMessages(friendtoSendMessage.getEmail() + ".txt");
 			int result = updateMessages.readFile();
 			
@@ -372,8 +373,13 @@ public class ChatMenu extends JFrame {
 		}
 	}
 	
-	public static void showReceivedMessages(String m){
-		messagesTextArea.append(friendtoSendMessage.getName() + ": " + m + "\n");
-		updateFile(friendtoSendMessage.getName(), m);
+	public static void showReceivedMessages(String email, String m){
+		
+		if (friendtoSendMessage!=null){
+			messagesTextArea.append(friendtoSendMessage.getName() + ": " + m + "\n");
+		} else {
+			System.out.println("Nova mensagem de " + email);
+		}
+
 	}
 }

@@ -7,10 +7,10 @@ import java.io.PrintWriter;
 
 public class WriteToFile {
 
-	private String FILENAME;
+	private FriendData FILENAME;
 	private String message;
 
-	public void setFILENAME(String fILENAME) {
+	public void setFILENAME(FriendData fILENAME) {
 		FILENAME = fILENAME;
 	}
 
@@ -20,7 +20,7 @@ public class WriteToFile {
 
 	public void Write() {
 
-		try(FileWriter fw = new FileWriter(FILENAME + ".txt", true);
+		try(FileWriter fw = new FileWriter(FILENAME.getName() + ".txt", true);
 				BufferedWriter bw = new BufferedWriter(fw);
 				PrintWriter out = new PrintWriter(bw))
 		{
