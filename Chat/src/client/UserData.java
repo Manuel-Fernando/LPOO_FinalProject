@@ -1,40 +1,24 @@
 package client;
 
 /**
- * Classe que guarda a informaï¿½ï¿½o de cada cliente
- * @author Utilizador
+ * Classe que guarda a informação de cada utilizador
+ * @author Carolina e Manuel
  */
 public class UserData {
-	
-	/**
-	 * Atributo que guarda o email do cliente
-	 */
-	private String email;
-	
-	/**
-	 * Atributo que guarda o nome do cliente
-	 */
-	private String userName;
-	
-	private int num_amigos;
 
-	/**
-	 * Atributo que guarda a password do cliente
-	 */
+	private String email;
+
+	private String userName;
+
 	private String password;
-	
-	/**
-	 * Atributo que guarda o ip do cliente
-	 */
+
 	private String ipAddress;
 	
 	private Friends friendsList;
 	
-	
 	/**
 	 * Construtor da classe
 	 * @param email String com o email do cliente
-	 * @param userName String com o nome do cliente
 	 * @param password String com a password do cliente
 	 */
 	public UserData(String email, String password) {
@@ -42,17 +26,9 @@ public class UserData {
 		this.email = email;
 		this.password = password;
 	}
-	
-	public int getNum_amigos() {
-		return num_amigos;
-	}
-
-	public void setNum_amigos(int num_amigos) {
-		this.num_amigos = num_amigos;
-	}
 
 	/**
-	 * Mï¿½todo para obter o email do cliente
+	 * Método para obter o email do cliente
 	 * @return String com o email
 	 */
 	public String getEmail() {
@@ -60,7 +36,7 @@ public class UserData {
 	}
 	
 	/**
-	 * Mï¿½todo para atribuir um email ao cliente
+	 * Método para atribuir um email ao cliente
 	 * @param email String com o email
 	 */
 	public void setEmail(String email) {
@@ -68,7 +44,7 @@ public class UserData {
 	}
 	
 	/**
-	 * Mï¿½todo para obter o nome de utilizador do cliente
+	 * Método para obter o nome de utilizador do cliente
 	 * @return String com o nome do cliente
 	 */
 	public String getUserName() {
@@ -76,7 +52,7 @@ public class UserData {
 	}
 	
 	/**
-	 * Mï¿½todo para atribuir um nome ao cliente
+	 * Método para atribuir um nome ao cliente
 	 * @param userName
 	 */
 	public void setUserName(String userName) {
@@ -84,7 +60,7 @@ public class UserData {
 	}
 	
 	/**
-	 * Mï¿½todo para obter a password do cliente
+	 * Método para obter a password do cliente
 	 * @return String com a password do cliente
 	 */
 	public String getPassword() {
@@ -92,7 +68,7 @@ public class UserData {
 	}
 	
 	/**
-	 * Mï¿½todo para atribuir uma password ao cliente
+	 * Método para atribuir uma password ao cliente
 	 * @param password String com a nova password
 	 */
 	public void setPassword(String password) {
@@ -100,7 +76,7 @@ public class UserData {
 	}
 
 	/**
-	 * Mï¿½todo para obter o ip do cliente
+	 * Método para obter o ip do cliente
 	 * @return String com o ip
 	 */
 	public String getIpAddress() {
@@ -108,17 +84,25 @@ public class UserData {
 	}
 
 	/**
-	 * Mï¿½todo para atribuir um ip ao cliente
+	 * Método para atribuir um ip ao cliente
 	 * @param ipAddress com o ip
 	 */
 	public void setIpAddress(String ipAddress) {
 		this.ipAddress = ipAddress;
 	}
 
+	/**
+	 * Método para retornar a lista de amigos do utilizador
+	 * @return Friends com os amigos do utilizador
+	 */
 	public Friends getFriendsList() {
 		return friendsList;
 	}
 
+	/**
+	 * Método para atribuir uma lista de amigos ao utilizador
+	 * @param friendsList Friends com os amigos a atribuir ao utilizador
+	 */
 	public void setFriendsList(Friends friendsList) {
 		this.friendsList=null;
 		this.friendsList = friendsList;

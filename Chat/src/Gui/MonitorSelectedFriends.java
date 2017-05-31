@@ -7,6 +7,11 @@ import java.util.TimerTask;
 import client.FriendData;
 import client.UserData;
 
+/**
+ * Classe responsável por monitorizar qual o amigo que foi selecionado na lista de amigos
+ * @author Carolina e Manuel
+ *
+ */
 public class MonitorSelectedFriends extends Thread{
 	
 	private ArrayList<FriendData> friends;
@@ -15,6 +20,10 @@ public class MonitorSelectedFriends extends Thread{
 	private int lastIndex = -1;
 	private int nextIndex = 0;
 	
+	/**
+	 * Método que implementa o run() da thread e é responsável por verificar se foi selecionado um 
+	 * novo amigo da lista de amigos do GUI
+	 */
 	public void run(){		
 
 		while(true){
@@ -24,7 +33,7 @@ public class MonitorSelectedFriends extends Thread{
 			nextIndex = index;
 			
 			if (index!=-1){
-				if (nextIndex!=lastIndex){  //só faz alterações quando há nova escolha de amigo
+				if (nextIndex!=lastIndex){
 					
 					lastIndex = nextIndex;
 					

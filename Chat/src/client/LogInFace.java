@@ -18,15 +18,27 @@ import java.util.TimerTask;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-
+/**
+ * Classe que é responsável pelo LogIn através do Facebook
+ * @author Carolina e Manuel
+ *
+ */
 public class LogInFace {
 	
+	/**
+	 * Método estático que cria um utilizador com as informações obtidas através do Facebook
+	 * @return UserData com o utilizador 
+	 */
 	public static UserData LogIn_Face(){
 		UserData utilizador = LogInFaceRequest();
 		LogIn_Register(utilizador);
 		return utilizador;
 	}
 
+	/**
+	 * Método estático
+	 * @return UserData com o utilizador
+	 */
 	public static UserData LogInFaceRequest() {
 
 		String domain = "http://google.com";
@@ -65,6 +77,11 @@ public class LogInFace {
 			}
 		}
 	}
+	
+	/**
+	 * Método estático que 
+	 * @param utilizador UserData com o utilizador
+	 */
 	public static void LogIn_Register(UserData utilizador) {
 		ConnectorFile conector = new ConnectorFile();
 		try {

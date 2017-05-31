@@ -8,15 +8,28 @@ import java.util.TimerTask;
 import Gui.ChatMenu;
 import mySQLConnection.ConnectorFile;
 
+/**
+ * Classe que é responsável por monitorizar constantemente o estado dos amigos do utilizador
+ * @author Carolina e Manuel
+ *
+ */
 public class MonitorFriends extends TimerTask{
 	
 	private UserData user;
 	
+	/**
+	 * Contrutor da classe
+	 * @param user UserData com o utilizador
+	 */
 	public MonitorFriends(UserData user)
 	{
 		this.user = user;
 	}
 
+	/**
+	 * Método que implementa o run() da thread para estar constantemente 
+	 * e verificar o estado dos amigos
+	 */
 	public void run(){
 		ArrayList<FriendData> amigos = user.getFriendsList().getFriendsList();
 		if(amigos!=null){
@@ -41,12 +54,6 @@ public class MonitorFriends extends TimerTask{
 			user.setFriendsList(friendsList);	
 			
 		}
-		
-//		
-//		for (int i=0;i<user.getFriendsList().getFriendsList().size();i++){
-//			System.out.println(user.getFriendsList().getFriendsList().get(i));
-//		}
-//		
 		
 		ChatMenu.updateList();
 	}

@@ -6,14 +6,14 @@ import client.UserData;
 import mySQLConnection.ConnectorFile;
 
 /**
- * Classe que guarda a informaï¿½ï¿½o para o registo do cliente
- * @author Utilizador
+ * Classe é responsável por fazer o registo do utilizador
+ * @author Carolina e Manuel
  */
 public class Register {
 
 	/**
-	 * Mï¿½todo para requisitar permissï¿½o para o registo
-	 * @return 1 - Email jï¿½ existe; 2 - Email ainda nï¿½o existe; 3 - Erro; 4 - Password nï¿½o vï¿½lida
+	 * Método para requisitar permissão para o registo
+	 * @return 1 - Email já existe; 2 - Email ainda não existe; 3 - Erro; 4 - Password não válida
 	 */
 	public static int RegisterRequest(UserData user) {
 

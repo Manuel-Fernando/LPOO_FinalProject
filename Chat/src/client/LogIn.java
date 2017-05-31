@@ -9,15 +9,16 @@ import java.util.TimerTask;
 import mySQLConnection.ConnectorFile;
 
 /**
- * Classe que guarda guarda a informaï¿½ï¿½o para LogIn
- * @author Utilizador
+ * Classe que é responsável pelo LogIn
+ * @author Carolina e Manuel
  */
 public class LogIn {
 
-
 	/**
-	 * Mï¿½todo para requisitar uma permissï¿½o de login ao servidor
-	 * @return accepted true caso seja permitido
+	 * Método para requisitar uma permissão de login ao servidor
+	 * @return 1 - LogIn com sucesso
+	 * -1 - utilizador não existe
+	 * 2 - erro no LogIn
 	 */
 	public static int LogInRequest(UserData user) {
 		

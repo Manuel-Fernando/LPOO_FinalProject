@@ -11,10 +11,18 @@ import java.net.Socket;
 
 import Gui.ChatMenu;
 
+/**
+ * Classe que é responsável por verificar se existem mensagens a serem recebidas
+ * @author Carolina e Manuel
+ *
+ */
 public class ReceiveMessage extends Thread {
 
 	private static final int PORT = 9001;
 	
+	/**
+	 * Métoto que implementa o run() da thread para monitorizar a chegada de mensagens
+	 */
 	public void run(){
 		ServerSocket listener = null;
 		try {
@@ -33,13 +41,26 @@ public class ReceiveMessage extends Thread {
 		}
 	}
 }
+
+/**
+ * Classe que é responsável por ler e guardar a mensagem recebida
+ * @author Carolina e Manuel
+ *
+ */
 class Handler extends Thread {
 	
 	private Socket socket;
 	private BufferedReader in;
 
+	/**
+	 * Construtor da classe
+	 * @param socket Socket com o socket a considerar
+	 */
 	public Handler(Socket socket) {this.socket = socket;}
 
+	/**
+	 * Método que implementa o run() da thread de forma ler as mensagens e guardá-las num ficheiro
+	 */
 	public void run() {
 		WriteToFile escrever = new WriteToFile();
 	

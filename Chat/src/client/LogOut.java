@@ -3,14 +3,14 @@ package client;
 import mySQLConnection.ConnectorFile;
 
 /**
- * Classe que guarda a informaï¿½ï¿½o de LogOut do cliente
- * @author Utilizador 
+ * Classe que é responsável pelo LogOut do utilizador
+ * @author Carolina e Manuel 
  */
 public class LogOut {
 	
 	/**
-	 * Mï¿½todo para requisitar permissï¿½o para logOut
-	 * @return accepted true caso seja permitido
+	 * Método que altera o estado do utilizador para offline, na base de dados
+	 * @param user UserData com o utilizador
 	 */
 	public static void logOutRequest(UserData user) {
 		ConnectorFile conector = new ConnectorFile();
