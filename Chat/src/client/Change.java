@@ -45,20 +45,26 @@ public class Change {
 	 * Método estático para alterar o email do utilizador na base de dados
 	 * @param newEmail String com o novo email a guardar
 	 * @param user UserData com o utilizador
-	 * @return UserData com a informação atualizada
+	 * @return int: 1 - alteração com sucesso
+	 * -1 - email já existe
+	 * -2 - erro na ligação
 	 */
-	public static UserData email(String newEmail, UserData user){
+	public static int email(String newEmail, UserData user){
 		ConnectorFile conector = new ConnectorFile();
 		String sql ="SELECT `email` FROM `utilizador` WHERE `email` = '"+newEmail+"'";
 		try {
 			ResultSet rs = conector.SearchMySQLData(sql);
 			if (!rs.isBeforeFirst()){
+				System.out.println("1");
 				sql ="UPDATE `utilizador` SET `email`='"+newEmail+"' WHERE `email` = '"+user.getEmail()+"'";
 				conector.AddMySQLData(sql);
 				user.setEmail(newEmail);
 			}
-			else {return null;}
-		} catch (SQLException e) {return null;}
-		return user;
+			else {
+				System.out.println("2");
+				return -1;
+			}
+		} catch (SQLException e) {return -2;}
+		return 1;
 	}
 }

@@ -20,24 +20,19 @@ public class Register {
 		try {
 			ConnectorFile conector = new ConnectorFile();		
 			ResultSet rs = conector.SearchMySQLData("SELECT email FROM utilizador WHERE email = '" + user.getEmail() + "' ");
-
+			
 			if (rs.isBeforeFirst() ) {    
 				return 1;
-			} else if (user.getPassword().equals("") || user.getEmail().equals("") || user.getUserName().equals("")) {
+			} else if (user.getPassword()==null || user.getEmail().equals("") || user.getUserName().equals("")) {
 				return 4;
 
 			} else {
-				if (user.getEmail()!=null && user.getPassword()!=null && user.getUserName()!=null){
-					if (!user.getEmail().isEmpty() && !user.getPassword().isEmpty() && !user.getUserName().isEmpty()){
-						String sql = "INSERT INTO utilizador (email, nome, password)" + "VALUES ('"+user.getEmail()+"', '"+user.getUserName()+"', '"+user.getPassword()+"')";
+				String sql = "INSERT INTO utilizador (email, nome, password)" + "VALUES ('"+user.getEmail()+"', '"+user.getUserName()+"', '"+user.getPassword()+"')";
 
-						conector.AddMySQLData(sql);
-					}
-				}
+				conector.AddMySQLData(sql);
 				return 2;
 			}
 		} catch (Exception e1) {
-			e1.printStackTrace();
 			return 3;
 		}
 

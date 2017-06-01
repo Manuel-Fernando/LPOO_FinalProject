@@ -195,6 +195,7 @@ public class ChatMenu extends JFrame {
 			ArrayList<FriendData> possibleFriends = SearchFriend.Search(friend, userdata);
 
 			if (possibleFriends!=null){
+				lblWarning.setVisible(false);
 				PossibleFriends pFriends = new PossibleFriends(possibleFriends, userdata);
 				pFriends.setVisible(true);
 			} else{

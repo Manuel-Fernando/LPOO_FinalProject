@@ -43,7 +43,9 @@ public class SearchFriend {
 					}
 				}
 			}
-		} catch (SQLException e) {e.printStackTrace();}
+		} catch (SQLException e) {
+			return null;
+		}
 		return friends;
 	}
 }

@@ -50,6 +50,7 @@ public class SignInMenu extends JFrame {
 	private JLabel lblAllFieldsAre;
 	private JLabel lblPasswordsMustBe;
 	private static JFrame jframeLogIn;
+	private JLabel lblSigninError;
 
 	/**
 	 * Launch the application.
@@ -77,6 +78,7 @@ public class SignInMenu extends JFrame {
 		createLabels2();
 		createWarnings1();
 		createWarnings2();
+		createWarnings3();
 		createTextFields1();
 		createTextFields2();
 		createSeparators1();
@@ -158,6 +160,15 @@ public class SignInMenu extends JFrame {
 		lblPasswordsMustBe.setForeground(new Color (8, 83, 148));
 		lblPasswordsMustBe.setBounds(227, 181, 128, 14);
 		contentPane.add(lblPasswordsMustBe);
+	}
+	
+	private void createWarnings3(){
+		lblSigninError = new JLabel("SignIn error please try again");
+		lblSigninError.setBounds(135, 286, 142, 14);
+		lblSigninError.setFont(new Font("Kristen ITC", Font.PLAIN, 9));
+		lblSigninError.setForeground(new Color (8, 83, 148));
+		lblSigninError.setVisible(false);
+		contentPane.add(lblSigninError);
 	}
 	
 	private void createTextFields1(){
@@ -244,22 +255,25 @@ public class SignInMenu extends JFrame {
 	}
 	
 	private void signInAction(){
-		
+		lblSigninError.setVisible(false);
 		UserData meu = new UserData(getEmail(), getPassword());
-		meu.setUserName(getName());
+		meu.setUserName(getUsername());
 		int x = Register.RegisterRequest(meu);
-
+		
 		if (x == 1) {
 			lblEmailAlreadyTaken.setVisible(true);
 			lblAllFieldsAre.setVisible(false);
 		} else if (x == 2){
 			lblEmailAlreadyTaken.setVisible(false);	
 			lblAllFieldsAre.setVisible(false);
+			this.setVisible(false);
 			LogInMenu login = new LogInMenu();
 			login.setVisible(true);
 		} else if (x == 4){
 			lblAllFieldsAre.setVisible(true);
 			lblEmailAlreadyTaken.setVisible(false);
+		} else if (x==3){
+			lblSigninError.setVisible(true);
 		}
 	}
 	
@@ -305,8 +319,8 @@ public class SignInMenu extends JFrame {
 	}
 	
 	private String getUsername(){
-		String user = usernameTxtField.getText();
+		String name = usernameTxtField.getText();
 		
-		return user;
+		return name;
 	}
 }

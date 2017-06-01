@@ -47,6 +47,7 @@ public class LogInMenu extends JFrame {
 	private JPasswordField passwordField;
 	private JButton btnSignIn;
 	private JPanel horizontalSeparator;
+	private JLabel lblLoginError;
 
 	/**
 	 * Launch the application.
@@ -73,6 +74,7 @@ public class LogInMenu extends JFrame {
 		createtitles();
 		createWarnings1();
 		createWarnings2();
+		createWarnings3();
 		createLineSeparators();
 		createTxtFields();
 		createLogInButton();
@@ -118,9 +120,6 @@ public class LogInMenu extends JFrame {
 		contentPane.setLayout(null);
 	}
 	
-	/**
-	 * Criar os labels com os warnings
-	 */
 	private void createWarnings1(){
 		
 		lblEmailWarning = new JLabel("Please insert a valid email");
@@ -130,11 +129,11 @@ public class LogInMenu extends JFrame {
 		lblEmailWarning.setBounds(83, 116, 112, 14);
 		contentPane.add(lblEmailWarning);
 		
-		lblPasswordWarning = new JLabel("Please insert a password");
+		lblPasswordWarning = new JLabel("Invalid password");
 		lblPasswordWarning.setFont(new Font("Kristen ITC", Font.PLAIN, 9));
 		lblPasswordWarning.setForeground(new Color (8, 83, 148));
 		lblPasswordWarning.setVisible(false);
-		lblPasswordWarning.setBounds(83, 178, 112, 14);
+		lblPasswordWarning.setBounds(100, 178, 95, 14);
 		contentPane.add(lblPasswordWarning);
 		
 	}
@@ -148,9 +147,15 @@ public class LogInMenu extends JFrame {
 		contentPane.add(lblEmailDontExist);
 	}
 	
-	/**
-	 * Criar os separadores
-	 */
+	private void createWarnings3(){
+		lblLoginError = new JLabel("LogIn error please try again");
+		lblLoginError.setFont(new Font("Kristen ITC", Font.PLAIN, 9));
+		lblLoginError.setForeground(new Color (8, 83, 148));
+		lblLoginError.setVisible(false);
+		lblLoginError.setBounds(80, 235, 143, 14);
+		contentPane.add(lblLoginError);
+	}
+
 	private void createLineSeparators(){
 		
 		horizontalSeparator = new JPanel();
@@ -215,22 +220,22 @@ public class LogInMenu extends JFrame {
 	}
 	
 	private void logInAction(){
-		
+		lblLoginError.setVisible(false);
 		UserData meu = new UserData(getEmail(), getPassword());
 		int x = LogIn.LogInRequest(meu);					
 		
-		if (x==-1){
+		if (x==-1 && !getEmail().equals("")){
 			lblEmailDontExist.setVisible(true);
-			lblEmailWarning.setVisible(true);
 		}
 		else if(x==0){
 			lblPasswordWarning.setVisible(true);
-			lblEmailDontExist.setVisible(false);
 		}else if (x==1) {
 			ChatMenu CM = new ChatMenu(meu);
 			CM.setVisible(true);
 			dispose();
-		}			
+		} else if (x==2) {
+			lblLoginError.setVisible(true);
+		}
 	}
 	
 	/**
@@ -278,6 +283,7 @@ public class LogInMenu extends JFrame {
 	 * @return String com o email introduzido
 	 */
 	private String getEmail(){
+		lblEmailDontExist.setVisible(false);
 		String email = txtEmail.getText();
 		
 		if (email.equals("")){

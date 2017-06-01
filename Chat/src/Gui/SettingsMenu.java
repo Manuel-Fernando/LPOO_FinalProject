@@ -54,6 +54,8 @@ public class SettingsMenu extends JFrame {
 	private JPanel passwordLine2;
 	private JPanel emailLine;
 	private static UserData userdata;
+	private JLabel lblEmailAlreadyExists;
+	private JLabel lblConnectionError;
 
 	/**
 	 * Launch the application.
@@ -82,7 +84,8 @@ public class SettingsMenu extends JFrame {
 		createLabels1();
 		createLabels2();
 		createSaveButtons();
-		createWarnings();
+		createWarnings1();
+		createWarnings2();
 		createLines1();
 		createLines2();
 		createTxtFields1();
@@ -154,16 +157,31 @@ public class SettingsMenu extends JFrame {
 		passwordField2.setBackground(Color.WHITE);
 		passwordField2.setBorder(null);
 		contentPane.add(passwordField2);
-		
 	}
 	
-	private void createWarnings(){
+	private void createWarnings1(){
 		lblError = new JLabel("Passwords don't match");
 		lblError.setVisible(false);
 		lblError.setFont(new Font("Kristen ITC", Font.PLAIN, 9));
 		lblError.setForeground(new Color (8, 83, 148));
 		lblError.setBounds(155, 196, 140, 14);
 		contentPane.add(lblError);
+	}
+	
+	private void createWarnings2(){
+		lblEmailAlreadyExists = new JLabel("Email already exists");
+		lblEmailAlreadyExists.setBounds(155, 115, 91, 14);
+		lblEmailAlreadyExists.setFont(new Font("Kristen ITC", Font.PLAIN, 9));
+		lblEmailAlreadyExists.setForeground(new Color (8, 83, 148));
+		lblEmailAlreadyExists.setVisible(false);
+		contentPane.add(lblEmailAlreadyExists);
+		
+		lblConnectionError = new JLabel("Connection error please try again");
+		lblConnectionError.setBounds(168, 236, 161, 14);
+		lblConnectionError.setFont(new Font("Kristen ITC", Font.PLAIN, 9));
+		lblConnectionError.setForeground(new Color (8, 83, 148));
+		lblConnectionError.setVisible(false);
+		contentPane.add(lblConnectionError);
 	}
 	
 	private void createJFrame(){
@@ -407,7 +425,7 @@ public class SettingsMenu extends JFrame {
 		changeUsername(name);
 		
 		UsernameTextField.setEditable(false);
-		UsernameTextField.setText("");
+		UsernameTextField.setText(userdata.getUserName());
 		btnSaveUsername.setVisible(false);
 		btnEditUsername.setVisible(true);
 		btnCancelUsername.setVisible(false);
@@ -465,14 +483,14 @@ public class SettingsMenu extends JFrame {
 		changeEmail(email);
 		
 		emailTextField.setEditable(false);
-		emailTextField.setText("");
+		emailTextField.setText(userdata.getEmail());
 		btnSaveEmail.setVisible(false);
 		btnEditEmail.setVisible(true);
 		btnCancelEmail.setVisible(false);
 	}
 	
 	private void changePassword(String password1, String password2){
-		
+		lblError.setVisible(false);
 		if (password1.equals(password2)){
 			Change.password(password1, userdata);
 		} else {
@@ -482,7 +500,16 @@ public class SettingsMenu extends JFrame {
 	
 	private void changeEmail(String email){
 		//VERIFICAR FORMATO DE EMAIL
-		Change.email(email, userdata);
+		lblEmailAlreadyExists.setVisible(false);
+		lblConnectionError.setVisible(false);
+		int x = Change.email(email, userdata);
+		
+		if (x==-1){
+			lblEmailAlreadyExists.setVisible(true);
+		} else if (x==-2){
+			lblConnectionError.setVisible(true);
+		}
+		
 	}
 	
 	private void changeUsername(String name){
