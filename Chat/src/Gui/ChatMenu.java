@@ -36,10 +36,12 @@ import javax.swing.JList;
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
+
 import java.awt.event.MouseWheelListener;
 import java.awt.event.MouseWheelEvent;
 
-public class ChatMenu extends JFrame {
+public class ChatMenu extends JFrame implements MouseWheelListener{
 
 	private static JPanel contentPane;
 	private static JTextField messageTextField;
@@ -62,10 +64,10 @@ public class ChatMenu extends JFrame {
 	private String friendIp;
 	private static TitledBorder titledBorder;
 	private static WriteToFile escrever;
+	private JScrollPane scroll1;
+	private JScrollPane scroll2;
 	private static String friendStatus;
 	private static MyListCellRenderer highlight;
-	private static JScrollBar scrollBar;
-	private JScrollBar scrollBar_1;
 
 	/**
 	 * Launch the application.
@@ -132,7 +134,7 @@ public class ChatMenu extends JFrame {
 			}
 		});
 		
-		setBounds(100, 100, 560, 370);
+		setBounds(100, 100, 580, 370);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -142,14 +144,14 @@ public class ChatMenu extends JFrame {
 	
 	private void createFriendsList(){
 		model = new DefaultListModel <String>();
-		scrollBar_1 = new JScrollBar();
-		scrollBar_1.setBounds(508, 74, 17, 193);
-		contentPane.add(scrollBar_1);
 		friendsList = new JList <String>(model);
-		friendsList.setBounds(405, 74, 120, 193);
 		friendsList.setCellRenderer(highlight);
+		
+		scroll2 = new JScrollPane (friendsList, 
+				   JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		scroll2.setBounds(405, 74, 135, 193);
 
-		contentPane.add(friendsList);	
+		contentPane.add(scroll2);	
 	}
 	
 	public static void updateList(){
@@ -162,21 +164,21 @@ public class ChatMenu extends JFrame {
 
 		for (int i=0; i<userFriends.size(); i++){			
 			String online = userFriends.get(i).getConectado();	
-			model.addElement(userFriends.get(i).getName() + " - " + online);
+			model.addElement(userFriends.get(i).getName() + " (" + online + ")");
 			friends.add(userFriends.get(i));
 		}		
 	}
 
 	private void createTextAreas(){		
-		messagesTextArea = new JTextArea();
-		messagesTextArea.setBounds(25, 74, 350, 193);
+		messagesTextArea = new JTextArea("");
 		messagesTextArea.setForeground(Color.BLACK);
 		messagesTextArea.setBackground(Color.WHITE);
 		messagesTextArea.setEditable(false);
-		scrollBar = new JScrollBar();
-		scrollBar.setBounds(358, 74, 17, 193);
-		contentPane.add(scrollBar);
-		contentPane.add(messagesTextArea);
+		scroll1 = new JScrollPane (messagesTextArea, 
+				   JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		scroll1.setBounds(25, 74, 350, 193);
+		contentPane.add(scroll1);
+		scroll1.addMouseWheelListener(this);
 		createFriendsList();
 	}
 	
@@ -231,7 +233,7 @@ public class ChatMenu extends JFrame {
 				comboBoxAction();
 			}
 		});
-		comboBox.setBounds(384, 12, 126, 20);
+		comboBox.setBounds(410, 12, 126, 20);
 		contentPane.add(comboBox);	
 	}
 	
@@ -280,7 +282,7 @@ public class ChatMenu extends JFrame {
 		backgroundFriends.setBorder(new EmptyBorder(10,10,10,10));
 		backgroundFriends.setBorder(BorderFactory.createTitledBorder(null, "Friends List", TitledBorder.LEFT, TitledBorder.TOP, new Font("Kristen ITC", Font.BOLD, 9), Color.WHITE));
 		backgroundFriends.setBackground(new Color(8, 83, 148));
-		backgroundFriends.setBounds(394, 57, 140, 220);
+		backgroundFriends.setBounds(394, 57, 155, 220);
 		contentPane.add(backgroundFriends);
 	}
 	
@@ -309,12 +311,13 @@ public class ChatMenu extends JFrame {
 		sendmessage.newMessages(true);
 		messageTextField.setText("");
 		messagesTextArea.append(userdata.getUserName() + ": " + message + "\n");
+		messagesTextArea.setCaretPosition(messagesTextArea.getDocument().getLength());
 	}
 	
 	private void sendMessage(){
 		sendmessage = new SendMessage();
 		sendmessage.setUserData(userdata);
-		sendmessage.setServerAddress(friendIp); //---------------------------------------------------------		
+		sendmessage.setServerAddress(friendIp); 	
 		sendmessage.start();
 		sendmessage.newMessages(false);
 		
@@ -356,12 +359,12 @@ public class ChatMenu extends JFrame {
 				
 				for (int i=0; i<messageList.size(); i++){
 					messagesTextArea.append(messageList.get(i) + '\n');
-					scrollBar.setVisible(true);
 				}
 			}
 			
 			messagesTextArea.append('\n' + friendtoSendMessage.getName() + " is offline.");
 			messageTextField.setEditable(false);
+			messagesTextArea.setCaretPosition(messagesTextArea.getDocument().getLength());
 			
 		} else if (friendStatus.equals("online")){
 			btnSend.setEnabled(true);
@@ -378,6 +381,7 @@ public class ChatMenu extends JFrame {
 				
 				for (int i=0; i<messageList.size(); i++){
 					messagesTextArea.append(messageList.get(i) + '\n');
+					messagesTextArea.setCaretPosition(messagesTextArea.getDocument().getLength());
 				}
 			}
 		}
@@ -387,9 +391,8 @@ public class ChatMenu extends JFrame {
 		
 		if (friendtoSendMessage!=null){
 			messagesTextArea.append(friendtoSendMessage.getName() + ": " + m + "\n");
-		} else {
-			System.out.println("Nova mensagem de " + email);
-			
+			messagesTextArea.setCaretPosition(messagesTextArea.getDocument().getLength());
+		} else {			
 			int index = findFriendIndex(email);
 			
 			highlight.addIndex(index);
@@ -407,5 +410,14 @@ public class ChatMenu extends JFrame {
 		}
 		
 		return -1;
+	}
+
+	@Override
+	public void mouseWheelMoved(MouseWheelEvent e) {
+	       if (e.getScrollType() == MouseWheelEvent.WHEEL_UNIT_SCROLL) {
+	               scroll1.getVerticalScrollBar().getUnitIncrement(1);
+	       } else { //scroll type == MouseWheelEvent.WHEEL_BLOCK_SCROLL
+	    	   scroll1.getVerticalScrollBar().getBlockIncrement(1);
+	       }
 	}
 }
