@@ -35,6 +35,9 @@ import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JScrollBar;
+import java.awt.event.MouseWheelListener;
+import java.awt.event.MouseWheelEvent;
 
 public class ChatMenu extends JFrame {
 
@@ -61,6 +64,8 @@ public class ChatMenu extends JFrame {
 	private static WriteToFile escrever;
 	private static String friendStatus;
 	private static MyListCellRenderer highlight;
+	private static JScrollBar scrollBar;
+	private JScrollBar scrollBar_1;
 
 	/**
 	 * Launch the application.
@@ -137,10 +142,13 @@ public class ChatMenu extends JFrame {
 	
 	private void createFriendsList(){
 		model = new DefaultListModel <String>();
+		scrollBar_1 = new JScrollBar();
+		scrollBar_1.setBounds(508, 74, 17, 193);
+		contentPane.add(scrollBar_1);
 		friendsList = new JList <String>(model);
 		friendsList.setBounds(405, 74, 120, 193);
 		friendsList.setCellRenderer(highlight);
-		
+
 		contentPane.add(friendsList);	
 	}
 	
@@ -160,13 +168,16 @@ public class ChatMenu extends JFrame {
 	}
 
 	private void createTextAreas(){		
-		createFriendsList();
 		messagesTextArea = new JTextArea();
 		messagesTextArea.setBounds(25, 74, 350, 193);
 		messagesTextArea.setForeground(Color.BLACK);
 		messagesTextArea.setBackground(Color.WHITE);
 		messagesTextArea.setEditable(false);
+		scrollBar = new JScrollBar();
+		scrollBar.setBounds(358, 74, 17, 193);
+		contentPane.add(scrollBar);
 		contentPane.add(messagesTextArea);
+		createFriendsList();
 	}
 	
 	private void createSearchButton(){
@@ -254,10 +265,6 @@ public class ChatMenu extends JFrame {
 		contentPane.add(lineMessages);
 	}
 	
-	static void updateBackground(String friendName){
-		backgroundMessages.setBorder(BorderFactory.createTitledBorder(null, friendName, TitledBorder.LEFT, TitledBorder.TOP, new Font("Kristen ITC", Font.BOLD, 9), Color.WHITE));
-	}
-	
 	private void createBackgrounds(){
 		backgroundMessages = new JPanel();
 		backgroundMessages.setForeground(Color.WHITE);
@@ -290,8 +297,7 @@ public class ChatMenu extends JFrame {
 			}
 		});
 		btnSend.setBounds(405, 297, 64, 23);
-		contentPane.add(btnSend);
-		
+		contentPane.add(btnSend);		
 	}
 	
 	private void sendButtonAction(){
@@ -325,6 +331,7 @@ public class ChatMenu extends JFrame {
 	
 	public static void changeTitle(FriendData friend){
 		titledBorder.setTitle(friend.getName());
+		backgroundMessages.repaint();
 	}
 	
 	public static void changeFriend(FriendData friend) throws IOException{
@@ -349,6 +356,7 @@ public class ChatMenu extends JFrame {
 				
 				for (int i=0; i<messageList.size(); i++){
 					messagesTextArea.append(messageList.get(i) + '\n');
+					scrollBar.setVisible(true);
 				}
 			}
 			
@@ -400,5 +408,4 @@ public class ChatMenu extends JFrame {
 		
 		return -1;
 	}
-	
 }
