@@ -223,13 +223,12 @@ public class LogInMenu extends JFrame {
 		lblLoginError.setVisible(false);
 		UserData meu = new UserData(getEmail(), getPassword());
 		int x = LogIn.LogInRequest(meu);					
-		
+
 		if (x==-1 && !getEmail().equals("")){
 			lblEmailDontExist.setVisible(true);
-		}
-		else if(x==0){
+		}else if(x==0){
 			lblPasswordWarning.setVisible(true);
-		}else if (x==1) {
+		}else if (x==1 && isValidEmailAddress(getEmail())) {
 			ChatMenu CM = new ChatMenu(meu);
 			CM.setVisible(true);
 			dispose();
@@ -285,16 +284,21 @@ public class LogInMenu extends JFrame {
 	private String getEmail(){
 		lblEmailDontExist.setVisible(false);
 		String email = txtEmail.getText();
-		
-		if (email.equals("")){
+
+		if (email.equals("") || !isValidEmailAddress(email)){
 			lblEmailWarning.setVisible(true);
 		} else {
 			lblEmailWarning.setVisible(false);
 		}
-		
-		//VERIFICAR SE O UTILIZADOR INTRODUZ FORMATO DE EMAIL
-		
+
 		return email;
+	}
+
+	private boolean isValidEmailAddress(String email) {
+		String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
+		java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
+		java.util.regex.Matcher m = p.matcher(email);
+		return m.matches();
 	}
 	
 	/**

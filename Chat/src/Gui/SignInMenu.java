@@ -263,7 +263,7 @@ public class SignInMenu extends JFrame {
 		if (x == 1) {
 			lblEmailAlreadyTaken.setVisible(true);
 			lblAllFieldsAre.setVisible(false);
-		} else if (x == 2){
+		} else if (x == 2 && isValidEmailAddress(getEmail())){
 			lblEmailAlreadyTaken.setVisible(false);	
 			lblAllFieldsAre.setVisible(false);
 			this.setVisible(false);
@@ -297,9 +297,20 @@ public class SignInMenu extends JFrame {
 	private String getEmail(){
 		email = emailTxtField.getText();
 		
-		//VERIFICAR SE O UTILIZADOR INTRODUZ EMAIL
+		if (isValidEmailAddress(email)){
+			lblAllFieldsAre.setVisible(false);
+		} else {
+			lblAllFieldsAre.setVisible(true);
+		}
 		
 		return email;
+	}
+	
+	private boolean isValidEmailAddress(String email) {
+		String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
+		java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
+		java.util.regex.Matcher m = p.matcher(email);
+		return m.matches();
 	}
 	
 	private String getPassword(){
