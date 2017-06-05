@@ -18,6 +18,7 @@ public class AddFriend {
 		
 		ConnectorFile conector = new ConnectorFile();
 		conector.AddMySQLData("INSERT INTO `amizade`(`uti1`, `uti2`) VALUES ('"+user.getEmail()+"','"+friendEmail+"')");
+		conector.AddMySQLData("INSERT INTO `amizade`(`uti1`, `uti2`) VALUES ('"+friendEmail+"','"+user.getEmail()+"')");
 		
 	}
 	
