@@ -38,11 +38,11 @@ public class MonitorFriends extends TimerTask{
 			e1.printStackTrace();
 		}
 		ArrayList<FriendData> amigos = user.getFriendsList().getFriendsList();
-		System.out.println(user.getFriendsList().getFriendsList().size());
+
 		if(amigos!=null){
 
 			String sql = "SELECT `email`, `nome`, `conectado`, `IP` FROM `utilizador` WHERE 0";
-//			ConnectorFile conector = new ConnectorFile();
+
 			FriendData friend;
 			ArrayList<FriendData> friends = new ArrayList<FriendData>();
 
