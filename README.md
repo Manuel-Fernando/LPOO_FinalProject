@@ -15,6 +15,12 @@ Colocar o ficheiro Chat.jar e o chromedriver.exe (windows) ou chromedriver (mac)
 ### SQL
 ![Screenshot](SQLcode.png)
 
+A nossa maior dificuldade no desenvolvimento da aplicação consistiu no design da mesma na fase inicial, mais concretamente nas classes que deveriam ser criadas e como estas deveriam interagir.
+
+Overall time spent developing: cerca de 65 horas
+Work distribution amongst team members: 50% Carolina; 50% Manuel
+
+
 ## User Manual
 
 A janela inicial é usada para o utilizador fazer log in no chat ou sign in caso não se encontre registado.
@@ -38,22 +44,3 @@ Ao selecionar Settings será possível editar qualquer informação relacionada 
 ![Screenshot](NewMockup5.png)
 
 No pdf ChatPrototype encontra-se o protótipo com os links entre as páginas.
-
-## Test Design
-#### Registo de cliente 
-Fazer um registo e ir procurar à base de dados se foi registado com sucesso;
-
-#### LogIn 
-Fazer logIn e verificar se na base de dados ficou online;
-
-#### Registo de cliente com mesmo email 
-Deve dar um erro de que já existe um cliente com o mesmo email;
-
-#### LogOut 
-Fazer log out e ver se na base de dados o user ficou a offline;
-
-#### Enviar e receber mensagens 
-Enviar mensagem para si próprio e verificar que recebe;
-
-#### Procura de amigos com mesmo nome 
-Verificar que user não pode ser amigo de si mesmo;
