@@ -5,6 +5,7 @@ Carolina da Ponte Rocha 201304026 up201304026@fe.up.pt
 Manuel Fernando Sequeira Pereira 201205052 ee12314@fe.up.pt
 
 ##Setup/Installation procedure
+
 Colocar o ficheiro Chat.jar e o chromedriver.exe (windows) ou chromedriver (mac) na mesma pasta e correr o ficheiro Chat.jar
 
 ## Architecture Design
