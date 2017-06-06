@@ -15,6 +15,7 @@ import mySQLConnection.ConnectorFile;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.Font;
@@ -263,8 +264,8 @@ public class SettingsMenu extends JFrame {
 		btnCancelUsername.setFont(new Font("Kristen ITC", Font.BOLD, 10));
 		btnCancelUsername.setBorder(new LineBorder(new Color(0, 0, 0)));
 		btnCancelUsername.setBounds(397, 63, 62, 21);
-		btnCancelUsername.setBackground(new Color (8, 83, 148));
-		btnCancelUsername.setForeground(Color.WHITE);
+		btnCancelUsername.setBackground(UIManager.getColor("CheckBoxMenuItem.acceleratorForeground"));
+		btnCancelUsername.setForeground(Color.BLACK);
 		contentPane.add(btnCancelUsername);
 		
 	}
@@ -288,8 +289,8 @@ public class SettingsMenu extends JFrame {
 		btnCancelEmail.setFont(new Font("Kristen ITC", Font.BOLD, 10));
 		btnCancelEmail.setBorder(new LineBorder(new Color(0, 0, 0)));
 		btnCancelEmail.setBounds(397, 95, 62, 21);
-		btnCancelEmail.setBackground(new Color (8, 83, 148));
-		btnCancelEmail.setForeground(Color.WHITE);
+		btnCancelEmail.setBackground(UIManager.getColor("CheckBoxMenuItem.acceleratorForeground"));
+		btnCancelEmail.setForeground(Color.BLACK);
 		contentPane.add(btnCancelEmail);
 		
 	}
@@ -313,8 +314,8 @@ public class SettingsMenu extends JFrame {
 		btnCancelPassword.setFont(new Font("Kristen ITC", Font.BOLD, 10));
 		btnCancelPassword.setBorder(new LineBorder(new Color(0, 0, 0)));
 		btnCancelPassword.setBounds(397, 133, 62, 21);
-		btnCancelPassword.setBackground(new Color (8, 83, 148));
-		btnCancelPassword.setForeground(Color.WHITE);
+		btnCancelPassword.setBackground(UIManager.getColor("CheckBoxMenuItem.acceleratorForeground"));
+		btnCancelPassword.setForeground(Color.BLACK);
 		contentPane.add(btnCancelPassword);
 	}
 	
@@ -339,8 +340,8 @@ public class SettingsMenu extends JFrame {
 		btnEditPassword.setFont(new Font("Kristen ITC", Font.BOLD, 10));
 		btnEditPassword.setBorder(new LineBorder(new Color(0, 0, 0)));
 		btnEditPassword.setBounds(265, 133, 56, 21);
-		btnEditPassword.setBackground(new Color (8, 83, 148));
-		btnEditPassword.setForeground(Color.WHITE);
+		btnEditPassword.setBackground(UIManager.getColor("CheckBoxMenuItem.acceleratorForeground"));
+		btnEditPassword.setForeground(Color.BLACK);
 		contentPane.add(btnEditPassword);
 		
 	}
@@ -366,8 +367,8 @@ public class SettingsMenu extends JFrame {
 		btnEditEmail.setFont(new Font("Kristen ITC", Font.BOLD, 10));
 		btnEditEmail.setBorder(new LineBorder(new Color(0, 0, 0)));
 		btnEditEmail.setBounds(265, 95, 56, 21);
-		btnEditEmail.setBackground(new Color (8, 83, 148));
-		btnEditEmail.setForeground(Color.WHITE);
+		btnEditEmail.setBackground(UIManager.getColor("CheckBoxMenuItem.acceleratorForeground"));
+		btnEditEmail.setForeground(Color.BLACK);
 		contentPane.add(btnEditEmail);
 		
 	}
@@ -390,8 +391,8 @@ public class SettingsMenu extends JFrame {
 		btnEditUsername.setFont(new Font("Kristen ITC", Font.BOLD, 10));
 		btnEditUsername.setBorder(new LineBorder(new Color(0, 0, 0)));
 		btnEditUsername.setBounds(265, 63, 56, 21);
-		btnEditUsername.setBackground(new Color (8, 83, 148));
-		btnEditUsername.setForeground(Color.WHITE);
+		btnEditUsername.setBackground(UIManager.getColor("CheckBoxMenuItem.acceleratorForeground"));
+		btnEditUsername.setForeground(Color.BLACK);
 		contentPane.add(btnEditUsername);
 		
 	}
@@ -415,8 +416,8 @@ public class SettingsMenu extends JFrame {
 		btnSaveUsername.setFont(new Font("Kristen ITC", Font.BOLD, 10));
 		btnSaveUsername.setBorder(new LineBorder(new Color(0, 0, 0)));
 		btnSaveUsername.setBounds(331, 63, 56, 21);
-		btnSaveUsername.setBackground(new Color (8, 83, 148));
-		btnSaveUsername.setForeground(Color.WHITE);
+		btnSaveUsername.setBackground(UIManager.getColor("CheckBoxMenuItem.acceleratorForeground"));
+		btnSaveUsername.setForeground(Color.BLACK);
 		contentPane.add(btnSaveUsername);
 	}
 	
@@ -442,8 +443,8 @@ public class SettingsMenu extends JFrame {
 		btnSavePassword.setFont(new Font("Kristen ITC", Font.BOLD, 10));
 		btnSavePassword.setBorder(new LineBorder(new Color(0, 0, 0))); 
 		btnSavePassword.setBounds(331, 133, 56, 21);
-		btnSavePassword.setBackground(new Color (8, 83, 148));
-		btnSavePassword.setForeground(Color.WHITE);
+		btnSavePassword.setBackground(UIManager.getColor("CheckBoxMenuItem.acceleratorForeground"));
+		btnSavePassword.setForeground(Color.BLACK);
 		contentPane.add(btnSavePassword);
 	}
 	
@@ -473,8 +474,8 @@ public class SettingsMenu extends JFrame {
 		btnSaveEmail.setFont(new Font("Kristen ITC", Font.BOLD, 10));
 		btnSaveEmail.setBorder(new LineBorder(new Color(0, 0, 0))); 
 		btnSaveEmail.setBounds(331, 95, 56, 21);
-		btnSaveEmail.setBackground(new Color (8, 83, 148));
-		btnSaveEmail.setForeground(Color.WHITE);
+		btnSaveEmail.setBackground(UIManager.getColor("CheckBoxMenuItem.acceleratorForeground"));
+		btnSaveEmail.setForeground(Color.BLACK);
 		contentPane.add(btnSaveEmail);
 	}
 	

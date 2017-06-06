@@ -21,6 +21,7 @@ import client.WriteToFile;
 import mySQLConnection.ConnectorFile;
 
 import javax.swing.JTextField;
+import javax.swing.UIManager;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
 import java.awt.event.ActionListener;
@@ -190,8 +191,8 @@ public class ChatMenu extends JFrame implements MouseWheelListener{
 		btnSearch = new JButton("Search ");
 		btnSearch.setFont(new Font("Kristen ITC", Font.BOLD, 10));
 		btnSearch.setBorder(new LineBorder(new Color(0, 0, 0))); 
-		btnSearch.setBackground(new Color (8, 83, 148));
-		btnSearch.setForeground(Color.WHITE);
+		btnSearch.setBackground(UIManager.getColor("CheckBoxMenuItem.acceleratorForeground"));
+		btnSearch.setForeground(Color.BLACK);
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -229,8 +230,8 @@ public class ChatMenu extends JFrame implements MouseWheelListener{
 		comboBox.setModel(new DefaultComboBoxModel <String>(new String[] {userdata.getUserName(), "Settings", "Log Out"}));
 		comboBox.setFont(new Font("Kristen ITC", Font.BOLD, 10));
 		comboBox.setBorder(new LineBorder(new Color(0, 0, 0))); 
-		comboBox.setBackground(new Color (8, 83, 148));
-		comboBox.setForeground(Color.WHITE);
+		comboBox.setBackground(UIManager.getColor("CheckBoxMenuItem.acceleratorForeground"));
+		comboBox.setForeground(Color.BLACK);
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				comboBoxAction();
@@ -294,8 +295,8 @@ public class ChatMenu extends JFrame implements MouseWheelListener{
 		btnSend = new JButton("Send");
 		btnSend.setFont(new Font("Kristen ITC", Font.BOLD, 10));
 		btnSend.setBorder(new LineBorder(new Color(0, 0, 0))); 
-		btnSend.setBackground(new Color (8, 83, 148));
-		btnSend.setForeground(Color.WHITE);
+		btnSend.setBackground(UIManager.getColor("CheckBoxMenuItem.acceleratorForeground"));
+		btnSend.setForeground(Color.BLACK);
 		btnSend.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				sendButtonAction();
@@ -314,10 +315,10 @@ public class ChatMenu extends JFrame implements MouseWheelListener{
 				messagesTextArea.setText("");
 			}
 		});
-		btnRemove.setForeground(Color.WHITE);
+		btnRemove.setForeground(Color.BLACK);
 		btnRemove.setFont(new Font("Kristen ITC", Font.BOLD, 10));
 		btnRemove.setBorder(new LineBorder(new Color(0, 0, 0)));
-		btnRemove.setBackground(new Color(8, 83, 148));
+		btnRemove.setBackground(UIManager.getColor("CheckBoxMenuItem.acceleratorForeground"));
 		btnRemove.setBounds(476, 297, 64, 23);
 		contentPane.add(btnRemove);
 	}

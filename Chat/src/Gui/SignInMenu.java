@@ -16,6 +16,7 @@ import mySQLConnection.ConnectorFile;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -240,8 +241,8 @@ public class SignInMenu extends JFrame {
 		btnSignIn = new JButton("Sign In");
 		btnSignIn.setFont(new Font("Kristen ITC", Font.BOLD, 10));
 		btnSignIn.setBorder(new LineBorder(new Color(0, 0, 0))); 
-		btnSignIn.setBackground(new Color (8, 83, 148));
-		btnSignIn.setForeground(Color.WHITE);
+		btnSignIn.setBackground(UIManager.getColor("CheckBoxMenuItem.acceleratorForeground"));
+		btnSignIn.setForeground(Color.BLACK);
 		btnSignIn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -288,8 +289,8 @@ public class SignInMenu extends JFrame {
 		});
 		btnBack.setFont(new Font("Kristen ITC", Font.BOLD, 9));
 		btnBack.setBorder(new LineBorder(new Color(0, 0, 0))); 
-		btnBack.setBackground(new Color (8, 83, 148));
-		btnBack.setForeground(Color.WHITE);
+		btnBack.setBackground(UIManager.getColor("CheckBoxMenuItem.acceleratorForeground"));
+		btnBack.setForeground(Color.BLACK);
 		btnBack.setBounds(20, 21, 45, 20);
 		contentPane.add(btnBack);
 	}

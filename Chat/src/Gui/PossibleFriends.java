@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
@@ -118,8 +119,8 @@ public class PossibleFriends extends JFrame {
 		btnBack.setBounds(40, 300, 60, 23);
 		btnBack.setFont(new Font("Kristen ITC", Font.BOLD, 10));
 		btnBack.setBorder(new LineBorder(new Color(0, 0, 0))); 
-		btnBack.setBackground(new Color (8, 83, 148));
-		btnBack.setForeground(Color.WHITE);
+		btnBack.setBackground(UIManager.getColor("CheckBoxMenuItem.acceleratorForeground"));
+		btnBack.setForeground(Color.BLACK);
 		contentPane.add(btnBack);
 	}
 	
@@ -147,8 +148,8 @@ public class PossibleFriends extends JFrame {
 		btnAdd.setBounds(170, 300, 60, 23);
 		btnAdd.setFont(new Font("Kristen ITC", Font.BOLD, 10));
 		btnAdd.setBorder(new LineBorder(new Color(0, 0, 0))); 
-		btnAdd.setBackground(new Color (8, 83, 148));
-		btnAdd.setForeground(Color.WHITE);
+		btnAdd.setBackground(UIManager.getColor("CheckBoxMenuItem.acceleratorForeground"));
+		btnAdd.setForeground(Color.BLACK);
 		contentPane.add(btnAdd);
 	}
 	

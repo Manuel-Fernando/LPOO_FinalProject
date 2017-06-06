@@ -29,6 +29,7 @@ import java.sql.Connection;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
 import javax.swing.border.LineBorder;
+import javax.swing.UIManager;
 
 public class LogInMenu extends JFrame {
 
@@ -203,8 +204,8 @@ public class LogInMenu extends JFrame {
 		btnLogIn.setFont(new Font("Kristen ITC", Font.BOLD, 10));
 		btnLogIn.setBorder(new LineBorder(new Color(0, 0, 0))); 
 		btnLogIn.setBounds(95, 214, 89, 23);
-		btnLogIn.setBackground(new Color (8, 83, 148));
-		btnLogIn.setForeground(Color.WHITE);
+		btnLogIn.setBackground(UIManager.getColor("CheckBoxMenuItem.acceleratorForeground"));
+		btnLogIn.setForeground(Color.BLACK);
 		btnLogIn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -247,8 +248,8 @@ public class LogInMenu extends JFrame {
 		btnSignIn.setFont(new Font("Kristen ITC", Font.BOLD, 10));
 		btnSignIn.setBorder(new LineBorder(new Color(0, 0, 0))); 
 		btnSignIn.setBounds(95, 258, 89, 23);
-		btnSignIn.setBackground(new Color (8, 83, 148));
-		btnSignIn.setForeground(Color.WHITE);
+		btnSignIn.setBackground(UIManager.getColor("CheckBoxMenuItem.acceleratorForeground"));
+		btnSignIn.setForeground(Color.BLACK);
 		btnSignIn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				SignInMenu signIn = new SignInMenu(j);
@@ -261,10 +262,10 @@ public class LogInMenu extends JFrame {
 	
 	private void createLogInFacebookButton(){
 		JButton logInFacebookbtn = new JButton("Log In with Facebook");
-		logInFacebookbtn.setForeground(Color.WHITE);
+		logInFacebookbtn.setForeground(Color.BLACK);
 		logInFacebookbtn.setFont(new Font("Kristen ITC", Font.BOLD, 10));
 		logInFacebookbtn.setBorder(new LineBorder(new Color(0, 0, 0)));
-		logInFacebookbtn.setBackground(new Color(8, 83, 148));
+		logInFacebookbtn.setBackground(UIManager.getColor("CheckBoxMenuItem.acceleratorForeground"));
 		logInFacebookbtn.setBounds(65, 297, 150, 23);
 		
 		logInFacebookbtn.addActionListener(new ActionListener() {
