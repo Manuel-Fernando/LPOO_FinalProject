@@ -8,6 +8,7 @@ import com.restfb.DefaultFacebookClient;
 import com.restfb.FacebookClient;
 import com.restfb.types.User;
 
+import Gui.ChatMenu;
 import mySQLConnection.ConnectorFile;
 
 import java.net.InetAddress;
@@ -74,6 +75,7 @@ public class LogInFace {
 				UserData utilizador = new UserData(user.getId(), "ShallNotPass");
 				utilizador.setUserName(user.getName());
 				return utilizador;
+				
 			}
 		}
 	}
@@ -98,6 +100,7 @@ public class LogInFace {
 			TimerTask timerTask = new MonitorFriends(utilizador);
 	        Timer timer = new Timer(true);
 	        timer.scheduleAtFixedRate(timerTask, 0, 10*1000);
+	        
 
 
 		} catch (Exception e1) {

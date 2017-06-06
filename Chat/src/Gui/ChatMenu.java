@@ -311,6 +311,7 @@ public class ChatMenu extends JFrame implements MouseWheelListener{
 		btnRemove.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				RemoveFriend.add(friendtoSendMessage.getEmail(), userdata);
+				messagesTextArea.setText("");
 			}
 		});
 		btnRemove.setForeground(Color.WHITE);

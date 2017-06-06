@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 
 import Gui.ChatMenu;
 
@@ -74,15 +75,21 @@ class Handler extends Thread {
 				if (input == null) {
 					return;
 				} 
-				String data[] = input.split(" ", 3);
+				
+				ArrayList <String> data = new ArrayList<String>();
+				int count = 0;
+				 for (String retval: input.split("-")) {
+					 data.set(count, retval);
+					 count ++;
+			      }
 
-				FriendData friend = new FriendData(data[1], data[0], null, null);
+				FriendData friend = new FriendData(data.get(1), data.get(0), null, null);
 				
 				escrever.setFILENAME(friend);
-				escrever.setMessage(data[1] + ": " + data[2]);
+				escrever.setMessage(data.get(1) + ": " + data.get(2));
 				escrever.Write();	
 
-				ChatMenu.showReceivedMessages(data[1], data[2]);
+				ChatMenu.showReceivedMessages(data.get(1), data.get(2));
 
 			}
 		} catch (IOException e) {

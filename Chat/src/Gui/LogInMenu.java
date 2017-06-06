@@ -271,6 +271,8 @@ public class LogInMenu extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				UserData user = LogInFace.LogIn_Face();
 				dispose();
+				ChatMenu chat = new ChatMenu(user);
+				chat.setVisible(true);
 			}
 		});
 		

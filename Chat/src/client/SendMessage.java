@@ -89,8 +89,7 @@ public class SendMessage extends Thread{
 					out = new PrintWriter(socket.getOutputStream(), true);
 				} catch (IOException e) {e.printStackTrace();}
 				
-				message_out=user.getEmail() + " " + user.getUserName() + " " + message;
-				System.out.println("send " + message_out);
+				message_out=user.getEmail() + " - " + user.getUserName() + " - " + message;
 				out.println(message_out);
 				newmessage = false;
 				
