@@ -16,22 +16,30 @@ public class MyListCellRenderer extends DefaultListCellRenderer{
 		indexesToHighlight.add(index);
 	}
 	
-	public void removeInxex(int index){
+	public void removeInxex(int index){		
 		
-		if (!indexesToHighlight.isEmpty())
-			indexesToHighlight.removeIf(i -> indexesToHighlight.get(i)==index);
+		if (!indexesToHighlight.isEmpty()) {
+			
+			for (int j=0;j<indexesToHighlight.size();j++){
+				
+				if (indexesToHighlight.get(j)==index){
+					indexesToHighlight.remove(j);
+				}
+			}
+			
+		}
 	}
 	
 	@Override
     public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
 
         JLabel label = (JLabel) super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-        label.setOpaque(isSelected); // Highlight only when selected
-        label.setOpaque(true); // Highlight always
+        label.setOpaque(isSelected);
+        label.setOpaque(true); 
         
         for (int i=0;i<indexesToHighlight.size();i++){
         	
-        	if(index == indexesToHighlight.get(i)) { // I faked a match for the second index, put you matching condition here.
+        	if(index == indexesToHighlight.get(i)) {
                 label.setBackground(new Color(8, 83, 148));
                 label.setEnabled(false);     
             }

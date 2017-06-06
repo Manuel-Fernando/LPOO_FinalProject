@@ -90,6 +90,7 @@ public class SendMessage extends Thread{
 				} catch (IOException e) {e.printStackTrace();}
 				
 				message_out=user.getEmail() + " " + user.getUserName() + " " + message;
+				System.out.println("send " + message_out);
 				out.println(message_out);
 				newmessage = false;
 				

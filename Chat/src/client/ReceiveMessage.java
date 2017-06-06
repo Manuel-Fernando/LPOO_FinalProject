@@ -81,9 +81,9 @@ class Handler extends Thread {
 				escrever.setFILENAME(friend);
 				escrever.setMessage(data[1] + ": " + data[2]);
 				escrever.Write();	
-				
-				ChatMenu.showReceivedMessages(data[0], data[1]);
-//////////////////////////////////////////////////////////Avisar que há msg nova!
+
+				ChatMenu.showReceivedMessages(data[1], data[2]);
+
 			}
 		} catch (IOException e) {
 			System.out.println(e);
