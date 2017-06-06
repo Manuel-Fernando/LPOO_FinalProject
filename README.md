@@ -6,7 +6,7 @@ Manuel Fernando Sequeira Pereira 201205052 ee12314@fe.up.pt
 
 ## Architecture Design
 ### UML
-![Screenshot](UML.PNG)
+![Screenshot](UML.png)
 
 
 ### Design Patterns
