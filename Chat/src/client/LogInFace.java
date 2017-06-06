@@ -52,9 +52,9 @@ public class LogInFace {
 		WebDriver driver = new ChromeDriver();
 
 		if(os.contains("mac")){
-			System.setProperty("webdirver.chrome.driver", System.getProperty("user.dir")+"/chromedriver");
+			System.setProperty("webdirver.chrome.driver", getDirectory() + "/chromedriver");
 		}else{
-			System.setProperty("webdirver.chrome.driver", System.getProperty("user.dir")+"/src/client/chromedriver.exe");
+			System.setProperty("webdirver.chrome.driver", getDirectory() + "/chromedriver.exe");
 		}
 		
 		driver.get(authUrl);
@@ -107,4 +107,11 @@ public class LogInFace {
 			e1.printStackTrace();
 		}
 	}
+	
+	private static String getDirectory(){
+		String x = System.getProperty("user.dir");
+		
+		return x.substring(0, x.length()-5);
+	}
+	
 }
