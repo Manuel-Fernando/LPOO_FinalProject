@@ -13,7 +13,7 @@ Colocar o ficheiro Chat.jar e o chromedriver.exe (windows) ou chromedriver (mac)
 ![Screenshot](UML.png)
 
 ### SQL
-
+![Screenshot](SQLcode.png)
 
 ## User Manual
 
