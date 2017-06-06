@@ -12,7 +12,7 @@ Colocar o ficheiro Chat.jar e o chromedriver.exe (windows) ou chromedriver (mac)
 ### UML
 ![Screenshot](UML.png)
 
-## GUI Design
+## User Manual
 
 A janela inicial é usada para o utilizador fazer log in no chat ou sign in caso não se encontre registado.
 
