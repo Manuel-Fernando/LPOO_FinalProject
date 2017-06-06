@@ -79,7 +79,7 @@ class Handler extends Thread {
 				ArrayList <String> data = new ArrayList<String>();
 				int count = 0;
 				 for (String retval: input.split("-")) {
-					 data.set(count, retval);
+					 data.add(retval);
 					 count ++;
 			      }
 
