@@ -13,6 +13,7 @@ import client.FriendData;
 import client.GetFriends;
 import client.LogOut;
 import client.ReceiveMessage;
+import client.RemoveFriend;
 import client.SearchFriend;
 import client.SendMessage;
 import client.UserData;
@@ -68,6 +69,7 @@ public class ChatMenu extends JFrame implements MouseWheelListener{
 	private JScrollPane scroll2;
 	private static String friendStatus;
 	private static MyListCellRenderer highlight;
+	private JButton btnRemove;
 
 	/**
 	 * Launch the application.
@@ -101,6 +103,7 @@ public class ChatMenu extends JFrame implements MouseWheelListener{
 		createTxtFields();
 		createSendButton();	
 		sendMessage();
+		createRemoveBtn();
 		MonitorSelectedFriends monitor = new MonitorSelectedFriends();
 		monitor.setUserdata(this.userdata);
 		monitor.start();
@@ -300,6 +303,22 @@ public class ChatMenu extends JFrame implements MouseWheelListener{
 		});
 		btnSend.setBounds(405, 297, 64, 23);
 		contentPane.add(btnSend);		
+		
+	}
+	
+	private void createRemoveBtn(){
+		btnRemove = new JButton("Remove");
+		btnRemove.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				RemoveFriend.add(friendtoSendMessage.getEmail(), userdata);
+			}
+		});
+		btnRemove.setForeground(Color.WHITE);
+		btnRemove.setFont(new Font("Kristen ITC", Font.BOLD, 10));
+		btnRemove.setBorder(new LineBorder(new Color(0, 0, 0)));
+		btnRemove.setBackground(new Color(8, 83, 148));
+		btnRemove.setBounds(476, 297, 64, 23);
+		contentPane.add(btnRemove);
 	}
 	
 	private void sendButtonAction(){
