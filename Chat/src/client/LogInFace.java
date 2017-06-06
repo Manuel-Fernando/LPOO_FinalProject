@@ -37,8 +37,8 @@ public class LogInFace {
 	}
 
 	/**
-	 * Método estático
-	 * @return UserData com o utilizador
+	 * Método estático cria uma drive para o google chrome e faz login com o facebook
+	 * @return UserData com o utilizador (id, email)
 	 */
 	public static UserData LogInFaceRequest() {
 
@@ -81,7 +81,7 @@ public class LogInFace {
 	}
 	
 	/**
-	 * Método estático que 
+	 * Método estático que insere a informação do utilizador na base de dados e faz login
 	 * @param utilizador UserData com o utilizador
 	 */
 	public static void LogIn_Register(UserData utilizador) {
